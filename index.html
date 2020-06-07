@@ -77,6 +77,70 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-Optimization" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <h3 href="/2020/06/07/Optimization/" class="article-date">
+  <time datetime="2020-06-08T02:24:21.000Z" itemprop="datePublished">2020-06-07</time>
+</h3>
+    
+  </div>
+  <div class="article-inner">
+  <div class="curve-down">
+  <div class="fill-content">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/07/Optimization/">Optimization</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <h3 id="stochastic-gradient-descent-sgd">1. Stochastic Gradient Descent (SGD)</h3>
+<ul>
+<li>GD is infeasible for large datasets so we need SGD.</li>
+</ul>
+<p><span class="math inline">\(i\)</span> is a random index between 1 and n: <span class="math display">\[
+w^t=w^{t-1}-\eta_tg_{t-1},
+\]</span> where <span class="math inline">\(w^t\)</span> is the weight at iteration t, <span class="math inline">\(\eta\)</span> is the learning rate at iteration t and <span class="math inline">\(g_t=\nabla L(w^t; x_i, y_i)\)</span> is the gradient of <span class="math inline">\(i\)</span>th example's loss function with respect to <span class="math inline">\(w^t\)</span>. The <span class="math inline">\(w^t\)</span>, <span class="math inline">\(g_t\)</span> could be a scalar, vector or matrix with the same size.</p>
+<h3 id="mini-batch-gradient-descent">2. Mini-batch Gradient Descent</h3>
+<p>Suppose <span class="math inline">\(i_1,\ldots,i_m\)</span> are random indices between 1 and n: <span class="math display">\[
+w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
+\]</span> where <span class="math inline">\(g^{i_j}_t=\sum_{j=1}^m\nabla L(w^t; x_{i_j}, y_{i_j})\)</span> is the gradient of <span class="math inline">\(i_1\)</span>th to <span class="math inline">\(i_m\)</span>th example's loss function with respect to <span class="math inline">\(w^t\)</span>.</p>
+<ul>
+<li>Mini-batch GD is less noisy than SGD.</li>
+</ul>
+<h3 id="momentum">3. Momentum</h3>
+<ul>
+<li>Oscillation is not good for optimization.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class="article-footer-content">
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
+
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb59ipbg00009v3xdvb5c3zw" class="article-share-link">Share</a>
+        
+      </div>
+    </footer>
+  </div>
+  </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Set-up" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <h3 href="/2020/06/07/Set-up/" class="article-date">
@@ -117,71 +181,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Installation/" rel="tag">Installation</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckb59g31900018i3xddtxb0xk" class="article-share-link">Share</a>
-        
-      </div>
-    </footer>
-  </div>
-  </div>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Optimization" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <h3 href="/2020/06/06/Optimization/" class="article-date">
-  <time datetime="2020-06-07T02:24:21.000Z" itemprop="datePublished">2020-06-06</time>
-</h3>
-    
-  </div>
-  <div class="article-inner">
-  <div class="curve-down">
-  <div class="fill-content">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/06/Optimization/">Optimization</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-        <h3 id="stochastic-gradient-descent-sgd">1. Stochastic Gradient Descent (SGD)</h3>
-<ul>
-<li>GD is infeasible for large datasets so we need SGD.</li>
-</ul>
-<p><span class="math inline">\(i\)</span> is a random index between 1 and n: <span class="math display">\[
-w^t=w^{t-1}-\eta_tg_{t-1},
-\]</span> where <span class="math inline">\(w^t\)</span> is the weight at iteration t, <span class="math inline">\(\eta\)</span> is the learning rate at iteration t and <span class="math inline">\(g_t=\nabla L(w^t; x_i, y_i)\)</span> is the gradient of <span class="math inline">\(i\)</span>th example's loss function with respect to <span class="math inline">\(w^t\)</span>. The <span class="math inline">\(w^t\)</span>, <span class="math inline">\(g_t\)</span> could be a scalar, vector or matrix with the same size.</p>
-<h3 id="mini-batch-gradient-descent">2. Mini-batch Gradient Descent</h3>
-<p>Suppose <span class="math inline">\(i_1,\ldots,i_m\)</span> are random indices between 1 and n: <span class="math display">\[
-w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
-\]</span> where <span class="math inline">\(g^{i_j}_t=\sum_{j=1}^m\nabla L(w^t; x_{i_j}, y_{i_j})\)</span> is the gradient of <span class="math inline">\(i_1\)</span>th to <span class="math inline">\(i_m\)</span>th example's loss function with respect to <span class="math inline">\(w^t\)</span>.</p>
-<ul>
-<li>Mini-batch GD is less noisy than SGD.</li>
-</ul>
-<h3 id="momentum">3. Momentum</h3>
-<ul>
-<li>Oscillation is not good for optimization.</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <div class="article-footer-content">
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
-
-        <a data-url="http://sunyinge.github.io/2020/06/06/Optimization/" data-id="ckb59g31200008i3x87e58h7c" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckb59ipbm00019v3x4oqxa89s" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -206,11 +206,11 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
       <ul>
         
           <li>
-            <a href="/2020/06/07/Set-up/">Set up</a>
+            <a href="/2020/06/07/Optimization/">Optimization</a>
           </li>
         
           <li>
-            <a href="/2020/06/06/Optimization/">Optimization</a>
+            <a href="/2020/06/07/Set-up/">Set up</a>
           </li>
         
       </ul>

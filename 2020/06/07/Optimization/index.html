@@ -13,11 +13,16 @@
 <meta property="og:url" content="http://sunyinge.github.io/2020/06/07/Optimization/index.html">
 <meta property="og:site_name" content="Study notes">
 <meta property="og:description" content="1. Stochastic Gradient Descent (SGD)  GD is infeasible for large datasets so we need SGD.  \(i\) is a random index between 1 and n: \[ w^t&#x3D;w^{t-1}-\eta_tg_{t-1}, \] where \(w^t\) is the weight at iter">
+<meta property="og:image" content="http://sunyinge.github.io/Users/sunyinge/sunyinge.github.io/source/_posts/SDG.png">
+<meta property="og:image" content="http://sunyinge.github.io/Users/sunyinge/sunyinge.github.io/source/_posts/Momentum.png">
+<meta property="og:image" content="http://sunyinge.github.io/Users/sunyinge/sunyinge.github.io/source/_posts/momentumExplan.png">
+<meta property="og:image" content="http://sunyinge.github.io/Users/sunyinge/sunyinge.github.io/source/_posts/nesterovExplan.png">
 <meta property="article:published_time" content="2020-06-08T02:24:21.000Z">
-<meta property="article:modified_time" content="2020-06-07T16:10:03.832Z">
+<meta property="article:modified_time" content="2020-06-07T21:02:36.086Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="DL">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunyinge.github.io/Users/sunyinge/sunyinge.github.io/source/_posts/SDG.png">
   
     <link rel="alternative" href="/atom.xml" title="Study notes" type="application/atom+xml">
   
@@ -113,7 +118,7 @@
 w^t=w^{t-1}-\eta_tg_{t-1},
 \]</span> where <span class="math inline">\(w^t\)</span> is the weight at iteration t, <span class="math inline">\(\eta\)</span> is the learning rate at iteration t and <span class="math inline">\(g_t=\nabla L(w^t; x_i, y_i)\)</span> is the gradient of <span class="math inline">\(i\)</span>th example's loss function with respect to <span class="math inline">\(w^t\)</span>. The <span class="math inline">\(w^t\)</span>, <span class="math inline">\(g_t\)</span> could be a scalar, vector or matrix with the same size.</p>
 <h3 id="mini-batch-gradient-descent">2. Mini-batch Gradient Descent</h3>
-<p>Suppose <span class="math inline">\(i_1,\ldots,i_m\)</span> are random indices between 1 and n: <span class="math display">\[
+<p><span class="math inline">\(i_1,\ldots,i_m\)</span> are random indices between 1 and n: <span class="math display">\[
 w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
 \]</span> where <span class="math inline">\(g^{i_j}_t=\sum_{j=1}^m\nabla L(w^t; x_{i_j}, y_{i_j})\)</span> is the gradient of <span class="math inline">\(i_1\)</span>th to <span class="math inline">\(i_m\)</span>th example's loss function with respect to <span class="math inline">\(w^t\)</span>.</p>
 <ul>
@@ -121,7 +126,57 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
 </ul>
 <h3 id="momentum">3. Momentum</h3>
 <ul>
-<li>Oscillation is not good for optimization.</li>
+<li><p>Oscillation is not good for optimization, as shown in the graph on the left.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="/Users/sunyinge/sunyinge.github.io/source/_posts/SDG.png" alt="SGD Oscillation" style="zoom:40%;" /></th>
+<th style="text-align: center;"><img src="/Users/sunyinge/sunyinge.github.io/source/_posts/Momentum.png" alt="Momentum" style="zoom:42%;" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>SGD Oscillation</em></td>
+<td style="text-align: center;"><strong><em>Momentum</em></strong></td>
+</tr>
+</tbody>
+</table>
+<p>momentum <span class="math inline">\(h_t\)</span>: <span class="math display">\[
+h_t=\alpha h_{t-1}+\eta g_t\\
+w^t=w^{t-1}-h_t
+\]</span></p>
+<ul>
+<li>accumulates values along dimentsion where the gradients have the same sign while cancels each other along dimensions where the gradients have different signs so <span class="math inline">\(h_t\)</span> cancels some coordinates that lead to oscillation of gradients, as the graph on the right shows.</li>
+<li>tends to make the weights move in the same direction as on previous steps since essentially <span class="math inline">\(h_t=\eta g_t+\alpha \eta g_{t-1}+\alpha^2\eta g_{t-2}+\cdots+\alpha^{t-1}\eta g_1\)</span> where usually <span class="math inline">\(\alpha=0.9\)</span> controls how much the local gradient influences long term movement.</li>
+</ul></li>
+</ul>
+<h3 id="nesterov-momentum">4. Nesterov Momentum</h3>
+<p>Nesterov momentum is a simple extension to normal momentum: <span class="math display">\[
+h_t=\alpha h_{t-1}+\eta\nabla L(w^{t-1}-\alpha h_{t-1})\\
+w^t=w^{t-1}-h_t
+\]</span> where the gradient term <span class="math inline">\(\nabla L(w^{t-1}-\alpha h_{t-1})\)</span> is not computed from the currect position <span class="math inline">\(w^{t-1}\)</span> but from a new point <span class="math inline">\(w^{t-1}-\alpha h_{t-1}\)</span>.</p>
+<p>This helps because</p>
+<ul>
+<li>if the gradient term <span class="math inline">\(g_t=\nabla L(w^t)\)</span> always points in the right direction, the momentum term <span class="math inline">\(h_t\)</span> may not. If the momentum term points in the wrong direction, the gradient <span class="math inline">\(\nabla L(w^{t-1}-\alpha h_{t-1})\)</span> can still &quot;go back&quot; and correct it in the <strong>same</strong> update step.</li>
+<li>if the momentum term <span class="math inline">\(h_t\)</span> always points in the right direction, it is just one step ahead the normal momentum.</li>
+</ul>
+<p>Detailed explanation can be found <a href="https://dominikschmidt.xyz/nesterov-momentum/" target="_blank" rel="noopener">here</a>, which can be summarized by the two graphs below (represented by different parameters ):</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="/Users/sunyinge/sunyinge.github.io/source/_posts/momentumExplan.png" alt="Momentum diagram" style="zoom:50%;" /></th>
+<th style="text-align: center;"><img src="/Users/sunyinge/sunyinge.github.io/source/_posts/nesterovExplan.png" alt="Momentum" style="zoom:50%;" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Momentum</em></td>
+<td style="text-align: center;"><em>Nesterov Momentum</em></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Nesterov momentum achieves better performance than momentum in practice.</li>
 </ul>
 
       
@@ -131,7 +186,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb59ipbg00009v3xdvb5c3zw" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb5jyz9x0000rn3x5kbbhgjd" class="article-share-link">Share</a>
         
       </div>
     </footer>

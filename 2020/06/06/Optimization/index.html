@@ -7,14 +7,14 @@
   
   <title>Optimization | Study notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="test 1. Stochastic Gradient Descent (SGD) GD is infeasible for large datasets so we need SGD.  $i$ is a random index between 1 and n:$$w^t&#x3D;w^{t-1}-\eta_tg_{t-1},$$where $w^t$ is the weight at iteratio">
+  <meta name="description" content="test1 1. Stochastic Gradient Descent (SGD) GD is infeasible for large datasets so we need SGD.  $i$ is a random index between 1 and n:  w^t&#x3D;w^{t-1}-\eta_tg_{t-1},where $w^t$ is the weight at iteration">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Optimization">
 <meta property="og:url" content="http://sunyinge.github.io/2020/06/06/Optimization/index.html">
 <meta property="og:site_name" content="Study notes">
-<meta property="og:description" content="test 1. Stochastic Gradient Descent (SGD) GD is infeasible for large datasets so we need SGD.  $i$ is a random index between 1 and n:$$w^t&#x3D;w^{t-1}-\eta_tg_{t-1},$$where $w^t$ is the weight at iteratio">
+<meta property="og:description" content="test1 1. Stochastic Gradient Descent (SGD) GD is infeasible for large datasets so we need SGD.  $i$ is a random index between 1 and n:  w^t&#x3D;w^{t-1}-\eta_tg_{t-1},where $w^t$ is the weight at iteration">
 <meta property="article:published_time" content="2020-06-07T02:24:21.000Z">
-<meta property="article:modified_time" content="2020-06-07T03:12:47.853Z">
+<meta property="article:modified_time" content="2020-06-07T03:25:05.274Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="DL">
 <meta name="twitter:card" content="summary">
@@ -88,12 +88,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>test</p>
+        <p>test1</p>
 <h3 id="1-Stochastic-Gradient-Descent-SGD"><a href="#1-Stochastic-Gradient-Descent-SGD" class="headerlink" title="1. Stochastic Gradient Descent (SGD)"></a>1. Stochastic Gradient Descent (SGD)</h3><ul>
 <li>GD is infeasible for large datasets so we need SGD.</li>
 </ul>
-<p>$i$ is a random index between 1 and n:<br>$$<br>w^t=w^{t-1}-\eta_tg_{t-1},<br>$$<br>where $w^t$ is the weight at iteration t, $\eta$ is the learning rate at iteration t and $g_t=\nabla L(w^t; x_i, y_i)$ is the gradient of $i$th example’s loss function with respect to $w^t$. The $w^t$, $g_t$ could be a scalar, vector or matrix with same size. </p>
-<h3 id="2-Mini-batch-Gradient-Descent"><a href="#2-Mini-batch-Gradient-Descent" class="headerlink" title="2. Mini-batch Gradient Descent"></a>2. Mini-batch Gradient Descent</h3><p>$i_1,\ldots,i_m$ are random indices between 1 and n:<br>$$<br>w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}<em>{t-1},<br>$$<br>where $g^{i_j}_t=\sum</em>{j=1}^m\nabla L(w^t; x_{i_j}, y_{i_j})$ is the gradient of $i_1$th to $i_m$th example’s loss function with respect to $w^t$.</p>
+<p>$i$ is a random index between 1 and n:</p>
+<script type="math/tex; mode=display">
+w^t=w^{t-1}-\eta_tg_{t-1},</script><p>where $w^t$ is the weight at iteration t, $\eta$ is the learning rate at iteration t and $g_t=\nabla L(w^t; x_i, y_i)$ is the gradient of $i$th example’s loss function with respect to $w^t$. The $w^t$, $g_t$ could be a scalar, vector or matrix with same size. </p>
+<h3 id="2-Mini-batch-Gradient-Descent"><a href="#2-Mini-batch-Gradient-Descent" class="headerlink" title="2. Mini-batch Gradient Descent"></a>2. Mini-batch Gradient Descent</h3><p>$i_1,\ldots,i_m$ are random indices between 1 and n:</p>
+<script type="math/tex; mode=display">
+w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},</script><p>where $g^{i<em>j}_t=\sum</em>{j=1}^m\nabla L(w^t; x<em>{i_j}, y</em>{i_j})$ is the gradient of $i_1$th to $i_m$th example’s loss function with respect to $w^t$.</p>
 <ul>
 <li>mini-batch GD is less noisy than SGD.</li>
 </ul>
@@ -206,6 +210,23 @@
 
 
 
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

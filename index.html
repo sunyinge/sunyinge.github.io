@@ -111,7 +111,7 @@
 </ul>
 <p>Suppose <script type="math/tex">i</script> is a random index between 1 and n:</p>
 <script type="math/tex; mode=display">
-w^t=w^{t-1}-\eta_tg_{t-1},</script><p>where <script type="math/tex">w^t</script> is the weight at iteration t, <script type="math/tex">\eta</script> is the learning rate at iteration t and <script type="math/tex">g_t=\nabla L(w^t; x_i, y_i)</script> is the gradient of $i$th example’s loss function with respect to <script type="math/tex">w^t</script>. The <script type="math/tex">w^t</script>, <script type="math/tex">g_t</script> could be a scalar, vector or matrix with same size. </p>
+w^t=w^{t-1}-\eta_tg_{t-1},</script><p>where <script type="math/tex">w^t</script> is the weight at iteration t, <script type="math/tex">\eta</script> is the learning rate at iteration t and <script type="math/tex">g_t=\nabla L(w^t; x_i, y_i)</script> is the gradient of <script type="math/tex">i</script>th example’s loss function with respect to <script type="math/tex">w^t</script>. The <script type="math/tex">w^t</script>, <script type="math/tex">g_t</script> could be a scalar, vector or matrix with same size. </p>
 <h3 id="2-Mini-batch-Gradient-Descent"><a href="#2-Mini-batch-Gradient-Descent" class="headerlink" title="2. Mini-batch Gradient Descent"></a>2. Mini-batch Gradient Descent</h3><p>Suppose <script type="math/tex">i_1,\ldots,i_m</script>  are random indices between 1 and n:</p>
 <script type="math/tex; mode=display">
 w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},</script><p>where <script type="math/tex">g^{i_j}_t=\sum_{j=1}^m\nabla L(w^t; x_{i_j}, y_{i_j})</script> is the gradient of <script type="math/tex">i_1</script>th to <script type="math/tex">i_m</script>th example’s loss function with respect to <script type="math/tex">w^t</script>.</p>
@@ -257,23 +257,6 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},</script><p>where <script type="math
 <script src="/js/script.js"></script>
 
 
-</div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

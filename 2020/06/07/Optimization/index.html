@@ -14,11 +14,11 @@
 <meta property="og:site_name" content="Study notes">
 <meta property="og:description" content="1. Stochastic Gradient Descent (SGD)  GD is infeasible for large datasets so we need SGD.  \(i\) is a random index between 1 and n: \[ w^t&#x3D;w^{t-1}-\eta_tg_{t-1}, \] where \(w^t\) is the weight at iter">
 <meta property="og:image" content="http://sunyinge.github.io/2020/06/07/images/SDG.png">
-<meta property="og:image" content="http://sunyinge.github.io/2020/06/07/Optimization/a/momentum.png">
+<meta property="og:image" content="http://sunyinge.github.io/2020/06/07/images/momentum.png">
 <meta property="og:image" content="http://sunyinge.github.io/2020/06/07/images/momentumExplan.png">
 <meta property="og:image" content="http://sunyinge.github.io/2020/06/07/images/nesterovExplan.png">
 <meta property="article:published_time" content="2020-06-08T02:24:21.000Z">
-<meta property="article:modified_time" content="2020-06-07T21:56:07.120Z">
+<meta property="article:modified_time" content="2020-06-07T22:08:45.334Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="DL">
 <meta name="twitter:card" content="summary">
@@ -127,20 +127,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
 <h3 id="momentum">3. Momentum</h3>
 <ul>
 <li><p>Oscillation is not good for optimization, as shown in the graph on the left.</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><img src="../images/SDG.png" alt="test" style="zoom:40%;" /></th>
-<th style="text-align: center;"><img src="a/momentum.png" alt="Momentum" style="zoom:42%;" /></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><em>SGD Oscillation</em></td>
-<td style="text-align: center;"><strong><em>Momentum</em></strong></td>
-</tr>
-</tbody>
-</table>
+<p><img src="../images/SDG.png" alt="SGD Oscillation" style="zoom:40%;" /> <img src="../images/momentum.png" alt="Momentum" style="zoom:42%;" /></p>
 <p>momentum <span class="math inline">\(h_t\)</span>: <span class="math display">\[
 h_t=\alpha h_{t-1}+\eta g_t\\
 w^t=w^{t-1}-h_t
@@ -161,20 +148,7 @@ w^t=w^{t-1}-h_t
 <li>if the momentum term <span class="math inline">\(h_t\)</span> always points in the right direction, it is just one step ahead the normal momentum.</li>
 </ul>
 <p>Detailed explanation can be found <a href="https://dominikschmidt.xyz/nesterov-momentum/" target="_blank" rel="noopener">here</a>, which can be summarized by the two graphs below (represented by different parameters ):</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><img src="../images/momentumExplan.png" alt="Momentum diagram" style="zoom:50%;" /></th>
-<th style="text-align: center;"><img src="../images/nesterovExplan.png" alt="Nesertov diagram" style="zoom:50%;" /></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><em>Momentum</em></td>
-<td style="text-align: center;"><em>Nesterov Momentum</em></td>
-</tr>
-</tbody>
-</table>
+<p><img src="../images/momentumExplan.png" alt="Momentum diagram" style="zoom:50%;" /> <img src="../images/nesterovExplan.png" alt="Nesertov diagram" style="zoom:50%;" /></p>
 <ul>
 <li>Nesterov momentum achieves better performance than momentum in practice.</li>
 </ul>
@@ -186,7 +160,7 @@ w^t=w^{t-1}-h_t
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb5lvqwv0000873xd3844c60" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb5mc09d0000a03x2ioafst2" class="article-share-link">Share</a>
         
       </div>
     </footer>

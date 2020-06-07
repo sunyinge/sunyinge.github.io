@@ -7,14 +7,14 @@
   
   <title>Optimization | Study notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Stochastic Gradient Descent (SGD) GD is infeasible for large datasets so we need SGD.  i$$  test $$\sigmais a random index between 1 and n:  w^t&#x3D;w^{t-1}-\eta_tg_{t-1},where w^t is the weight at ite">
+  <meta name="description" content="1. Stochastic Gradient Descent (SGD) GD is infeasible for large datasets so we need SGD.  $i$   is a random index between 1 and n:  w^t&#x3D;w^{t-1}-\eta_tg_{t-1},where w^t is the weight at iteration t, \e">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Optimization">
 <meta property="og:url" content="http://sunyinge.github.io/2020/06/06/Optimization/index.html">
 <meta property="og:site_name" content="Study notes">
-<meta property="og:description" content="1. Stochastic Gradient Descent (SGD) GD is infeasible for large datasets so we need SGD.  i$$  test $$\sigmais a random index between 1 and n:  w^t&#x3D;w^{t-1}-\eta_tg_{t-1},where w^t is the weight at ite">
+<meta property="og:description" content="1. Stochastic Gradient Descent (SGD) GD is infeasible for large datasets so we need SGD.  $i$   is a random index between 1 and n:  w^t&#x3D;w^{t-1}-\eta_tg_{t-1},where w^t is the weight at iteration t, \e">
 <meta property="article:published_time" content="2020-06-07T02:24:21.000Z">
-<meta property="article:modified_time" content="2020-06-07T04:06:22.449Z">
+<meta property="article:modified_time" content="2020-06-07T04:10:23.380Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="DL">
 <meta name="twitter:card" content="summary">
@@ -47,14 +47,14 @@
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
         
-          <a id="nav-github" class="nav-icon" href="https://github.com/myname" target="_blank" rel="noopener"></a>
+          <a id="nav-github" class="nav-icon" href="https://github.com/sunyinge" target="_blank" rel="noopener"></a>
         
       </div>
     </nav>
     <div id="header-title">
       
         <h1 id="blog-title-wrap">
-          <a href="/" id="blog-title">My Blog</a>
+          <a href="/" id="blog-title">Yinge&#39;s Blog</a>
         </h1>
       
     </div>
@@ -110,7 +110,8 @@
         <h3 id="1-Stochastic-Gradient-Descent-SGD"><a href="#1-Stochastic-Gradient-Descent-SGD" class="headerlink" title="1. Stochastic Gradient Descent (SGD)"></a>1. Stochastic Gradient Descent (SGD)</h3><ul>
 <li>GD is infeasible for large datasets so we need SGD.</li>
 </ul>
-<script type="math/tex; mode=display">i$$  test $$\sigma</script><p>is a random index between 1 and n:</p>
+<p>$i$  </p>
+<p>is a random index between 1 and n:</p>
 <script type="math/tex; mode=display">
 w^t=w^{t-1}-\eta_tg_{t-1},</script><p>where <script type="math/tex">w^t</script> is the weight at iteration t, <script type="math/tex">\eta</script> is the learning rate at iteration t and <script type="math/tex">g_t=\nabla L(w^t; x_i, y_i)</script> is the gradient of $i$th example’s loss function with respect to <script type="math/tex">w^t</script>. The <script type="math/tex">w^t</script>, <script type="math/tex">g_t</script> could be a scalar, vector or matrix with same size. </p>
 <h3 id="2-Mini-batch-Gradient-Descent"><a href="#2-Mini-batch-Gradient-Descent" class="headerlink" title="2. Mini-batch Gradient Descent"></a>2. Mini-batch Gradient Descent</h3><script type="math/tex; mode=display">i_1,\ldots,i_m$$ are random indices between 1 and n:</script><p>w^t=w^{t-1}-\eta<em>t\sum</em>{j=1}^mg^{i<em>j}</em>{t-1},</p>

@@ -313,7 +313,7 @@
 <ul>
 <li>GD is infeasible for large datasets so we need SGD.</li>
 </ul>
-<p>Test1 <span class="math inline">\(i\)</span> is a random index between 1 and n: <span class="math display">\[
+<p>Test2 <span class="math inline">\(i\)</span> is a random index between 1 and n: <span class="math display">\[
 w^t=w^{t-1}-\eta_tg_{t-1},
 \]</span> where <code>$w^t$</code> is the weight at iteration t, <code>$\eta$</code> is the learning rate at iteration t and <code>$g_t=\nabla L(w^t; x_i, y_i)$</code> is the gradient of <code>$i$</code>th example's loss function with respect to <code>$w^t$</code>. The <code>$w^t$</code>, <code>$g_t$</code> could be a scalar, vector or matrix with same size.</p>
 <h3 id="mini-batch-gradient-descent">2. Mini-batch Gradient Descent</h3>

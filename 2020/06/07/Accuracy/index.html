@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Study notes">
 <meta property="og:description" content="1. F1 score 1. binary classification F1 score is the harmonic mean of precision and recall: \[ F_1 &#x3D; \frac{2}{\frac{1}{precision}+\frac{1}{recall}}&#x3D;2\cdot\frac{precision\cdot recall}{precesion+recall}">
 <meta property="article:published_time" content="2020-06-08T02:04:06.000Z">
-<meta property="article:modified_time" content="2020-06-08T02:40:17.395Z">
+<meta property="article:modified_time" content="2020-06-08T02:54:51.028Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="ML">
 <meta name="twitter:card" content="summary">
@@ -113,22 +113,25 @@
 F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot recall}{precesion+recall}
 \]</span></p>
 <ul>
-<li>precision <span class="math inline">\(=\frac{true \ positives}{positives}\)</span>, a high precision indicates a high chance that positives are true (凡检测出来的都是对的).
+<li>Precision = <span class="math inline">\(\frac{true \ positives}{positives}\)</span>, a high precision indicates a high chance that positives are true (凡检测出来的都是对的).
 <ul>
 <li>How many selected items are true?</li>
 </ul></li>
-<li>recall <span class="math inline">\(= \frac{true \ positives}{true}\)</span>, a high recall indicates a high chance that true ones are selected (凡是真的都能检测出来).
+<li>Recall = <span class="math inline">\(\frac{true \ positives}{true}\)</span>, a high recall indicates a high chance that true ones are selected (凡是真的都能检测出来).
 <ul>
 <li>How many true items are selected?</li>
-<li>true postive rate, sensitivity, power.</li>
+<li>True postive rate, sensitivity, power.</li>
 </ul></li>
 </ul>
 <h4 id="multi-class-classification">2. multi-class classification</h4>
 <h3 id="roc-curve">2. ROC curve</h3>
 <p>Pairs of true positive rates and false positive rates at different thresholds.</p>
 <ul>
-<li>true positive rate = recall</li>
-<li>false positive rate = <span class="math inline">\(\frac{false \ positives}{negatives}\)</span></li>
+<li>True positive rate = recall = <span class="math inline">\(\frac{true \ positives}{true}\)</span></li>
+<li>False positive rate = <span class="math inline">\(\frac{false \ positives}{false}\)</span>
+<ul>
+<li>1-specificity</li>
+</ul></li>
 </ul>
 
       
@@ -138,7 +141,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Accuracy/" data-id="ckb5we9uy00004t3x1qgmcj1x" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Accuracy/" data-id="ckb5wkubp00006h3xdrym0dqs" class="article-share-link">Share</a>
         
       </div>
     </footer>

@@ -19,9 +19,9 @@
 <meta property="og:image" content="http://sunyinge.github.io/images/dcg.png">
 <meta property="og:image" content="http://sunyinge.github.io/images/bp1.png">
 <meta property="og:image" content="http://sunyinge.github.io/images/bp2.png">
-<meta property="og:image" content="http://sunyinge.github.io/2020/06/08/images/compgraph.png">
+<meta property="og:image" content="http://sunyinge.github.io/images/compgraph.png">
 <meta property="article:published_time" content="2020-06-08T14:16:30.000Z">
-<meta property="article:modified_time" content="2020-06-08T16:28:10.707Z">
+<meta property="article:modified_time" content="2020-06-08T17:45:51.775Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="DL">
 <meta name="twitter:card" content="summary">
@@ -196,8 +196,12 @@
 </ul>
 <h3 id="matrix-representation">4. Matrix Representation</h3>
 <h4 id="one-instance">1. One instance</h4>
-<p><img src="../images/compgraph.png" /></p>
-<p>The weight matrix between layer a and layer b has dimension <strong>num_neurons in layer a <span class="math inline">\(\times\)</span> num_neurons in layer b</strong>. For example, the weight matrix between x layer and z layer is a <span class="math inline">\(2\times 3\)</span> matrix. <span class="math display">\[
+<p><img src="/images/compgraph.png" /></p>
+<p>The weight matrix between layer a and layer b has dimension <strong>num_neurons in layer a <span class="math inline">\(\times\)</span> num_neurons in layer b</strong>. For example, the weight matrix between x layer and z layer is a <span class="math inline">\(2\times 3\)</span> matrix.</p>
+<ul>
+<li>Forward pass:</li>
+</ul>
+<p><span class="math display">\[
 \begin{equation*}
 (x_1,x_2)\cdot
 \left[
@@ -208,10 +212,51 @@
 =(z_1,z_2,z_3) \Leftrightarrow xW=z
 \end{equation*}\\
 \]</span></p>
+<ul>
+<li>Backward pass:</li>
+</ul>
 <p><span class="math display">\[
-\text{If } \frac{\partial L}{\partial z} = (\frac{\partial L}{\partial z_1}, \frac{\partial L}{\partial z_2}, \frac{\partial L}{\partial z_3}), \text{then } \frac{\partial L}{\partial W} = x^T\frac{\partial L}{\partial z}
+\frac{\partial L}{\partial w_{ij}}=\sum_k\frac{\partial L}{\partial z_k}\cdot\frac{\partial z_k}{\partial w_{ij}}=\frac{\partial L}{\partial z_j}\cdot x_i
+\]</span></p>
+<p>​ Since <span class="math inline">\(\frac{\partial L}{\partial z} = (\frac{\partial L}{\partial z_1}, \frac{\partial L}{\partial z_2}, \frac{\partial L}{\partial z_3})\)</span>, we have <span class="math display">\[
+\frac{\partial L}{\partial W} = x^T\frac{\partial L}{\partial z}\\
+\frac{\partial L}{\partial x} = \frac{\partial L}{\partial z}W^T.
 \]</span></p>
 <h4 id="mini-batch">2. Mini batch</h4>
+<p>Say batch of 2.</p>
+<ul>
+<li>Forward pass:</li>
+</ul>
+<p><span class="math display">\[
+\begin{equation*}
+\left( 
+\begin{array}{cc}
+    x_{11} &amp; x_{12}\\
+    x_{21} &amp; x_{22}\\
+\end{array} \right)\cdot
+\left[
+\begin{array}{ccc}
+    w_{11} &amp; w_{12} &amp; w_{13}\\
+    w_{21} &amp; w_{22} &amp; w_{23} \\
+\end{array} \right]
+=\left( 
+\begin{array}{ccc}
+    z_{11} &amp; z_{12} &amp; z_{13}\\
+    z_{21} &amp; z_{22} &amp; z_{23} \\
+\end{array} \right) \Leftrightarrow XW=Z
+\end{equation*}\\
+\]</span></p>
+<ul>
+<li>Backward pass:</li>
+</ul>
+<p><span class="math display">\[
+\frac{\partial L}{\partial w_{ij}}=\frac{\partial L(z_{11},z_{12},z_{13})}{\partial w_{ij}}+\frac{\partial L(z_{21},z_{22},z_{23})}{\partial w_{ij}}=\frac{\partial L}{\partial z_{1j}}\cdot x_{1i}+\frac{\partial L}{\partial z_{2j}}\cdot x_{2i} \\
+\text{(summation over batches)}
+\]</span></p>
+<p>​ Since <span class="math inline">\(\frac{\partial L}{\partial z} = \left( \begin{array}{ccc} ​ \frac{\partial L}{\partial z_{11}} &amp; \frac{\partial L}{\partial z_{12}} &amp; \frac{\partial L}{\partial z_{13}}\\ ​ \frac{\partial L}{\partial z_{21}} &amp; \frac{\partial L}{\partial z_{22}} &amp; \frac{\partial L}{\partial z_{23}} \\ \end{array} \right)\)</span>, we have <span class="math display">\[
+\frac{\partial L}{\partial W} = X^T\frac{\partial L}{\partial z}\\
+\frac{\partial L}{\partial X} = \frac{\partial L}{\partial z}W^T.
+\]</span></p>
 
       
     </div>
@@ -220,7 +265,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb6plvjg0001bb3xgvhx7xsq" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb6sdsq20004j03xbkk51er2" class="article-share-link">Share</a>
         
       </div>
     </footer>

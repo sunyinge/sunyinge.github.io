@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Study notes">
 <meta property="og:description" content="1. Scalar by Matrix From post, we know if \(l\) is a scalar and \(C&#x3D;AB\) where A, B, C are matrixes, we have \[ \frac{\partial l}{\partial A} &#x3D; \frac{\partial l}{\partial C}\cdot B^T\\ \frac{\partial">
 <meta property="article:published_time" content="2020-06-08T17:57:50.000Z">
-<meta property="article:modified_time" content="2020-06-08T18:06:16.356Z">
+<meta property="article:modified_time" content="2020-06-08T18:11:46.158Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="DL">
 <meta property="article:tag" content="Optimization">
@@ -112,6 +112,10 @@
 \frac{\partial l}{\partial B} = A^T\cdot\frac{\partial l}{\partial C}
 \]</span></p>
 <h3 id="matrix-by-matrix">2. Matrix by Matrix</h3>
+<p>If <span class="math inline">\(C=AB\)</span> where A, B, C are matrixes, we have <span class="math display">\[
+\frac{\partial C}{\partial A} = \{\frac{\partial C_{ij}}{\partial A_{kl}}\}_{ijkl},
+\]</span> which is a high-dimensional array, called tensor.</p>
+<p>It is not quite useful in practice.</p>
 
       
     </div>
@@ -120,7 +124,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Derivatives/" data-id="ckb6t7o9q0001r93x4d1u2iit" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Derivatives/" data-id="ckb6tbmkp0001su3xdc859tte" class="article-share-link">Share</a>
         
       </div>
     </footer>

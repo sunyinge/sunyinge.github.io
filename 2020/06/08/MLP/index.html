@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://sunyinge.github.io/images/bp2.png">
 <meta property="og:image" content="http://sunyinge.github.io/2020/06/08/images/compgraph.png">
 <meta property="article:published_time" content="2020-06-08T14:16:30.000Z">
-<meta property="article:modified_time" content="2020-06-08T16:00:30.385Z">
+<meta property="article:modified_time" content="2020-06-08T16:28:10.707Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="DL">
 <meta name="twitter:card" content="summary">
@@ -177,7 +177,7 @@
 <thead>
 <tr class="header">
 <th style="text-align: center;"><img src="/images/bp1.png" style="zoom:110%;" /></th>
-<th style="text-align: center;"><img src="/images/bp2.png" style="zoom:100%;" /></th>
+<th style="text-align: center;"><img src="/images/bp2.png" style="zoom:90%;" /></th>
 </tr>
 </thead>
 <tbody>
@@ -204,11 +204,14 @@
 \begin{array}{ccc}
     w_{11} &amp; w_{12} &amp; w_{13}\\
     w_{21} &amp; w_{22} &amp; w_{23} \\
-    w_{31} &amp; w_{32} &amp; w_{33}\\
 \end{array} \right]
 =(z_1,z_2,z_3) \Leftrightarrow xW=z
-\end{equation*}
+\end{equation*}\\
 \]</span></p>
+<p><span class="math display">\[
+\text{If } \frac{\partial L}{\partial z} = (\frac{\partial L}{\partial z_1}, \frac{\partial L}{\partial z_2}, \frac{\partial L}{\partial z_3}), \text{then } \frac{\partial L}{\partial W} = x^T\frac{\partial L}{\partial z}
+\]</span></p>
+<h4 id="mini-batch">2. Mini batch</h4>
 
       
     </div>
@@ -217,7 +220,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb6p31n40000623x0yiv1e3f" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb6plvjg0001bb3xgvhx7xsq" class="article-share-link">Share</a>
         
       </div>
     </footer>

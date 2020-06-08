@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://sunyinge.github.io/images/bp2.png">
 <meta property="og:image" content="http://sunyinge.github.io/images/compgraph.png">
 <meta property="article:published_time" content="2020-06-08T14:16:30.000Z">
-<meta property="article:modified_time" content="2020-06-08T17:45:51.775Z">
+<meta property="article:modified_time" content="2020-06-08T17:48:38.500Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="DL">
 <meta name="twitter:card" content="summary">
@@ -219,7 +219,8 @@
 \frac{\partial L}{\partial w_{ij}}=\sum_k\frac{\partial L}{\partial z_k}\cdot\frac{\partial z_k}{\partial w_{ij}}=\frac{\partial L}{\partial z_j}\cdot x_i
 \]</span></p>
 <p>​ Since <span class="math inline">\(\frac{\partial L}{\partial z} = (\frac{\partial L}{\partial z_1}, \frac{\partial L}{\partial z_2}, \frac{\partial L}{\partial z_3})\)</span>, we have <span class="math display">\[
-\frac{\partial L}{\partial W} = x^T\frac{\partial L}{\partial z}\\
+\frac{\partial L}{\partial W} = x^T\frac{\partial L}{\partial z}.
+\]</span> ​ And similarly, <span class="math display">\[
 \frac{\partial L}{\partial x} = \frac{\partial L}{\partial z}W^T.
 \]</span></p>
 <h4 id="mini-batch">2. Mini batch</h4>
@@ -254,7 +255,8 @@
 \text{(summation over batches)}
 \]</span></p>
 <p>​ Since <span class="math inline">\(\frac{\partial L}{\partial z} = \left( \begin{array}{ccc} ​ \frac{\partial L}{\partial z_{11}} &amp; \frac{\partial L}{\partial z_{12}} &amp; \frac{\partial L}{\partial z_{13}}\\ ​ \frac{\partial L}{\partial z_{21}} &amp; \frac{\partial L}{\partial z_{22}} &amp; \frac{\partial L}{\partial z_{23}} \\ \end{array} \right)\)</span>, we have <span class="math display">\[
-\frac{\partial L}{\partial W} = X^T\frac{\partial L}{\partial z}\\
+\frac{\partial L}{\partial W} = X^T\frac{\partial L}{\partial z}.
+\]</span> ​ And similarly, we have <span class="math display">\[
 \frac{\partial L}{\partial X} = \frac{\partial L}{\partial z}W^T.
 \]</span></p>
 
@@ -265,7 +267,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb6sdsq20004j03xbkk51er2" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb6shbtj0001kk3x5av5emgs" class="article-share-link">Share</a>
         
       </div>
     </footer>

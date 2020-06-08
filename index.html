@@ -17,6 +17,8 @@
     <link rel="alternative" href="/atom.xml" title="Study notes" type="application/atom+xml">
   
   
+    <link rel="icon" href="[object Object]">
+  
   
 <link rel="stylesheet" href="/css/style.css">
 
@@ -144,7 +146,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb5vkx620001yx3xfhsr0dos" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb5we9v500014t3xagvg6tbr" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -183,18 +185,27 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
       
         
         <h3 id="f1-score">1. F1 score</h3>
+<h4 id="binary-classification">1. binary classification</h4>
 <p>F1 score is the harmonic mean of precision and recall: <span class="math display">\[
 F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot recall}{precesion+recall}
 \]</span></p>
 <ul>
-<li><span class="math inline">\(precision=\frac{true \ positives}{positives}\)</span>, a high precision indicates a high chance that positives are true (凡检测出来的都是对的).
+<li>precision <span class="math inline">\(=\frac{true \ positives}{positives}\)</span>, a high precision indicates a high chance that positives are true (凡检测出来的都是对的).
 <ul>
 <li>How many selected items are true?</li>
 </ul></li>
-<li><span class="math inline">\(recall = \frac{true \ positives}{true}\)</span>, a high recall indicates a high chance that true ones are selected (凡是真的都能检测出来).
+<li>recall <span class="math inline">\(= \frac{true \ positives}{true}\)</span>, a high recall indicates a high chance that true ones are selected (凡是真的都能检测出来).
 <ul>
 <li>How many true items are selected?</li>
+<li>true postive rate, sensitivity, power.</li>
 </ul></li>
+</ul>
+<h4 id="multi-class-classification">2. multi-class classification</h4>
+<h3 id="roc-curve">2. ROC curve</h3>
+<p>Pairs of true positive rates and false positive rates at different thresholds.</p>
+<ul>
+<li>true positive rate = recall</li>
+<li>false positive rate = <span class="math inline">\(\frac{false \ positives}{negatives}\)</span></li>
 </ul>
 
       
@@ -204,7 +215,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Accuracy/" data-id="ckb5vkx5t0000yx3xe3qk1iaq" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Accuracy/" data-id="ckb5we9uy00004t3x1qgmcj1x" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -258,7 +269,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Installation/" rel="tag">Installation</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckb5vkx680003yx3x4bbi711p" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckb5we9ve00034t3xgo8rh2ob" class="article-share-link">Share</a>
         
       </div>
     </footer>

@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://sunyinge.github.io/images/bp2.png">
 <meta property="og:image" content="http://sunyinge.github.io/images/compgraph.png">
 <meta property="article:published_time" content="2020-06-08T14:16:30.000Z">
-<meta property="article:modified_time" content="2020-06-08T17:48:38.500Z">
+<meta property="article:modified_time" content="2020-06-08T17:52:42.394Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="DL">
 <meta name="twitter:card" content="summary">
@@ -258,7 +258,9 @@
 \frac{\partial L}{\partial W} = X^T\frac{\partial L}{\partial z}.
 \]</span> ​ And similarly, we have <span class="math display">\[
 \frac{\partial L}{\partial X} = \frac{\partial L}{\partial z}W^T.
-\]</span></p>
+\]</span> So,</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward_pass</span><span class="params">(X,W)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> X.dot(X)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">backward_pass</span><span class="params">(X,W,dZ)</span>:</span></span><br><span class="line">	dX = dZ.dot(W.T)</span><br><span class="line">	dW = X.T.dot(dZ)</span><br><span class="line">	<span class="keyword">return</span> dX,dW</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -267,7 +269,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb6shbtj0001kk3x5av5emgs" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb6smjnw0001lx3xecjeee5j" class="article-share-link">Share</a>
         
       </div>
     </footer>

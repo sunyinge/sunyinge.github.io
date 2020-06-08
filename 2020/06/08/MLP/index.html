@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://sunyinge.github.io/images/bp1.png">
 <meta property="og:image" content="http://sunyinge.github.io/images/bp2.png">
 <meta property="article:published_time" content="2020-06-08T14:16:30.000Z">
-<meta property="article:modified_time" content="2020-06-08T15:33:09.830Z">
+<meta property="article:modified_time" content="2020-06-08T15:40:46.349Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="DL">
 <meta name="twitter:card" content="summary">
@@ -176,7 +176,7 @@
 <thead>
 <tr class="header">
 <th style="text-align: center;"><img src="/images/bp1.png" /></th>
-<th style="text-align: center;"><img src="/images/bp2.png" /></th>
+<th style="text-align: center;"><img src="/images/bp2.png" style="zoom:100%;" /></th>
 </tr>
 </thead>
 <tbody>
@@ -188,9 +188,11 @@
 </table>
 <p>Inside the back-propagation, it has two passes, the forward pass and the backward pass.</p>
 <ul>
-<li>Forward pass: calculate the value at each node (e.g., <span class="math inline">\(z_1, h_2\)</span> in the graph above, etc) through the computation graph so that we know at which point we take derivatives.</li>
+<li><p>Forward pass: get the value at each node (e.g., <span class="math inline">\(z_1, h_2\)</span> in the graph above, etc) through the computation graph so that we know at which point we take derivatives.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward_pass</span><span class="params">(inputs)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">1.</span>/(<span class="number">1</span>+np.exp(-inputs))</span><br></pre></td></tr></table></figure></li>
+<li><p>Backward pass: get the derivative at each node (e.g., <span class="math inline">\(\frac{\partial L}{\partial x_1}, \frac{\partial L}{\partial z_2}\)</span> in the graph above, etc) through the derivative computation graph.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">backward_pass</span><span class="params">(inputs,incoming_gradients)</span>:</span></span><br><span class="line">	sigmoid = <span class="number">1.</span>/(<span class="number">1</span>+np.exp(-inputs))</span><br><span class="line">	<span class="keyword">return</span> sigmoid*(<span class="number">1</span>-sigmoid)*incoming_gradients</span><br></pre></td></tr></table></figure></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward_pass</span><span class="params">(inputs)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">1.</span>/(<span class="number">1</span>+np.exp(-inputs))</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -199,7 +201,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb6nn5o80001y33xdbwkgbua" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb6nwwr40001zq3xgvgdhjku" class="article-share-link">Share</a>
         
       </div>
     </footer>

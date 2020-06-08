@@ -7,15 +7,15 @@
   
   <title>Measure of accuracy | Study notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. F1 score 1. Binary classification F1 score is the harmonic mean of precision and recall: \[ F_1 &#x3D; \frac{2}{\frac{1}{precision}+\frac{1}{recall}}&#x3D;2\cdot\frac{precision\cdot recall}{precesion+recall}">
+  <meta name="description" content="1. F1 Score 1. Binary Classification F1 score is the harmonic mean of precision and recall: \[ F_1 &#x3D; \frac{2}{\frac{1}{precision}+\frac{1}{recall}}&#x3D;2\cdot\frac{precision\cdot recall}{precesion+recall}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Measure of accuracy">
 <meta property="og:url" content="http://sunyinge.github.io/2020/06/07/Accuracy/index.html">
 <meta property="og:site_name" content="Study notes">
-<meta property="og:description" content="1. F1 score 1. Binary classification F1 score is the harmonic mean of precision and recall: \[ F_1 &#x3D; \frac{2}{\frac{1}{precision}+\frac{1}{recall}}&#x3D;2\cdot\frac{precision\cdot recall}{precesion+recall}">
+<meta property="og:description" content="1. F1 Score 1. Binary Classification F1 score is the harmonic mean of precision and recall: \[ F_1 &#x3D; \frac{2}{\frac{1}{precision}+\frac{1}{recall}}&#x3D;2\cdot\frac{precision\cdot recall}{precesion+recall}">
 <meta property="og:image" content="http://sunyinge.github.io/images/mcF1.png">
 <meta property="article:published_time" content="2020-06-08T03:04:06.000Z">
-<meta property="article:modified_time" content="2020-06-08T04:18:31.801Z">
+<meta property="article:modified_time" content="2020-06-08T14:33:44.644Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="ML">
 <meta name="twitter:card" content="summary">
@@ -107,8 +107,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         
-        <h3 id="f1-score">1. F1 score</h3>
-<h4 id="binary-classification">1. Binary classification</h4>
+        <h3 id="f1-score">1. F1 Score</h3>
+<h4 id="binary-classification">1. Binary Classification</h4>
 <p>F1 score is the harmonic mean of precision and recall: <span class="math display">\[
 F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot recall}{precesion+recall}
 \]</span></p>
@@ -123,7 +123,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
 <li><strong>True postive rate</strong>, <strong>sensitivity</strong>, <strong>power</strong>.</li>
 </ul></li>
 </ul>
-<h4 id="multiclass-classification">2. Multiclass classification</h4>
+<h4 id="multiclass-classification">2. Multiclass Classification</h4>
 <p>Based on the confusion matrix (left), we can calculate the precision and recall for each class (right).</p>
 <p><img src="/images/mcF1.png" /></p>
 <a id="more"></a>
@@ -168,7 +168,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
 <li>F1 score = harmonic mean of precision and recall</li>
 </ul></li>
 </ul>
-<h3 id="receiver-operating-characteristic-roc">2. Receiver operating characteristic (ROC)</h3>
+<h3 id="receiver-operating-characteristic-roc">2. Receiver Operating Characteristic (ROC)</h3>
 <p>Pairs of true positive rates and false positive rates at different thresholds.</p>
 <ul>
 <li><strong>True positive rate</strong> = recall = <span class="math inline">\(\frac{true \ positives}{true}\)</span></li>
@@ -185,7 +185,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Accuracy/" data-id="ckb5zji8t0001tq3xdjo2fa93" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Accuracy/" data-id="ckb6nn5o00000y33xft0bc22q" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -195,6 +195,15 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/06/08/MLP/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MLP
+        
+      </div>
+    </a>
   
   
     <a href="/2020/06/07/Optimization/" id="article-nav-older" class="article-nav-link-wrap">
@@ -219,6 +228,10 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
       <ul>
         
           <li>
+            <a href="/2020/06/08/MLP/">MLP</a>
+          </li>
+        
+          <li>
             <a href="/2020/06/07/Accuracy/">Measure of accuracy</a>
           </li>
         
@@ -239,7 +252,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -248,7 +261,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

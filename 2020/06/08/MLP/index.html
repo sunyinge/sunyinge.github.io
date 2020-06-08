@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://sunyinge.github.io/images/bp2.png">
 <meta property="og:image" content="http://sunyinge.github.io/images/compgraph.png">
 <meta property="article:published_time" content="2020-06-08T14:16:30.000Z">
-<meta property="article:modified_time" content="2020-06-08T18:46:40.269Z">
+<meta property="article:modified_time" content="2020-06-08T18:50:56.559Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="DL">
 <meta name="twitter:card" content="summary">
@@ -172,6 +172,10 @@
 <h4 id="back-propagation">2. Back-propagation</h4>
 <p>Instead of finding all paths from one node to another node and doing summation, we can <strong>reuse computations from previous steps</strong> to make it fast. This is called <strong>reverse-mode differentiation</strong>, or <strong>back-propagation</strong> in neural networks. In this way, for each edge we compute its value only once and <strong>multiply by its value exactly once</strong>, as is shown by the graph below.</p>
 <table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;"><img src="/images/bp1.png" /></th>
@@ -181,7 +185,7 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: center;"><em>Full calculation</em></td>
-<td style="text-align: center;"><em><span class="math inline">\(\frac{\partial p}{\partial z_1}\)</span></em></td>
+<td style="text-align: center;"><em>Use <span class="math inline">\(\frac{\partial p}{\partial z_1}\)</span> to calculate <span class="math inline">\(\frac{\partial p}{\partial x_1}\)</span></em></td>
 </tr>
 </tbody>
 </table>
@@ -285,7 +289,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb6uk6fz0003423x9ixc3b09" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb6upt9o00035p3x9aatf5pk" class="article-share-link">Share</a>
         
       </div>
     </footer>

@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://sunyinge.github.io/images/momentumExplan.png">
 <meta property="og:image" content="http://sunyinge.github.io/images/nesterovExplan.png">
 <meta property="article:published_time" content="2020-06-08T02:24:21.000Z">
-<meta property="article:modified_time" content="2020-06-07T23:02:23.749Z">
+<meta property="article:modified_time" content="2020-06-08T02:02:34.767Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="DL">
 <meta name="twitter:card" content="summary">
@@ -143,17 +143,17 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
 </table>
 <a id="more"></a>
 <p>momentum <span class="math inline">\(h_t\)</span>: <span class="math display">\[
-h_t=\alpha h_{t-1}+\eta g_t\\
+h_t=\alpha h_{t-1}+\eta g_{t-1}, \ h_0=0\\
 w^t=w^{t-1}-h_t
 \]</span></p>
 <ul>
 <li>accumulates values along dimentsion where the gradients have the same sign while cancels each other along dimensions where the gradients have different signs. So <span class="math inline">\(h_t\)</span> cancels some coordinates that lead to oscillation of gradients, <strong>as the graph on the right shows</strong>.</li>
-<li>tends to make the weights move in the same direction as on previous steps since essentially <span class="math inline">\(h_t=\eta g_t+\alpha \eta g_{t-1}+\alpha^2\eta g_{t-2}+\cdots+\alpha^{t-1}\eta g_1\)</span> where usually <span class="math inline">\(\alpha=0.9\)</span> controls how much the local gradient <strong>influences long term movement</strong>.</li>
+<li>tends to make the weights move in the same direction as on previous steps since essentially <span class="math inline">\(h_t=\eta g_{t-1}+\alpha \eta g_{t-2}+\alpha^2\eta g_{t-3}+\cdots+\alpha^{t-1}\eta g_0\)</span> where usually <span class="math inline">\(\boldsymbol{\alpha=0.9}\)</span> controls how much the local gradient <strong>influences long term movement</strong>.</li>
 </ul></li>
 </ul>
 <h3 id="nesterov-momentum">4. Nesterov Momentum</h3>
 <p>Nesterov momentum is a simple extension to normal momentum: <span class="math display">\[
-h_t=\alpha h_{t-1}+\eta\nabla L(w^{t-1}-\alpha h_{t-1})\\
+h_t=\alpha h_{t-1}+\eta\nabla L(w^{t-1}-\alpha h_{t-1}), \ h_0=0\\
 w^t=w^{t-1}-h_t
 \]</span> where the gradient term <span class="math inline">\(\nabla L(w^{t-1}-\alpha h_{t-1})\)</span> is not computed from the currect position <span class="math inline">\(w^{t-1}\)</span> but from a new point <span class="math inline">\(w^{t-1}-\alpha h_{t-1}\)</span>.</p>
 <p>This helps because</p>
@@ -180,7 +180,30 @@ w^t=w^{t-1}-h_t
 <li>Nesterov momentum achieves <strong>better performance</strong> than momentum in practice.</li>
 </ul>
 <h3 id="adagrad">5. AdaGrad</h3>
-<p>To update the learning rate gradually</p>
+<p>We would like the learning rate to be large at the beginning and then gradually decreases so that it won't miss the minimum, such as <span class="math inline">\(\eta_t = \frac{\eta}{\sqrt{t}}\)</span>. But the problem with this learning rate is that it does not change with different parameters. We hope the learning rate to <strong>update adaptively</strong> in the sense that the parameters move a small step when the corresponding previous gradients are large and move a large step when small, which makes the learning rate to be <span class="math inline">\(\frac{\eta_t}{\sqrt{\frac{1}{t}\sum_{i=0}^{t-1}g_i^2}}\)</span>. As such, <span class="math display">\[
+w^t=w^{t-1}-\frac{\eta_t}{\sqrt{\frac{1}{t}\sum_{i=0}^{t-1}g_i^2}}g_{t-1}=w^{t-1}-\frac{\eta}{\sqrt{\sum_{i=0}^{t-1}g_i^2}}g_{t-1}
+\]</span> To avoid zero denominator, we add a small number <span class="math inline">\(\epsilon\)</span> to the denominator so that <span class="math display">\[
+G^t=G^{t-1}+g_{t-1}^2,\ G^0=0\\
+w^t=w^{t-1}-\frac{\eta}{\sqrt{G^{t}+\epsilon}}g_{t-1}
+\]</span></p>
+<h3 id="rmsprop">6. RMSprop</h3>
+<ul>
+<li>The problem of AdaGrad is that it may lead to <strong>early stop</strong> if <span class="math inline">\(G^t\)</span> is too large.</li>
+</ul>
+<p>So in RMSprop, <span class="math display">\[
+G^t=\alpha G^{t-1}+(1-\alpha)g_{t-1}^2,\ G^0=0\\
+w^t=w^{t-1}-\frac{\eta}{\sqrt{G^{t}+\epsilon}}g_{t-1},
+\]</span> where <span class="math inline">\(\alpha\)</span> is the decay parameter and usually is set to 0.9.</p>
+<p>If we rewrite <span class="math inline">\(G^t=(1-\alpha)g_{t-1}^2+\alpha(1-\alpha)g_{t-2}^2+\alpha^2(1-\alpha)g_{t-3}+\cdots+\alpha^{t-1}(1-\alpha)g_0^2\)</span>, we found that the long term influences of gradients are small and <span class="math inline">\(G^t\)</span> is mainly determined by recent gradients.</p>
+<h3 id="adam">7. Adam</h3>
+<p>Adam combines strength of <strong>moment methods</strong> and <strong>adaptive learning rate methods</strong> so as to smooth gradients and speed up convergence at the same time. <span class="math display">\[
+\nu^t=\frac{\beta_2 \nu^{t-1}+(1-\beta_2)g_{t-1}^2}{1-\beta_2^t},\ \nu^0=0\\
+m^t=\frac{\beta_1 m^{t-1}+(1-\beta_1)g_{t-1}}{1-\beta_1^t},\ m^0=0\\
+w^t=w^{t-1}-\frac{\eta}{\sqrt{\nu^{t}}+\epsilon}m_{t},
+\]</span></p>
+<ul>
+<li><a href="https://towardsdatascience.com/adam-latest-trends-in-deep-learning-optimization-6be9a291375c" target="_blank" rel="noopener">Adam</a> is the latest trend in deep learning optimization.</li>
+</ul>
 
       
     </div>
@@ -189,7 +212,7 @@ w^t=w^{t-1}-h_t
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb5o8yhw0000rs3x4laac4rf" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb5uopjv0000kj3x3rsg0qc6" class="article-share-link">Share</a>
         
       </div>
     </footer>

@@ -93,7 +93,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/07/Accuracy/">Measure of Accuracy</a>
+      <a class="article-title" href="/2020/06/07/Accuracy/">Measure of accuracy</a>
     </h1>
   
 
@@ -119,10 +119,50 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
 </ul></li>
 </ul>
 <h4 id="multiclass-classification">2. Multiclass classification</h4>
+<p>Based on the confusion matrix (left), we can calculate the precision and recall for each class (right).</p>
+<figure>
+<img src="../images/mcF1.png" alt="&#39;Confusion matrix and F1 score per class&#39;" /><figcaption>'Confusion matrix and F1 score per class'</figcaption>
+</figure>
+<p>For the following first two average, calculate F1 score per class first.</p>
 <ul>
-<li>micro</li>
-<li>macro</li>
-<li>weighted</li>
+<li>Macro-averaged
+<ul>
+<li><strong>Treat each class equally</strong></li>
+<li>Mean of per-class F1-scores</li>
+<li>Macro-averaged precision and macro-averaged recall are calculated in the similar way</li>
+</ul></li>
+<li>Weighted-averaged
+<ul>
+<li>Weight the F1-score of each class <strong>by the number of samples from that class</strong></li>
+<li>Weighted-averaged precision and weighted-averaged recall are calculated in the similar way</li>
+</ul></li>
+<li>Micro-averaged
+<ul>
+<li>Look at <strong>all the samples together</strong></li>
+<li>Each prediction error (X is misclassified as Y) is a False Positive for Y, and a False Negative for X so FP = FN and therefore true = TP+FN = TP+FP = positive.</li>
+<li><strong>micro-F1 = micro-precision = micro-recall</strong></li>
+</ul></li>
+</ul>
+<p>When there is <strong>class imbalance</strong>, micro average is preferable.</p>
+<h4 id="multilabel-classification">3. Multilabel classification</h4>
+<ul>
+<li><p><strong>Label based</strong></p>
+<ul>
+<li>same as multiclass classification, i.e., <strong>macro, weighted and micro</strong>.</li>
+</ul></li>
+<li><p><strong>Sample based</strong></p>
+<ul>
+<li><span class="math inline">\(n\)</span> is the number of examples.</li>
+<li><span class="math inline">\(Y_i\)</span> is the ground truth label assignment of the <span class="math inline">\(i\)</span>th example..</li>
+<li><span class="math inline">\(x_i\)</span> is the <span class="math inline">\(𝑖\)</span>th example.</li>
+<li><span class="math inline">\(h(x_i)\)</span> is the predicted labels for the <span class="math inline">\(i\)</span>th example.</li>
+</ul>
+<p>Then,</p>
+<ul>
+<li>Precision = <span class="math inline">\(\frac{1}{n}\sum_{i=1}^n\frac{|Y_i\cap h(x_i)| }{|h(x_i)|}\)</span>, the ratio of how much of the predicted is correct.</li>
+<li>Recall = <span class="math inline">\(\frac{1}{n}\sum_{i=1}^n\frac{|Y_i\cap h(x_i)| }{|Y_i|}\)</span>, the ratio of how many of the actual labels were predicted.</li>
+<li>F1 score = harmonic mean of precision anad recall</li>
+</ul></li>
 </ul>
 <h3 id="receiver-operating-characteristic-roc">2. Receiver operating characteristic (ROC)</h3>
 <p>Pairs of true positive rates and false positive rates at different thresholds.</p>
@@ -141,7 +181,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Accuracy/" data-id="ckb5xcaep0003ei3x361w9gyz" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Accuracy/" data-id="ckb5z5ouf0000my3x13os18js" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -221,7 +261,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb5xcael0001ei3xfpv93tgr" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb5z5oun0001my3x2i83ghhn" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -275,7 +315,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Installation/" rel="tag">Installation</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckb5xcaef0000ei3x1ddh8cti" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckb5z5ous0003my3xe4adbnkb" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -300,7 +340,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
       <ul>
         
           <li>
-            <a href="/2020/06/07/Accuracy/">Measure of Accuracy</a>
+            <a href="/2020/06/07/Accuracy/">Measure of accuracy</a>
           </li>
         
           <li>

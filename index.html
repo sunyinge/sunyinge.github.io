@@ -102,13 +102,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         
-        <h3 id="text-preprocessing">1. Text preprocessing</h3>
+        <h3 id="text-preprocessing">1. Text Preprocessing</h3>
 <p>How to find the boundaries of words?</p>
 <ul>
 <li><p>Tokenization</p>
 <ul>
 <li>Spilt an input sequence into so-called tokens</li>
-<li>Tokenizer: whitespace, punctuation, treebank (based on a set of rules or heuristics)</li>
+<li>Tokenizer: whitespace, punctuation, treebank (based on a set of rules or heuristics, close to perfect tokenization)</li>
 </ul>
 <table>
 <thead>
@@ -126,6 +126,26 @@
 </tr>
 </tbody>
 </table></li>
+<li><p>Token normalization</p>
+<ul>
+<li>Stemming
+<ul>
+<li>Remove and replace suffixes to get to the root form of the word, which is called <strong>stem</strong></li>
+<li>Example: Porter's stemmer
+<ul>
+<li>Problem: fails on irregular words (e.g., feet <span class="math inline">\(\rightarrow\)</span> feet), produces non-words (e.g., wolves <span class="math inline">\(\rightarrow\)</span> wolv )</li>
+</ul></li>
+</ul></li>
+<li>Lemmatization -- dictionary form
+<ul>
+<li>Use a vocabulary and morphological analysis to get the base or dictionary form of the word, which is called <strong>lemma</strong></li>
+<li>Example: WordNet lemmatizer
+<ul>
+<li>Problem: not all forms are reduced (e.g., talked <span class="math inline">\(\rightarrow\)</span> talked)</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>We need to try stemming or lemmatization and choose best for our task.</strong></p></li>
 </ul>
 
       
@@ -135,7 +155,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckb71267c0005qn3x16304h8f" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckb76nc3t0005y13xfpqm9m4c" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -208,7 +228,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckb71267g0008qn3xfrd69gkm" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckb76nc3p0003y13x81t099t0" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -291,7 +311,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb71266k0000qn3xc8kdfigq" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb76nc3d0000y13xachug447" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -359,7 +379,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckb71266w0001qn3x4uof0ls4" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckb76nc3k0001y13x3jdz421a" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -437,9 +457,9 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
     <footer class="article-footer">
       <div class="article-footer-content">
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimi/" rel="tag">Optimi</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb7126750003qn3xehvwdjs7" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb76nc3x0008y13xgt5s6tuv" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -493,7 +513,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Installation/" rel="tag">Installation</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckb71267a0004qn3x1kd4hznx" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckb76nc3r0004y13x7qta7siu" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -546,7 +566,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimi/" rel="tag">Optimi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 

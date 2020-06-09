@@ -7,17 +7,17 @@
   
   <title>Text classification | Study notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Text preprocessing How to find the boundaries of words?  Tokenization  Spilt an input sequence into so-called tokens Tokenizer: whitespace, punctuation, treebank (based on a set of rules or heurist">
+  <meta name="description" content="1. Text Preprocessing How to find the boundaries of words?  Tokenization  Spilt an input sequence into so-called tokens Tokenizer: whitespace, punctuation, treebank (based on a set of rules or heurist">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Text classification">
 <meta property="og:url" content="http://sunyinge.github.io/2020/06/08/Text-classification/index.html">
 <meta property="og:site_name" content="Study notes">
-<meta property="og:description" content="1. Text preprocessing How to find the boundaries of words?  Tokenization  Spilt an input sequence into so-called tokens Tokenizer: whitespace, punctuation, treebank (based on a set of rules or heurist">
+<meta property="og:description" content="1. Text Preprocessing How to find the boundaries of words?  Tokenization  Spilt an input sequence into so-called tokens Tokenizer: whitespace, punctuation, treebank (based on a set of rules or heurist">
 <meta property="og:image" content="http://sunyinge.github.io/images/whitespace.png">
 <meta property="og:image" content="http://sunyinge.github.io/images/punct.png">
 <meta property="og:image" content="http://sunyinge.github.io/images/treebank.png">
 <meta property="article:published_time" content="2020-06-08T21:32:21.000Z">
-<meta property="article:modified_time" content="2020-06-08T21:48:44.824Z">
+<meta property="article:modified_time" content="2020-06-09T00:25:11.936Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="NLP">
 <meta name="twitter:card" content="summary">
@@ -109,13 +109,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         
-        <h3 id="text-preprocessing">1. Text preprocessing</h3>
+        <h3 id="text-preprocessing">1. Text Preprocessing</h3>
 <p>How to find the boundaries of words?</p>
 <ul>
 <li><p>Tokenization</p>
 <ul>
 <li>Spilt an input sequence into so-called tokens</li>
-<li>Tokenizer: whitespace, punctuation, treebank (based on a set of rules or heuristics)</li>
+<li>Tokenizer: whitespace, punctuation, treebank (based on a set of rules or heuristics, close to perfect tokenization)</li>
 </ul>
 <table>
 <thead>
@@ -133,6 +133,26 @@
 </tr>
 </tbody>
 </table></li>
+<li><p>Token normalization</p>
+<ul>
+<li>Stemming
+<ul>
+<li>Remove and replace suffixes to get to the root form of the word, which is called <strong>stem</strong></li>
+<li>Example: Porter's stemmer
+<ul>
+<li>Problem: fails on irregular words (e.g., feet <span class="math inline">\(\rightarrow\)</span> feet), produces non-words (e.g., wolves <span class="math inline">\(\rightarrow\)</span> wolv )</li>
+</ul></li>
+</ul></li>
+<li>Lemmatization -- dictionary form
+<ul>
+<li>Use a vocabulary and morphological analysis to get the base or dictionary form of the word, which is called <strong>lemma</strong></li>
+<li>Example: WordNet lemmatizer
+<ul>
+<li>Problem: not all forms are reduced (e.g., talked <span class="math inline">\(\rightarrow\)</span> talked)</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>We need to try stemming or lemmatization and choose best for our task.</strong></p></li>
 </ul>
 
       
@@ -142,7 +162,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckb71267c0005qn3x16304h8f" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckb76nc3t0005y13xfpqm9m4c" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -204,7 +224,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimi/" rel="tag">Optimi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 

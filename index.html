@@ -106,7 +106,7 @@
 <p><strong>We need the end-symbol to make the bigram grammar a true probability distribution. Without an end-symbol, the sentence probabilities for all sentences of a given length would sum to one, and the probability of the whole language would be infinite.</strong></p>
 <p>That is, the probabilities of one-word sequences sum to one <span class="math inline">\(\sum_iP(w_i)=1\)</span>, the probabilities of two-word sequences sum to one <span class="math inline">\(\sum_i\sum_jP(w_iw_j)=1\)</span>, <span class="math inline">\(\ldots\)</span>, etc.</p>
 <p>Without an end-symbol, there's no distinction between &quot;the probability of seeing two words next to each other&quot; and &quot;the probability of seeing a two-word sentence&quot;.</p>
-<p>So we add an end-symbol to the bigram language model to assign <strong>a single probability distribution across all sentence lengths</strong>, which is <span class="math display">\[
+<p>So we add an end-symbol to the <strong>bigram language model</strong> (n-gram language model: current word depends on previous n-1 words only) to assign <strong>a single probability distribution across all sentence lengths</strong>, which is <span class="math display">\[
 P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
 \]</span> where <span class="math inline">\(w_0\)</span> is a start-symbol and <span class="math inline">\(w_{k+1}\)</span> is an end-symbol.</p>
 
@@ -117,7 +117,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckb8fo6li0000043x5ma0aipe" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckb8furp600001v3xhc2s91a2" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -219,7 +219,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckb8fo6m40009043x9qmdaf9v" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckb8furpv00091v3xa7jxfc15" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -292,7 +292,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckb8fo6lx0004043x6gwi5vyz" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckb8furpl00031v3x7a4iajv7" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -375,7 +375,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb8fo6lp0001043xh0jg5riv" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb8furpf00011v3xh6cudawm" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -443,7 +443,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckb8fo6lv0003043x1yp24mx7" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckb8furpn00041v3xdfekhkj9" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -523,7 +523,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb8fo6m20008043xe1x7d66g" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb8furpp00051v3xgo9reuik" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -577,7 +577,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Installation/" rel="tag">Installation</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckb8fo6lz0005043xg6ru93o8" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckb8furpt00081v3x8ogjfczc" class="article-share-link">Share</a>
         
       </div>
     </footer>

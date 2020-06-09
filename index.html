@@ -77,6 +77,59 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-End-symbol-in-n-gram-models" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <h3 href="/2020/06/09/End-symbol-in-n-gram-models/" class="article-date">
+  <time datetime="2020-06-09T20:56:14.000Z" itemprop="datePublished">2020-06-09</time>
+</h3>
+    
+  </div>
+  <div class="article-inner">
+  <div class="curve-down">
+  <div class="fill-content">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/09/End-symbol-in-n-gram-models/">What&#39;s the real need for an end-symbol in n-gram models?</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <hr />
+<p><strong>We need the end-symbol to make the bigram grammar a true probability distribution. Without an end-symbol, the sentence probabilities for all sentences of a given length would sum to one, and the probability of the whole language would be infinite.</strong></p>
+<p>That is, the probability of sequences of the same length sum to one, <span class="math inline">\(\sum_iP(w_i)=1\)</span>, <span class="math inline">\(\sum_i\sum_jP(w_iw_j)=1\)</span>, <span class="math inline">\(\ldots\)</span> .</p>
+<p>Without an end-symbol, there's no distinction between &quot;the probability of seeing two words next to each other&quot; and &quot;the probability of seeing a two-word sentence&quot;.</p>
+<p>So we add an end-symbol to the bigram language model, which is <span class="math display">\[
+P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
+\]</span> where <span class="math inline">\(w_0\)</span> is a start-symbol and <span class="math inline">\(w_{k+1}\)</span> is an end-symbol.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class="article-footer-content">
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
+
+        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckb8fizq10000yl3x4bgq8p34" class="article-share-link">Share</a>
+        
+      </div>
+    </footer>
+  </div>
+  </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Text-classification" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <h3 href="/2020/06/08/Text-classification/" class="article-date">
@@ -166,7 +219,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckb7agvwj000hmv3xak34ff0n" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckb8fizrh000qyl3x5qvcdk0r" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -239,7 +292,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckb7agvwk000imv3x2n4956bq" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckb8fizqp0003yl3x11fs0r13" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -322,7 +375,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb7agvvh0000mv3x4rjsbptf" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb8fizql0001yl3xf3c6gmyc" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -390,7 +443,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckb7agvvr0001mv3x4dqk6sv5" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckb8fizqr0004yl3xdwie4kn0" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -470,7 +523,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb7agvvz0004mv3x8vx75us1" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb8fizqs0005yl3x8rlrgc9h" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -524,7 +577,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Installation/" rel="tag">Installation</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckb7agvvw0003mv3x1mvz7y12" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckb8fizqu0008yl3x1xho9cdg" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -549,6 +602,10 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
       <ul>
         
           <li>
+            <a href="/2020/06/09/End-symbol-in-n-gram-models/">What&#39;s the real need for an end-symbol in n-gram models?</a>
+          </li>
+        
+          <li>
             <a href="/2020/06/08/Text-classification/">Text classification</a>
           </li>
         
@@ -564,10 +621,6 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
             <a href="/2020/06/07/Measure-of-accuracy/">Measure of accuracy</a>
           </li>
         
-          <li>
-            <a href="/2020/06/07/Optimization/">Optimization</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -577,7 +630,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -586,7 +639,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">6</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 

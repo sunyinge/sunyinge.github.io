@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Study notes">
 <meta property="og:description" content="We need the end-symbol to make the bigram grammar a true probability distribution. Without an end-symbol, the sentence probabilities for all sentences of a given length would sum to one, and the prob">
 <meta property="article:published_time" content="2020-06-09T20:56:14.000Z">
-<meta property="article:modified_time" content="2020-06-09T21:21:31.951Z">
+<meta property="article:modified_time" content="2020-06-09T21:25:33.969Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="NLP">
 <meta name="twitter:card" content="summary">
@@ -107,9 +107,9 @@
         
         <hr />
 <p><strong>We need the end-symbol to make the bigram grammar a true probability distribution. Without an end-symbol, the sentence probabilities for all sentences of a given length would sum to one, and the probability of the whole language would be infinite.</strong></p>
-<p>That is, the probability of sequences of the same length sum to one, <span class="math inline">\(\sum_iP(w_i)=1\)</span>, <span class="math inline">\(\sum_i\sum_jP(w_iw_j)=1\)</span>, <span class="math inline">\(\ldots\)</span> .</p>
+<p>That is, the probabilities of one-word sequences sum to one <span class="math inline">\(\sum_iP(w_i)=1\)</span>, the probabilities of two-word sequences sum to one <span class="math inline">\(\sum_i\sum_jP(w_iw_j)=1\)</span>, <span class="math inline">\(\ldots\)</span>, etc.</p>
 <p>Without an end-symbol, there's no distinction between &quot;the probability of seeing two words next to each other&quot; and &quot;the probability of seeing a two-word sentence&quot;.</p>
-<p>So we add an end-symbol to the bigram language model, which is <span class="math display">\[
+<p>So we add an end-symbol to the bigram language model to assign <strong>a single probability distribution across all sentence lengths</strong>, which is <span class="math display">\[
 P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
 \]</span> where <span class="math inline">\(w_0\)</span> is a start-symbol and <span class="math inline">\(w_{k+1}\)</span> is an end-symbol.</p>
 
@@ -120,7 +120,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckb8fizq10000yl3x4bgq8p34" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckb8fo6li0000043x5ma0aipe" class="article-share-link">Share</a>
         
       </div>
     </footer>

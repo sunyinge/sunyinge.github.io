@@ -117,48 +117,6 @@
 <p>Then we have, <span class="math display">\[
 p(\mathbf{x},\mathbf{y})=p(\mathbf{x}|\mathbf{y})p(\mathbf{y})=\prod_{t=1}^Tp(x_t|y_{t})p(y_t|y_{t-1}).
 \]</span> A HMM is specified by</p>
-<ul>
-<li><p>Hidden states <span class="math inline">\(\mathbf{S}=s_1,\ldots,s_N\)</span></p></li>
-<li>Start states <span class="math inline">\(s_0\)</span></li>
-<li><strong>Transition probabilities</strong> <span class="math inline">\(A_{(N+1)\times N}\)</span> with <span class="math inline">\(a_{ij}=p(s_j|s_i)\)</span> (row sum equals to 1)</li>
-<li>Possible visible outcomes <span class="math inline">\(\mathbf{O}\)</span></li>
-<li><p><strong>Output probabilities</strong> <span class="math inline">\(B_{N\times K}\)</span> with <span class="math inline">\(b_{ik}=p(o_k|s_i)\)</span> (row sum equals to 1)</p></li>
-</ul>
-<p>So there are <span class="math inline">\((N+1)N+NK\)</span> parameters in HMM.</p>
-<h5 id="training-in-hmm">2. Training in HMM</h5>
-<ul>
-<li>supervised case: MLE</li>
-</ul>
-<p><span class="math display">\[
-a_{ij}=p(s_j|s_i)=\frac{\sum_{t=1}^T[y_{t-1}=s_i,y_t=s_j]}{\sum_{t=1}^T[y_t=s_i]}
-\]</span></p>
-<p>​ where <span class="math inline">\([]\)</span> is the indicator and <span class="math inline">\(\prod_{t=1}^T[y_{t-1}=s_i,y_t=s_j]\)</span> is count(<span class="math inline">\(s_i\rightarrow s_j\)</span>).</p>
-<ul>
-<li><p>unsupervised case <span class="math display">\[
-a_{ij}=p(s_j|s_i)=\frac{\sum_{t=1}^Tp(y_{t-1}=s_i,y_t=s_j)}{\sum_{t=1}^Tp(y_t=s_i)}
-\]</span> EM algorithm: E step to get posterior probabilities for sqequence of hidden variables <span class="math inline">\(p(\mathbf{y}|\mathbf{x})\)</span> by fixing the parameters (initialization at the first step) and M step to update parameters.</p>
-<p><strong>Baum-Welch algorithm</strong>:</p>
-<ul>
-<li><p>E step: posterior probabilities for 2 sequential hidden variables <span class="math display">\[
-p(y_{t-1}=s_i,y_t=s_j)
-\]</span> Can be effectively done with dynamic programming (forward-backward algorithm)</p></li>
-<li><p>M step: maximum likelihood updates for the parameters <span class="math display">\[
-a_{ij}=p(s_j|s_i)=\frac{\sum_{t=1}^Tp(y_{t-1}=s_i,y_t=s_j)}{\sum_{t=1}^Tp(y_t=s_i)}
-\]</span></p></li>
-</ul></li>
-</ul>
-<h5 id="decoding-in-hmm-prediction">3. Decoding in HMM (prediction)</h5>
-<p>Dynamic programming: <span class="math inline">\(O(N^2T)\)</span></p>
-<p><strong>Viterbi algorithm</strong>:</p>
-<ul>
-<li><span class="math inline">\(Q_{t,s}\)</span>: most probable sequence of hidden states that finishes with the state <span class="math inline">\(s\)</span> and generate <span class="math inline">\(o_1,o_2,\ldots,o_t\)</span>.</li>
-<li><span class="math inline">\(q_{t,s}\)</span>: the probability of the sequence <span class="math inline">\(Q_{t,s}\)</span>.</li>
-</ul>
-<p>Then <span class="math display">\[
-q_{t,s}=\underset{s&#39;}{max}\ q_{t-1,s&#39;}\cdot p(s|s&#39;)\cdot p(o_t|s)
-\]</span> <img src="/images/Viterbi.png" /></p>
-<p>### 2. Discriminative Models</p>
-<p>A Discriminative Model ‌learns the <strong>conditional probability distribution p(y|x)</strong>. It predicts the conditional probability.</p>
         
           <p class="article-more-link">
             <a href="/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/#more">Read More</a>
@@ -171,7 +129,7 @@ q_{t,s}=\underset{s&#39;}{max}\ q_{t-1,s&#39;}\cdot p(s|s&#39;)\cdot p(o_t|s)
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" data-id="ckbsx0atk0008323x0zhw23p9" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" data-id="ckbsx1iuc00084f3xbzw4hqmr" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -224,7 +182,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckbsx0aso0000323x4g00f20n" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckbsx1itu00004f3x31sl9pwl" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -326,7 +284,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckbsx0atr000c323xgvjxecfn" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckbsx1iuh000c4f3xhlvwa4ge" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -399,7 +357,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckbsx0atd0003323xfsju3nhb" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckbsx1iu400034f3x1yts95rc" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -482,7 +440,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckbsx0at10001323xc2bseqi5" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckbsx1itz00014f3x26oyhdwp" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -550,7 +508,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckbsx0atg0004323xdvzdgpjz" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckbsx1iu500044f3x19vjca0b" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -630,7 +588,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckbsx0ath0005323x0sp67wz6" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckbsx1iu800054f3x9k7v891r" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -684,7 +642,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Installation/" rel="tag">Installation</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckbsx0atm0009323x299ce5fp" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckbsx1iue00094f3xamzqhino" class="article-share-link">Share</a>
         
       </div>
     </footer>

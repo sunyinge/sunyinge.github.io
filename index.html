@@ -77,10 +77,112 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-Probabilistic-graphic-models-for-sequence-tagging" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <h3 href="/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" class="article-date">
+  <time datetime="2020-06-24T04:12:45.000Z" itemprop="datePublished">2020-06-23</time>
+</h3>
+    
+  </div>
+  <div class="article-inner">
+  <div class="curve-down">
+  <div class="fill-content">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/">Probabilistic graphic models for sequence tagging</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <p>Sequence tagging, such as part of speech (POS) tagging and named entity recognition (NER).</p>
+<p>Let <span class="math inline">\(\mathbf{x}=x_1,x_2,\ldots,x_T\)</span> be a sequence of words and <span class="math inline">\(\mathbf{y}=y_1,y_2,\ldots,y_T\)</span> be a sequence of their tags.</p>
+<h3 id="generative-models">1. Generative Models</h3>
+<p>A Generative Model ‌learns the <strong>joint probability distribution p(x,y).</strong> It predicts the conditional probability with the help of Bayes Theorem.</p>
+<h4 id="hidden-markov-models-hmm">Hidden Markov Models (HMM)</h4>
+<h5 id="the-model">1. The model</h5>
+<p><span class="math display">\[
+\mathbf{y}=\underset{y}{\text{argmax}}\  p(\mathbf{y}|\mathbf{x})=\underset{y}{\text{argmax}}\ p(\mathbf{x},\mathbf{y})
+\]</span></p>
+<ul>
+<li><p>Markov assumption: <span class="math inline">\(p(\mathbf{y})=\prod_{t=1}^Tp(y_t|y_{t-1})\)</span></p></li>
+<li><p>Independence assumption: <span class="math inline">\(p(\mathbf{x}|\mathbf{y})=\prod_{t=1}^Tp(x_t|y_{t})\)</span></p></li>
+</ul>
+<p>Then we have, <span class="math display">\[
+p(\mathbf{x},\mathbf{y})=p(\mathbf{x}|\mathbf{y})p(\mathbf{y})=\prod_{t=1}^Tp(x_t|y_{t})p(y_t|y_{t-1}).
+\]</span> A HMM is specified by</p>
+<ul>
+<li><p>Hidden states <span class="math inline">\(\mathbf{S}=s_1,\ldots,s_N\)</span></p></li>
+<li>Start states <span class="math inline">\(s_0\)</span></li>
+<li><strong>Transition probabilities</strong> <span class="math inline">\(A_{(N+1)\times N}\)</span> with <span class="math inline">\(a_{ij}=p(s_j|s_i)\)</span> (row sum equals to 1)</li>
+<li>Possible visible outcomes <span class="math inline">\(\mathbf{O}\)</span></li>
+<li><p><strong>Output probabilities</strong> <span class="math inline">\(B_{N\times K}\)</span> with <span class="math inline">\(b_{ik}=p(o_k|s_i)\)</span> (row sum equals to 1)</p></li>
+</ul>
+<p>So there are <span class="math inline">\((N+1)N+NK\)</span> parameters in HMM.</p>
+<h5 id="training-in-hmm">2. Training in HMM</h5>
+<ul>
+<li>supervised case: MLE</li>
+</ul>
+<p><span class="math display">\[
+a_{ij}=p(s_j|s_i)=\frac{\sum_{t=1}^T[y_{t-1}=s_i,y_t=s_j]}{\sum_{t=1}^T[y_t=s_i]}
+\]</span></p>
+<p>​ where <span class="math inline">\([]\)</span> is the indicator and <span class="math inline">\(\prod_{t=1}^T[y_{t-1}=s_i,y_t=s_j]\)</span> is count(<span class="math inline">\(s_i\rightarrow s_j\)</span>).</p>
+<ul>
+<li><p>unsupervised case <span class="math display">\[
+a_{ij}=p(s_j|s_i)=\frac{\sum_{t=1}^Tp(y_{t-1}=s_i,y_t=s_j)}{\sum_{t=1}^Tp(y_t=s_i)}
+\]</span> EM algorithm: E step to get posterior probabilities for sqequence of hidden variables <span class="math inline">\(p(\mathbf{y}|\mathbf{x})\)</span> by fixing the parameters (initialization at the first step) and M step to update parameters.</p>
+<p><strong>Baum-Welch algorithm</strong>:</p>
+<ul>
+<li><p>E step: posterior probabilities for 2 sequential hidden variables <span class="math display">\[
+p(y_{t-1}=s_i,y_t=s_j)
+\]</span> Can be effectively done with dynamic programming (forward-backward algorithm)</p></li>
+<li><p>M step: maximum likelihood updates for the parameters <span class="math display">\[
+a_{ij}=p(s_j|s_i)=\frac{\sum_{t=1}^Tp(y_{t-1}=s_i,y_t=s_j)}{\sum_{t=1}^Tp(y_t=s_i)}
+\]</span></p></li>
+</ul></li>
+</ul>
+<h5 id="decoding-in-hmm-prediction">3. Decoding in HMM (prediction)</h5>
+<p>Dynamic programming: <span class="math inline">\(O(N^2T)\)</span></p>
+<p><strong>Viterbi algorithm</strong>:</p>
+<ul>
+<li><span class="math inline">\(Q_{t,s}\)</span>: most probable sequence of hidden states that finishes with the state <span class="math inline">\(s\)</span> and generate <span class="math inline">\(o_1,o_2,\ldots,o_t\)</span>.</li>
+<li><span class="math inline">\(q_{t,s}\)</span>: the probability of the sequence <span class="math inline">\(Q_{t,s}\)</span>.</li>
+</ul>
+<p>Then <span class="math display">\[
+q_{t,s}=\underset{s&#39;}{max}\ q_{t-1,s&#39;}\cdot p(s|s&#39;)\cdot p(o_t|s)
+\]</span> <img src="/images/Viterbi.png" /></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class="article-footer-content">
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
+
+        <a data-url="http://sunyinge.github.io/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" data-id="ckbsw7ga90008yn3x5kcu63qq" class="article-share-link">Share</a>
+        
+      </div>
+    </footer>
+  </div>
+  </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-End-symbol-in-n-gram-models" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <h3 href="/2020/06/09/End-symbol-in-n-gram-models/" class="article-date">
-  <time datetime="2020-06-09T20:56:14.000Z" itemprop="datePublished">2020-06-09</time>
+  <time datetime="2020-06-09T23:56:14.000Z" itemprop="datePublished">2020-06-09</time>
 </h3>
     
   </div>
@@ -117,7 +219,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckb8furp600001v3xhc2s91a2" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckbsw7g9r0000yn3x0245cvm0" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -133,7 +235,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
     <article id="post-Text-classification" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <h3 href="/2020/06/08/Text-classification/" class="article-date">
-  <time datetime="2020-06-08T21:32:21.000Z" itemprop="datePublished">2020-06-08</time>
+  <time datetime="2020-06-09T00:32:21.000Z" itemprop="datePublished">2020-06-08</time>
 </h3>
     
   </div>
@@ -219,7 +321,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckb8furpv00091v3xa7jxfc15" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckbsw7gae000cyn3xf92bbeq3" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -235,7 +337,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
     <article id="post-Matrix-derivatives" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <h3 href="/2020/06/08/Matrix-derivatives/" class="article-date">
-  <time datetime="2020-06-08T17:57:50.000Z" itemprop="datePublished">2020-06-08</time>
+  <time datetime="2020-06-08T20:57:50.000Z" itemprop="datePublished">2020-06-08</time>
 </h3>
     
   </div>
@@ -292,7 +394,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckb8furpl00031v3x7a4iajv7" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckbsw7ga20003yn3x3s0752kf" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -308,7 +410,7 @@ J^h=J^f\cdot J^g.
     <article id="post-MLP" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <h3 href="/2020/06/08/MLP/" class="article-date">
-  <time datetime="2020-06-08T14:16:30.000Z" itemprop="datePublished">2020-06-08</time>
+  <time datetime="2020-06-08T17:16:30.000Z" itemprop="datePublished">2020-06-08</time>
 </h3>
     
   </div>
@@ -375,7 +477,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckb8furpf00011v3xh6cudawm" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckbsw7g9y0001yn3xgzx3bpo3" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -391,7 +493,7 @@ J^h=J^f\cdot J^g.
     <article id="post-Measure-of-accuracy" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <h3 href="/2020/06/07/Measure-of-accuracy/" class="article-date">
-  <time datetime="2020-06-08T03:04:06.000Z" itemprop="datePublished">2020-06-07</time>
+  <time datetime="2020-06-08T06:04:06.000Z" itemprop="datePublished">2020-06-07</time>
 </h3>
     
   </div>
@@ -443,7 +545,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckb8furpn00041v3xdfekhkj9" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckbsw7ga40004yn3xby3ecy6m" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -459,7 +561,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
     <article id="post-Optimization" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <h3 href="/2020/06/07/Optimization/" class="article-date">
-  <time datetime="2020-06-08T02:24:21.000Z" itemprop="datePublished">2020-06-07</time>
+  <time datetime="2020-06-08T05:24:21.000Z" itemprop="datePublished">2020-06-07</time>
 </h3>
     
   </div>
@@ -523,7 +625,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckb8furpp00051v3xgo9reuik" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckbsw7ga60005yn3x4kc7gp6c" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -539,7 +641,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
     <article id="post-Set-up" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <h3 href="/2020/06/07/Set-up/" class="article-date">
-  <time datetime="2020-06-07T15:38:09.000Z" itemprop="datePublished">2020-06-07</time>
+  <time datetime="2020-06-07T18:38:09.000Z" itemprop="datePublished">2020-06-07</time>
 </h3>
     
   </div>
@@ -577,7 +679,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Installation/" rel="tag">Installation</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckb8furpt00081v3x8ogjfczc" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckbsw7gaa0009yn3xgcjmh2k3" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -602,6 +704,10 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
       <ul>
         
           <li>
+            <a href="/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/">Probabilistic graphic models for sequence tagging</a>
+          </li>
+        
+          <li>
             <a href="/2020/06/09/End-symbol-in-n-gram-models/">What&#39;s the real need for an end-symbol in n-gram models?</a>
           </li>
         
@@ -617,10 +723,6 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
             <a href="/2020/06/08/MLP/">MLP</a>
           </li>
         
-          <li>
-            <a href="/2020/06/07/Measure-of-accuracy/">Measure of accuracy</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -630,7 +732,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -639,7 +741,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 

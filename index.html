@@ -101,12 +101,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
         <p>Sequence tagging, such as part of speech (POS) tagging and named entity recognition (NER).</p>
 <p>Let <span class="math inline">\(\mathbf{x}=x_1,x_2,\ldots,x_T\)</span> be a sequence of words and <span class="math inline">\(\mathbf{y}=y_1,y_2,\ldots,y_T\)</span> be a sequence of their tags.</p>
 <h3 id="generative-models">1. Generative Models</h3>
 <p>A Generative Model ‌learns the <strong>joint probability distribution p(x,y).</strong> It predicts the conditional probability with the help of Bayes Theorem.</p>
-<h4 id="hidden-markov-models-hmm">Hidden Markov Models (HMM)</h4>
+<h4 id="hidden-markov-models-hmm">1. Hidden Markov Models (HMM)</h4>
 <h5 id="the-model">1. The model</h5>
 <p><span class="math display">\[
 \mathbf{y}=\underset{y}{\text{argmax}}\  p(\mathbf{y}|\mathbf{x})=\underset{y}{\text{argmax}}\ p(\mathbf{x},\mathbf{y})
@@ -158,7 +157,13 @@ a_{ij}=p(s_j|s_i)=\frac{\sum_{t=1}^Tp(y_{t-1}=s_i,y_t=s_j)}{\sum_{t=1}^Tp(y_t=s_
 <p>Then <span class="math display">\[
 q_{t,s}=\underset{s&#39;}{max}\ q_{t-1,s&#39;}\cdot p(s|s&#39;)\cdot p(o_t|s)
 \]</span> <img src="/images/Viterbi.png" /></p>
-
+<p>### 2. Discriminative Models</p>
+<p>A Discriminative Model ‌learns the <strong>conditional probability distribution p(y|x)</strong>. It predicts the conditional probability.</p>
+        
+          <p class="article-more-link">
+            <a href="/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -166,7 +171,7 @@ q_{t,s}=\underset{s&#39;}{max}\ q_{t-1,s&#39;}\cdot p(s|s&#39;)\cdot p(o_t|s)
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" data-id="ckbsw7ga90008yn3x5kcu63qq" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" data-id="ckbsx0atk0008323x0zhw23p9" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -219,7 +224,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckbsw7g9r0000yn3x0245cvm0" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckbsx0aso0000323x4g00f20n" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -321,7 +326,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckbsw7gae000cyn3xf92bbeq3" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckbsx0atr000c323xgvjxecfn" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -394,7 +399,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckbsw7ga20003yn3x3s0752kf" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckbsx0atd0003323xfsju3nhb" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -477,7 +482,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckbsw7g9y0001yn3xgzx3bpo3" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckbsx0at10001323xc2bseqi5" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -545,7 +550,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckbsw7ga40004yn3xby3ecy6m" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckbsx0atg0004323xdvzdgpjz" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -625,7 +630,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckbsw7ga60005yn3x4kc7gp6c" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckbsx0ath0005323x0sp67wz6" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -679,7 +684,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Installation/" rel="tag">Installation</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckbsw7gaa0009yn3xgcjmh2k3" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckbsx0atm0009323x299ce5fp" class="article-share-link">Share</a>
         
       </div>
     </footer>

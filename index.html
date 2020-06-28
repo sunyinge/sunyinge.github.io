@@ -105,7 +105,7 @@
         <h3 id="nested-functions-in-object">1. Nested Functions in Object</h3>
 <ul>
 <li><p>Function with self can be referenced before its assignment. E.g.,</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Object</span>:</span></span><br><span class="line">		<span class="function"><span class="keyword">def</span> <span class="title">function0</span><span class="params">(args)</span>:</span></span><br><span class="line">    		<span class="keyword">return</span> function1(args)</span><br><span class="line">    		</span><br><span class="line">    		<span class="function"><span class="keyword">def</span> <span class="title">function1</span><span class="params">(self,args_1)</span>:</span></span><br><span class="line">      			<span class="comment">###</span></span><br><span class="line">      			self.function1(args_1)</span><br><span class="line">      			<span class="keyword">return</span> <span class="comment">###</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Object</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">function0</span><span class="params">(args)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> function1(args)</span><br><span class="line">    		</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">function1</span><span class="params">(self,args_1)</span>:</span></span><br><span class="line">		<span class="comment">###</span></span><br><span class="line">		self.function1(args_1)</span><br><span class="line">		<span class="keyword">return</span> <span class="comment">###</span></span><br></pre></td></tr></table></figure></li>
 <li><p>Function without self cannot be referenced before its assignment. E.g.,</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Object</span>:</span></span><br><span class="line">  	<span class="function"><span class="keyword">def</span> <span class="title">function0</span><span class="params">(args)</span>:</span></span><br><span class="line">    		<span class="function"><span class="keyword">def</span> <span class="title">function1</span><span class="params">(args_1)</span>:</span></span><br><span class="line">    				<span class="comment">###</span></span><br><span class="line">    				function1(args_1)</span><br><span class="line">    				<span class="keyword">return</span> <span class="comment">###</span></span><br><span class="line">                      </span><br><span class="line">    		<span class="keyword">return</span> function1(args)</span><br></pre></td></tr></table></figure></li>
 </ul>
@@ -126,7 +126,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/24/Python/" data-id="ckbylq42i0008tv3xgoseflsb" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/24/Python/" data-id="ckbylrrwz0008v83x3jbddbf9" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -191,7 +191,7 @@ p(\mathbf{x},\mathbf{y})=p(\mathbf{x}|\mathbf{y})p(\mathbf{y})=\prod_{t=1}^Tp(x_
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" data-id="ckbylq42l0009tv3x15wiauyn" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" data-id="ckbylrrx20009v83x2e34hivn" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -244,7 +244,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckbylq41u0000tv3xhduc0p1c" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckbylrrv00000v83xf1qxcjui" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -346,7 +346,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckbylq42s000dtv3xfq3jge8z" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckbylrrxf000dv83xb7orfhn1" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -419,7 +419,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckbylq42a0003tv3x1lfq91sr" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckbylrrwr0003v83x8j67cc5r" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -502,7 +502,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckbylq4220001tv3xefce4fh3" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckbylrrvn0001v83x4y61fqz3" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -570,7 +570,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckbylq42c0004tv3xei246dbc" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckbylrrwt0004v83xebe6cg86" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -650,7 +650,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckbylq42e0005tv3xfsjp5x3w" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckbylrrwv0005v83xftbz1uzh" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -704,7 +704,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Installation/" rel="tag">Installation</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckbylq42q000btv3xax3ydy8x" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckbylrrx9000bv83x2u96g6kg" class="article-share-link">Share</a>
         
       </div>
     </footer>

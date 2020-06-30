@@ -5,19 +5,18 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   
-  <title>Matrix derivatives | Study notes</title>
+  <title>Dynamic programming | Study notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Scalar by Matrix From the post, we know if \(l\) is a scalar and \(C&#x3D;AB\) where A, B, C are matrixes, we have \[ \frac{\partial l}{\partial A} &#x3D; \frac{\partial l}{\partial C}\cdot B^T\\ \frac{\part">
+  <meta name="description" content="1. Elements of Dynamic Programming When does the dynamic programming method apply?  Two key ingredients that an optimization problems must have in order for dynamic programming to apply: optimal subst">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Matrix derivatives">
-<meta property="og:url" content="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/index.html">
+<meta property="og:title" content="Dynamic programming">
+<meta property="og:url" content="http://sunyinge.github.io/2020/06/29/Dynamic-programming/index.html">
 <meta property="og:site_name" content="Study notes">
-<meta property="og:description" content="1. Scalar by Matrix From the post, we know if \(l\) is a scalar and \(C&#x3D;AB\) where A, B, C are matrixes, we have \[ \frac{\partial l}{\partial A} &#x3D; \frac{\partial l}{\partial C}\cdot B^T\\ \frac{\part">
-<meta property="article:published_time" content="2020-06-08T20:57:50.000Z">
-<meta property="article:modified_time" content="2020-06-09T01:13:33.772Z">
+<meta property="og:description" content="1. Elements of Dynamic Programming When does the dynamic programming method apply?  Two key ingredients that an optimization problems must have in order for dynamic programming to apply: optimal subst">
+<meta property="article:published_time" content="2020-06-30T05:15:15.000Z">
+<meta property="article:modified_time" content="2020-06-30T06:02:11.896Z">
 <meta property="article:author" content="Yinge Sun">
-<meta property="article:tag" content="DL">
-<meta property="article:tag" content="Optimization">
+<meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Study notes" type="application/atom+xml">
@@ -81,10 +80,10 @@
 </header>
 
     <div class="outer">
-      <section id="main"><article id="post-Matrix-derivatives" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-Dynamic-programming" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <h3 href="/2020/06/08/Matrix-derivatives/" class="article-date">
-  <time datetime="2020-06-08T20:57:50.000Z" itemprop="datePublished">2020-06-08</time>
+    <h3 href="/2020/06/29/Dynamic-programming/" class="article-date">
+  <time datetime="2020-06-30T05:15:15.000Z" itemprop="datePublished">2020-06-29</time>
 </h3>
     
   </div>
@@ -97,7 +96,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Matrix derivatives
+      Dynamic programming
     </h1>
   
 
@@ -106,42 +105,53 @@
     <div class="article-entry" itemprop="articleBody">
       
         
-        <h3 id="scalar-by-matrix">1. Scalar by Matrix</h3>
-<p>From the <a href="https://sunyinge.github.io/2020/06/08/MLP/">post</a>, we know if <span class="math inline">\(l\)</span> is a scalar and <span class="math inline">\(C=AB\)</span> where A, B, C are matrixes, we have <span class="math display">\[
-\frac{\partial l}{\partial A} = \frac{\partial l}{\partial C}\cdot B^T\\
-\frac{\partial l}{\partial B} = A^T\cdot\frac{\partial l}{\partial C}.
-\]</span></p>
-<h3 id="matrix-by-matrix">2. Matrix by Matrix</h3>
-<p>If <span class="math inline">\(C=AB\)</span> where A, B, C are matrixes, we have <span class="math display">\[
-\frac{\partial C}{\partial A} = \{\frac{\partial C_{ij}}{\partial A_{kl}}\}_{ijkl},
-\]</span> which is a high-dimensional array, called <strong>tensor</strong>.</p>
-<p>It is not quite useful in practice.</p>
-<h3 id="jacobian">3. Jacobian</h3>
-<p>Composition of two vector functions (useful in RNN): <span class="math display">\[
-g(x):(x_1,\ldots,x_n)\rightarrow (g_1,\ldots,g_m)\\
-f(g):(g_1,\ldots,g_m)\rightarrow (f_1,\ldots,f_l).
-\]</span> Then <span class="math display">\[
-h(x)=f(g(x)):(x_1,\ldots,x_n)\rightarrow (h_1,\ldots,h_l)=(f_1,\ldots,f_l).
-\]</span> The matrix of partial derivatives <span class="math inline">\(\{\frac{\partial h_i}{\partial x_j}\}_{ij}\)</span> is called the <strong>Jacobian</strong>: <span class="math display">\[
-J^h=
-\left( 
-\begin{array}{ccc}
-    \frac{\partial h_1}{\partial x_1} &amp; \cdots &amp; \frac{\partial h_1}{\partial x_n}\\
-    \vdots &amp; \ddots &amp; \vdots \\
-     \frac{\partial h_l}{\partial x_1} &amp; \cdots &amp; \frac{\partial h_l}{\partial x_n}\\
-\end{array} \right).
-\]</span> The <strong>chain rule</strong> of Jacobian: <span class="math display">\[
-J^h=J^f\cdot J^g.
-\]</span></p>
+        <h3 id="elements-of-dynamic-programming">1. Elements of Dynamic Programming</h3>
+<p>When does the dynamic programming method apply?</p>
+<ul>
+<li>Two key ingredients that an optimization problems must have in order for dynamic programming to apply: <strong>optimal substructure</strong> and <strong>overlapping subproblems</strong>.</li>
+</ul>
+<h4 id="optimal-substructure">1. Optimal Substructure</h4>
+<p>A problem exhibits <strong>optimal substruture</strong> if an optimal solution to the problem contains within it optimal solutions to subproblems. (Optimal solutions to a problem incorporate optimal solutions to related subproblems, which we may solve <strong>independently</strong>)</p>
+<p>Optimal substructure varies across problem domains in two ways:</p>
+<ol type="1">
+<li><p><strong>how many subproblmes</strong> an optimal solution to the original problem uses</p></li>
+<li><p><strong>how many choices</strong> we have in determining which subproblems to use in an optimal solution</p></li>
+</ol>
+<p>Actually, the <strong>running time</strong> of a dynamic programming algorithm depends on the product of the two factors above: the number of subproblems overall and how many choives we look at for each subproblem.</p>
+<h4 id="overlapping-subproblems">2. Overlapping Subproblems</h4>
+<p>We say that the optimazation problem has <strong>overlapping subproblems</strong> when a recursive algorithm <strong>revisits the same problem repeatedly</strong>.</p>
+<p>In contrast, a problem for which a <strong>divide-and-conquer</strong> approach is suitable usually generated brand-new problems at each step of the recursion.</p>
+<a id="more"></a>
+<h3 id="steps-of-a-dynamic-programming-algorithm">2. Steps of A Dynamic Programming Algorithm</h3>
+<ol type="1">
+<li>Characterize the structure of an optimal solution</li>
+<li>Recursively define <strong>the value of</strong> an optimal solution</li>
+<li>Compute the value of an optimal solution, <strong>typically in a bottom-up fashion</strong> (求最优解的最优值)</li>
+<li>Construct an optimal solution from computed information (optional) (求最优解)</li>
+</ol>
+<h3 id="two-equivalent-approaches-to-implement-dynamic-programming">3. Two equivalent approaches to implement dynamic programming</h3>
+<h4 id="recursive-top-down-implementation-top-down-with-memoization">1. Recursive Top-down Implementation (top-down with memoization)</h4>
+<ul>
+<li>Write the procedure recursively in a nature manner</li>
+<li><strong>Save the result</strong> of each subproblem (usually in an array or hash table)</li>
+<li>In the recursive step, <strong>first check</strong> whether is has previously solved the subproblem. If so, return the saved value; if not, compute the value in the usual manner</li>
+</ul>
+<p>View the top-down method as a <strong>&quot;depth-first search&quot;</strong> of the subproblem graph.</p>
+<h4 id="bottom-up-method">2. Bottom-up Method</h4>
+<ul>
+<li>Sort the subproblems by &quot;size&quot; and <strong>solve them in &quot;size&quot; order</strong>, smallest first (solve each subproblem only once, and we have already solved all of its prerequisite subproblems when we first see it).</li>
+</ul>
+<p>View the bottom-up method as a method that considers the vertices of the subproblem graph in an <strong>&quot;reverse topological sort&quot;</strong> order, which means no subproblmes is considered until all of the subproblems it depends upon have been solved.</p>
+<p>In general practice, if all subproblems must be solved at least once, a bottom-up method usually outperforms the corresponding top-down memoized method <strong>by a constant factor</strong>. Alternatively, if some subproblems in the subproblem space need not be solved at all, the memoized solution has the advantage of solving only those subproblems that are definitely required.</p>
 
       
     </div>
     <footer class="article-footer">
       <div class="article-footer-content">
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckc1ixrut0004dn3x453591vu" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/29/Dynamic-programming/" data-id="ckc1ixrtm0000dn3x2bygckcl" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -152,19 +162,10 @@ J^h=J^f\cdot J^g.
     
 <nav id="article-nav">
   
-    <a href="/2020/06/08/Text-classification/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Text classification
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/06/08/MLP/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/06/24/Python/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">MLP</div>
+      <div class="article-nav-title">Python</div>
     </a>
   
 </nav>

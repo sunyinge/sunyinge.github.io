@@ -129,7 +129,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/29/Dynamic-programming/" data-id="ckc2gps5a0000py3x12k0elyt" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/29/Dynamic-programming/" data-id="ckc2h6e370000sw3x3gsf52pr" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -184,7 +184,12 @@
 <li><p>The <code>ord()</code> function returns an integer representing the Unicode character. The <code>chr()</code> method returns a string representing a character whose Unicode code point is an integer.</p></li>
 <li><p><code>break</code> statement <strong>only</strong> terminates the loop in which it appears.</p></li>
 <li><p><code>map(func, iter)</code> returns a map object (an iterator) of the results after applying the given functions to each item of a given iterable, which can be passed to functions like <code>list()</code> (to create a list), <code>set()</code> to create a set. For example,</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nums1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">nums2 = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">result = map(<span class="keyword">lambda</span> x, y: x+y, nums1, nums2)</span><br><span class="line">print(result)</span><br><span class="line"><span class="comment">### Output: </span></span><br><span class="line"><span class="comment">### [5,7,9]</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nums1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">nums2 = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">result = map(<span class="keyword">lambda</span> x, y: x+y, nums1, nums2)</span><br><span class="line">print(result)</span><br><span class="line"><span class="comment">### Output: </span></span><br><span class="line">[<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>]</span><br></pre></td></tr></table></figure></li>
+<li><p>Nested list comprehension: they would nest in the same way for loops and if statements nest (对于循环和if语句嵌套，它们将以相同的方式嵌套). For example,</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">non_flat = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>], [<span class="number">7</span>,<span class="number">8</span>]]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### Wrong</span></span><br><span class="line">[y <span class="keyword">for</span> y <span class="keyword">in</span> x <span class="keyword">for</span> x <span class="keyword">in</span> non_flat]</span><br><span class="line"><span class="comment">### Output:</span></span><br><span class="line">NameError: name <span class="string">'x'</span> <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### Correct</span></span><br><span class="line">[y <span class="keyword">for</span> x <span class="keyword">in</span> non_flat <span class="keyword">for</span> y <span class="keyword">in</span> x]</span><br><span class="line"><span class="comment">### Output:</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### Just like this:</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> non_flat:</span><br><span class="line">	<span class="keyword">for</span> y <span class="keyword">in</span> x:</span><br><span class="line">		y</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -194,7 +199,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/24/Python/" data-id="ckc2gps5t0009py3xcub09ndc" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/24/Python/" data-id="ckc2h6e3s000bsw3x2u435v0o" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -259,7 +264,7 @@ p(\mathbf{x},\mathbf{y})=p(\mathbf{x}|\mathbf{y})p(\mathbf{y})=\prod_{t=1}^Tp(x_
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" data-id="ckc2gps5p0005py3x5ct6fvpg" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" data-id="ckc2h6e3q0009sw3x63bi8ong" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -312,7 +317,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckc2gps61000bpy3xfxwiblg9" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckc2h6e3d0001sw3xfcf81eir" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -414,7 +419,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckc2gps65000fpy3x2xv2hwz1" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckc2h6e3x000gsw3xagcn53oe" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -487,7 +492,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckc2gps5l0003py3x61en5zms" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckc2h6e3m0005sw3xccpoaix4" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -570,7 +575,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckc2gps5g0001py3x59ph5d39" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckc2h6e3j0003sw3x32dxbw8i" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -638,7 +643,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckc2gps5n0004py3xc1ed6ctx" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckc2h6e3k0004sw3xerms836n" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -718,7 +723,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckc2gps5s0008py3x6xr0fs4g" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckc2h6e3p0008sw3x7u765wro" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -772,7 +777,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Installation/" rel="tag">Installation</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckc2gps62000dpy3xhfkl5ad9" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckc2h6e3t000dsw3x8q7w5bl2" class="article-share-link">Share</a>
         
       </div>
     </footer>

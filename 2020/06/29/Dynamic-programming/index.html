@@ -14,8 +14,9 @@
 <meta property="og:site_name" content="Study notes">
 <meta property="og:description" content="1. Elements of Dynamic Programming When does the dynamic programming method apply?  Two key ingredients that an optimization problems must have in order for dynamic programming to apply: optimal subst">
 <meta property="og:image" content="http://sunyinge.github.io/images/recurTrodcut.png">
+<meta property="og:image" content="http://sunyinge.github.io/images/MatrixChainMulRes.png">
 <meta property="article:published_time" content="2020-06-30T05:15:15.000Z">
-<meta property="article:modified_time" content="2020-07-01T04:00:39.099Z">
+<meta property="article:modified_time" content="2020-07-01T04:49:48.858Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -176,7 +177,64 @@ r_n=\underset{1\leq i \leq n}{\text {max}}(p_i+r_{n-i}), \text{ where }r_0=0 \te
 <li><p>Bottom-up method</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BOTTOM-UP-CUT-ROD(p,n)</span><br><span class="line">1	<span class="built_in">let</span> r[0..n] be a new array</span><br><span class="line">2	r[0] = 0</span><br><span class="line">3	<span class="keyword">for</span> j = 1 to n</span><br><span class="line">4		q = -inf</span><br><span class="line">5		<span class="keyword">for</span> i = 1 to j</span><br><span class="line">6			q = max(q,p[i]+r[j-i])</span><br><span class="line">7		r[j] = q</span><br><span class="line">8	<span class="built_in">return</span> r[n]</span><br></pre></td></tr></table></figure></li>
 <li><p>Reconstructing a solution (不只求最优解)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">EXTENDED-BOTTOM-UP-CUT-ROD(p,n)</span><br><span class="line">1	<span class="built_in">let</span> r[0..n] and s[0..n] be new arrays</span><br><span class="line">2	r[0] = 0</span><br><span class="line">3	<span class="keyword">for</span> j = 1 to n</span><br><span class="line">4		q = -inf</span><br><span class="line">5		<span class="keyword">for</span> i = 1 to j</span><br><span class="line">6			<span class="keyword">if</span> q &lt; p[i]+r[j-i]</span><br><span class="line">7				q = p[i]+r[j-i]</span><br><span class="line">8				s[j] = i</span><br><span class="line">9		r[j] = q</span><br><span class="line">10	<span class="built_in">return</span> r and s</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">EXTENDED-BOTTOM-UP-CUT-ROD(p,n)</span><br><span class="line">1	<span class="built_in">let</span> r[0..n] and s[0..n] be new arrays</span><br><span class="line">2	r[0] = 0</span><br><span class="line">3	<span class="keyword">for</span> j = 1 to n</span><br><span class="line">4		q = -inf</span><br><span class="line">5		<span class="keyword">for</span> i = 1 to j</span><br><span class="line">6			<span class="keyword">if</span> q &lt; p[i]+r[j-i]</span><br><span class="line">7				q = p[i]+r[j-i]</span><br><span class="line">8				s[j] = i</span><br><span class="line">9		r[j] = q</span><br><span class="line">10	<span class="built_in">return</span> r and s</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PRINT-CUT-ROD-SOLUTION(p,n)</span><br><span class="line">1	(r,s) = EXTENDED-BOTTOM-UP-CUT-ROD(p,n)</span><br><span class="line">2	<span class="keyword">while</span> n &gt; 0</span><br><span class="line">3		<span class="built_in">print</span> s[n]</span><br><span class="line">4		n = n - s[n]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="matrix-chain-multiplication">2. Matrix-chain Multiplication</h4>
+<ul>
+<li><p>Problem description</p>
+<p>Given a chain &lt;<span class="math inline">\(A_1,A_2,\ldots,A_n\)</span>&gt; of n matrices, where for <span class="math inline">\(i=1,2,\ldots,n\)</span>, matrix <span class="math inline">\(A_i\)</span> has dimension <span class="math inline">\(p_{i-1}\times p_i\)</span>, fully parenthesize the product <span class="math inline">\(A_1A_2\cdots A_n\)</span> in a way that minimizes the number of scalar multiplications. (如何加括号使得数与数之间的乘法运算量最小)</p></li>
+<li><p>Optimal substructure</p>
+<p>To optimally parenthesize <span class="math inline">\(A_iA_{i+1}\cdots A_j\)</span>, we split the product between <span class="math inline">\(A_k\)</span> and <span class="math inline">\(A_{k+1}\)</span> (<span class="math inline">\(k=i,\ldots,j-1\)</span>). Then <span class="math inline">\(A_iA_{i+1}\cdots A_k\)</span> and <span class="math inline">\(A_{k+1}A_{k+2}\cdots A_j\)</span> are both optimally parenthesized.</p></li>
+<li><p>Recursive formulation</p>
+<p>Let <span class="math inline">\(m[i,j]\)</span> be the minimum number of scalar multiplications needed to compute the matrix <span class="math inline">\(A_iA_{i+1}\cdots A_j\)</span>, then <span class="math display">\[
+m[i,j]=\bigg\{  
+\begin{align*}
+&amp;0&amp;\text{if } i =j,\\
+&amp;\underset{i\leq k &lt; j}{\text{min}}\{m[i,k],m[k+1,j]+p_{i-1}p_kp_j\} &amp;\text{if } i &lt;j.
+\end{align*}
+\]</span></p></li>
+<li><p>Overlapping subproblems</p>
+<p>One subprobem for each choice of <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> satisfying <span class="math inline">\(1\leq i\leq j\leq n\)</span>, <span class="math inline">\(\Theta(n)\)</span> in all.</p></li>
+<li><p>Top-down with memoization</p></li>
+<li><p>Bottom-up method</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">MATRIX-CHAIN-ORDER(p) <span class="comment">### p[0..n]</span></span><br><span class="line">1	n = p.length - 1</span><br><span class="line">2	<span class="built_in">let</span> m[1..n,1..n] and s[1..n-1,2..n] be new tables</span><br><span class="line">3	<span class="keyword">for</span> i = 1 to n</span><br><span class="line">4		m[i,i] = 0</span><br><span class="line">5	<span class="keyword">for</span> l = 2 to n</span><br><span class="line">6		<span class="keyword">for</span> i = 1 to n<span class="_">-l</span>+1</span><br><span class="line">7			j = i+l-1</span><br><span class="line">8			m[i,j] = inf</span><br><span class="line">9			<span class="keyword">for</span> k = i to j-1</span><br><span class="line">10				q = m[i,k]+m[k+1,j]+p[i-1]p[k]p[j]</span><br><span class="line">11				<span class="keyword">if</span> q &lt; m[i,j]</span><br><span class="line">12					m[i,j] = q</span><br><span class="line">13					s[i,j] = k</span><br><span class="line">14	<span class="built_in">return</span> m and s</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="/images/MatrixChainMulRes.png" /></th>
+<th>as</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">The m and s tables computed by MATRIX-CHAIN-ORDER.</td>
+<td></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Reconstructing a solution</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PRINT-OPTIMAL-PARENS(s,i,j)</span><br><span class="line">1	<span class="keyword">if</span> i == j</span><br><span class="line">2		<span class="built_in">print</span> <span class="string">"A_i"</span></span><br><span class="line">3	<span class="keyword">else</span> <span class="built_in">print</span> <span class="string">"("</span></span><br><span class="line">4		PRINT-OPTIMAL-PARENS(s,i,s[i,j])</span><br><span class="line">5		PRINT-OPTIMAL-PARENS(s,s[i,j]+1,j)</span><br><span class="line">6		<span class="built_in">print</span> <span class="string">")"</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="longest-common-subsequence">3. Longest Common Subsequence</h4>
+<ul>
+<li>Problem description</li>
+<li>Optimal substructure</li>
+<li>Recursive formulation</li>
+<li>Overlapping subproblems</li>
+<li>Top-down with memoization</li>
+<li>Bottom-up method</li>
+<li>Reconstructing a solution</li>
+</ul>
+<h4 id="optimal-binary-search-trees">4. Optimal Binary Search Trees</h4>
+<ul>
+<li>Problem description</li>
+<li>Optimal substructure</li>
+<li>Recursive formulation</li>
+<li>Overlapping subproblems</li>
+<li>Top-down with memoization</li>
+<li>Bottom-up method</li>
+<li>Reconstructing a solution</li>
 </ul>
 
       
@@ -186,7 +244,7 @@ r_n=\underset{1\leq i \leq n}{\text {max}}(p_i+r_{n-i}), \text{ where }r_0=0 \te
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/29/Dynamic-programming/" data-id="ckc2u14sh0000fi3x18414kmi" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/29/Dynamic-programming/" data-id="ckc2vsd2r0000mp3x9g8i0k0e" class="article-share-link">Share</a>
         
       </div>
     </footer>

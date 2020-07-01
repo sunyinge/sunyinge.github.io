@@ -13,11 +13,13 @@
 <meta property="og:url" content="http://sunyinge.github.io/2020/06/29/Dynamic-programming/index.html">
 <meta property="og:site_name" content="Study notes">
 <meta property="og:description" content="1. Elements of Dynamic Programming When does the dynamic programming method apply?  Two key ingredients that an optimization problems must have in order for dynamic programming to apply: optimal subst">
+<meta property="og:image" content="http://sunyinge.github.io/images/recurTrodcut.png">
 <meta property="article:published_time" content="2020-06-30T05:15:15.000Z">
-<meta property="article:modified_time" content="2020-06-30T06:02:11.896Z">
+<meta property="article:modified_time" content="2020-07-01T03:39:09.095Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunyinge.github.io/images/recurTrodcut.png">
   
     <link rel="alternative" href="/atom.xml" title="Study notes" type="application/atom+xml">
   
@@ -143,6 +145,22 @@
 </ul>
 <p>View the bottom-up method as a method that considers the vertices of the subproblem graph in an <strong>&quot;reverse topological sort&quot;</strong> order, which means no subproblmes is considered until all of the subproblems it depends upon have been solved.</p>
 <p>In general practice, if all subproblems must be solved at least once, a bottom-up method usually outperforms the corresponding top-down memoized method <strong>by a constant factor</strong>. Alternatively, if some subproblems in the subproblem space need not be solved at all, the memoized solution has the advantage of solving only those subproblems that are definitely required.</p>
+<h3 id="examples">4. Examples</h3>
+<h4 id="rod-cutting">1. Rod Cutting</h4>
+<ul>
+<li><p>Problem description</p>
+<p>Given a rod of length n inches and a table of prices <span class="math inline">\(p_i\)</span> for <span class="math inline">\(i=1,2,\ldots,n\)</span>, determine the maximum revenue <span class="math inline">\(r_n\)</span> obtainable by cutting up the rod and selling the pieces.</p></li>
+<li><p>Optimal substructure</p>
+<p>We make the first cut and consider the two pieces as independent instances of the rod-cutting problem. More simple, we only allow the right-hand remainder to be further divided. That means the <strong>decomposition of a length-<span class="math inline">\(n\)</span> rod</strong> is a first piece followed by some decomposition of the remainder.</p></li>
+<li><p>Recursive formulation <span class="math display">\[
+r_n=\underset{1\leq i \leq n}{\text {max}}(p_i+r_{n-i}), \text{ where }r_0=0 \text{ obviously.}
+\]</span></p></li>
+<li><p>Overlapping subproblems</p>
+<p>To calculate each <span class="math inline">\(r_n\)</span> , it calls <span class="math inline">\(r_j\)</span> for <span class="math inline">\(j=1,2,\ldots,n-1\)</span>.</p>
+<figure>
+<img src="/images/recurTrodcut.png" alt="The recursive tree of recursive calls from a recursive implementation" /><figcaption>The recursive tree of recursive calls from a recursive implementation</figcaption>
+</figure></li>
+</ul>
 
       
     </div>
@@ -151,7 +169,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/29/Dynamic-programming/" data-id="ckc2h6e370000sw3x3gsf52pr" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/29/Dynamic-programming/" data-id="ckc2t9ig800003q3xdj4o4n2k" class="article-share-link">Share</a>
         
       </div>
     </footer>

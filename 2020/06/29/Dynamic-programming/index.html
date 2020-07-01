@@ -15,7 +15,7 @@
 <meta property="og:description" content="1. Elements of Dynamic Programming When does the dynamic programming method apply?  Two key ingredients that an optimization problems must have in order for dynamic programming to apply: optimal subst">
 <meta property="og:image" content="http://sunyinge.github.io/images/recurTrodcut.png">
 <meta property="article:published_time" content="2020-06-30T05:15:15.000Z">
-<meta property="article:modified_time" content="2020-07-01T03:46:37.992Z">
+<meta property="article:modified_time" content="2020-07-01T03:50:01.080Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -161,7 +161,9 @@ r_n=\underset{1\leq i \leq n}{\text {max}}(p_i+r_{n-i}), \text{ where }r_0=0 \te
 <img src="/images/recurTrodcut.png" alt="The recursive tree of recursive calls from a recursive implementation" /><figcaption>The recursive tree of recursive calls from a recursive implementation</figcaption>
 </figure></li>
 <li><p>Top-down with memoization</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">MEMOIZED-CUT-ROD(p,n)</span><br><span class="line">1	let r[0..n] be a new array</span><br><span class="line">2	for i &#x3D; 0 to n</span><br><span class="line">3		r[i] &#x3D; -inf</span><br><span class="line">4	return MEMOIZED-CUT-ROD-AUX(p,n,r)</span><br><span class="line"></span><br><span class="line">MEMOIZED-CUT-ROD-AUX(p,n,r)</span><br><span class="line">1	if r[n] &gt;&#x3D; 0</span><br><span class="line">2		return r[n]</span><br><span class="line">3	if n &#x3D;&#x3D; 0</span><br><span class="line">4		q &#x3D; 0</span><br><span class="line">5	else q &#x3D; -inf</span><br><span class="line">6		for i &#x3D; 1 to n</span><br><span class="line">7			q &#x3D; max(q, p[i]+MEMOIZED-CUT-ROD-AUX(p,n-i,r))</span><br><span class="line">8	r[n] &#x3D; q</span><br><span class="line">9	return q</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">MEMOIZED-CUT-ROD(p,n)</span><br><span class="line">1	let r[0..n] be a new array</span><br><span class="line">2	for i &#x3D; 0 to n</span><br><span class="line">3		r[i] &#x3D; -inf</span><br><span class="line">4	return MEMOIZED-CUT-ROD-AUX(p,n,r)</span><br><span class="line"></span><br><span class="line">MEMOIZED-CUT-ROD-AUX(p,n,r)</span><br><span class="line">1	if r[n] &gt;&#x3D; 0 </span><br><span class="line">2		return r[n] ### check memo</span><br><span class="line">3	if n &#x3D;&#x3D; 0</span><br><span class="line">4		q &#x3D; 0</span><br><span class="line">5	else q &#x3D; -inf</span><br><span class="line">6		for i &#x3D; 1 to n</span><br><span class="line">7			q &#x3D; max(q, p[i]+MEMOIZED-CUT-ROD-AUX(p,n-i,r))</span><br><span class="line">8	r[n] &#x3D; q</span><br><span class="line">9	return q</span><br></pre></td></tr></table></figure></li>
+<li><p>Bottom-up method</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BOTTOM-UP-CUT-ROD(p,n)</span><br><span class="line">1	let r[0..n] be a new array</span><br><span class="line">2	r[0] &#x3D; 0</span><br><span class="line">3	for j &#x3D; 1 to n</span><br><span class="line">4		q &#x3D; -inf</span><br><span class="line">5		for i &#x3D; 1 to j</span><br><span class="line">6			q &#x3D; max(q,p[i]+r[j-i])</span><br><span class="line">7		r[j] &#x3D; q</span><br><span class="line">8	return r[n]</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -171,7 +173,7 @@ r_n=\underset{1\leq i \leq n}{\text {max}}(p_i+r_{n-i}), \text{ where }r_0=0 \te
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/29/Dynamic-programming/" data-id="ckc2tj33800008n3x28wvc44v" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/29/Dynamic-programming/" data-id="ckc2tng2n0000a13xbtkt8ld6" class="article-share-link">Share</a>
         
       </div>
     </footer>

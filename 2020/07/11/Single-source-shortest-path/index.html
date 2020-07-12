@@ -13,11 +13,16 @@
 <meta property="og:url" content="http://sunyinge.github.io/2020/07/11/Single-source-shortest-path/index.html">
 <meta property="og:site_name" content="Study notes">
 <meta property="og:description" content="1. Shortest-Path Problem A weighted, directed graph \(G&#x3D;(V,E)\) with weight function \(w: E\rightarrow\R\). The weight \(w(p)\) of path \(p&#x3D;&lt;v_0,v_1,\ldots,v_k&gt;\) is \(w(p)&#x3D;\sum_{i&#x3D;1}^kw(v_{i-1}">
+<meta property="og:image" content="http://sunyinge.github.io/images/BellmanFord.png">
+<meta property="og:image" content="http://sunyinge.github.io/images/ShortestPathDag.png">
+<meta property="og:image" content="http://sunyinge.github.io/images/Dijkstra.png">
+<meta property="og:image" content="http://sunyinge.github.io/images/ConstraintGraph.png">
 <meta property="article:published_time" content="2020-07-12T05:27:21.000Z">
-<meta property="article:modified_time" content="2020-07-12T07:55:06.198Z">
+<meta property="article:modified_time" content="2020-07-12T08:06:03.172Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunyinge.github.io/images/BellmanFord.png">
   
     <link rel="alternative" href="/atom.xml" title="Study notes" type="application/atom+xml">
   
@@ -160,6 +165,7 @@
 <h3 id="the-bellman-ford-algorithm">3. The Bellman-Ford Algorithm</h3>
 <p>Edge weights can be negative and the Bellman-Ford algorithm returns a Boolean value indicating whether or not there is a negative-weight cycle that is reachable from the source.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BELLMAN-FORD(G,w,s)</span><br><span class="line">1	INITIALIZE-SINGLE-SOURCE(G,s)</span><br><span class="line">2	<span class="keyword">for</span> i = 1 to |G.V|-1</span><br><span class="line">3		<span class="keyword">for</span> each edge (u,v) <span class="keyword">in</span> G.E</span><br><span class="line">4			RELAX(u,v,w)</span><br><span class="line">5	<span class="keyword">for</span> each edge (u,v) <span class="keyword">in</span> G.E</span><br><span class="line">6		<span class="keyword">if</span> v.d &gt; u.d + w(u,v)</span><br><span class="line">7			<span class="built_in">return</span> FALSE</span><br><span class="line">8	<span class="built_in">return</span> TRUE</span><br></pre></td></tr></table></figure>
+<p><img src="/images/BellmanFord.png" /></p>
 <ul>
 <li><strong>Remark</strong>
 <ul>
@@ -172,6 +178,7 @@
 <p>Shortest paths are well defined in a <strong>dag</strong>. There could be <strong>negative edges but no negative-weight cycles</strong>.</p>
 <p>By relaxing edges in <strong>topologically sorted order</strong>, we can compute shortest path from a single source in <span class="math inline">\(\Theta(V+E)\)</span> time.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DAG-SHORTEST-PATHS(G,w,s)</span><br><span class="line">1	topologically sort the vertices of G // O(V+E) time</span><br><span class="line">2	INITIALIZE-SINGLE-SOURCE(G,s) // O(V) time</span><br><span class="line">3	<span class="keyword">for</span> each vertex u, taken <span class="keyword">in</span> topologically sorted order</span><br><span class="line">4		<span class="keyword">for</span> each vertex v <span class="keyword">in</span> G.adj[u]</span><br><span class="line">5			RELAX(u,v,w)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/ShortestPathDag.png" /></p>
 <ul>
 <li><strong>Remark</strong>
 <ul>
@@ -183,6 +190,7 @@
 <p>All edges need to be <strong>non-negative</strong>.</p>
 <p>The logic of Dijkstra's algorithm: <strong>maintains a set <span class="math inline">\(S\)</span></strong> of vertices whose shortest-path weights from the source <span class="math inline">\(s\)</span> have been determined. It repeatedly select the vertex <span class="math inline">\(u\in V-S\)</span> with the <strong>minimum shortest-path estimate</strong>, adds <span class="math inline">\(u\)</span> to <span class="math inline">\(S\)</span> and <strong>relaxes</strong> all edges leaving <span class="math inline">\(u\)</span>.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DIJKSTRA(G,w,s)</span><br><span class="line">1	INITIALIZE-SINGLE-SOURCE(G,s)</span><br><span class="line">2	S = empty <span class="built_in">set</span></span><br><span class="line">3	Q = G.V</span><br><span class="line">4	<span class="keyword">while</span> Q not equal to empty <span class="built_in">set</span></span><br><span class="line">5		u = EXTRACT-MIN(Q)</span><br><span class="line">6		S = S union u</span><br><span class="line">7		<span class="keyword">for</span> each vertex v <span class="keyword">in</span> G.adj[u]</span><br><span class="line">8			RELAX(u,v,w)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/Dijkstra.png" style="zoom:80%;" /></p>
 <ul>
 <li><strong>Remark</strong>
 <ul>
@@ -207,6 +215,7 @@ x_j-x_i\leq b_k, \text{ where }1\leq i,j\leq n,i\neq j,\text{ and }1\leq k \leq 
 <p><strong>Constraint graphs</strong></p>
 <p><span class="math inline">\(G=(V,E)\)</span>, where <span class="math inline">\(V=(v_0,v_1,\ldots,v_n)\)</span> and <span class="math inline">\(E=\{(v_i,v_j): x_j-x_i\leq b_k \text{ is a constraint}\}\cup\{(v_0,v_1),(v_0,v_3),(v_0,v_3),\ldots,(v_0,v_n)\}\)</span>.</p>
 <p>The weight of edge <span class="math inline">\((v_i,v_j)\)</span> is <span class="math inline">\(w(v_i,v_j)=b_k\)</span> if <span class="math inline">\(x_j-x_i\leq b_k\)</span> is a difference constraint. And the weight of each edge leaving <span class="math inline">\(v_0\)</span> is 0.</p>
+<p><img src="/images/ConstraintGraph.png" /></p>
 <ul>
 <li><strong>Theorem</strong>: Given a system <span class="math inline">\(A\mathbf{x}\leq \mathbf{b}\)</span> of difference constraints, let <span class="math inline">\(G=(V,E)\)</span> be the corresponding constraint graph. If <span class="math inline">\(G\)</span> contains no negative-weight cycles, then <span class="math inline">\(x=(\delta(v_0,v_1),\delta(v_0,v_2),\delta(v_0,v_3),\ldots,\delta(v_0,v_n),)\)</span> is a feasible solution for the system, If <span class="math inline">\(G\)</span> contains a negative-weight cycle, then there is no feasible solution for the system.</li>
 </ul>
@@ -218,7 +227,7 @@ x_j-x_i\leq b_k, \text{ where }1\leq i,j\leq n,i\neq j,\text{ and }1\leq k \leq 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/07/11/Single-source-shortest-path/" data-id="ckcis91vo000giv3xh3eieikm" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/07/11/Single-source-shortest-path/" data-id="ckcisn4f8000gm63x0pr9gmg6" class="article-share-link">Share</a>
         
       </div>
     </footer>

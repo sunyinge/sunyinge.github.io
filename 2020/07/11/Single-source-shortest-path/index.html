@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://sunyinge.github.io/images/Dijkstra.png">
 <meta property="og:image" content="http://sunyinge.github.io/images/ConstraintGraph.png">
 <meta property="article:published_time" content="2020-07-12T05:27:21.000Z">
-<meta property="article:modified_time" content="2020-07-12T08:10:34.883Z">
+<meta property="article:modified_time" content="2020-07-12T08:13:09.885Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -114,10 +114,10 @@
 <p>A weighted, directed graph <span class="math inline">\(G=(V,E)\)</span> with weight function <span class="math inline">\(w: E\rightarrow\mathbb{R}\)</span>.</p>
 <p>The weight <span class="math inline">\(w(p)\)</span> of path <span class="math inline">\(p=&lt;v_0,v_1,\ldots,v_k&gt;\)</span> is <span class="math inline">\(w(p)=\sum_{i=1}^kw(v_{i-1},v_i)\)</span> and the <strong>shortest-paht weight</strong> <span class="math inline">\(\delta(u,v)\)</span>from <span class="math inline">\(u\)</span> to <span class="math inline">\(v\)</span> is <span class="math display">\[
 \delta(u,v)=\bigg\{
-\begin{align}
-&amp;\text{min}\{w(p):u\overset{p}{\leadsto}v\} &amp; \text{if there is a path from $u$ to $v$,}\\
-&amp;\infty &amp; \text{otherwise.}
-\end{align}
+\begin{align*}
+&amp;\text{min}\{w(p):u\overset{p}{\leadsto}v\} &amp;&amp; \text{if there is a path from $u$ to $v$,}\\
+&amp;\infty &amp;&amp; \text{otherwise.}
+\end{align*}
 \]</span> A <strong>shortest path</strong> from vertex <span class="math inline">\(u\)</span> to vertex <span class="math inline">\(v\)</span> is then defined as any path <span class="math inline">\(p\)</span> with weight <span class="math inline">\(w(p)=\delta(u,v)\)</span>.</p>
 <p><strong>Single-source shortest-paths problem</strong>: given a graph <span class="math inline">\(G=(V,E)\)</span>, we want to find a shortest path from a given <strong>source</strong> vertex $sV $ to each vertex <span class="math inline">\(v\in V\)</span>.</p>
 <ul>
@@ -165,7 +165,7 @@
 <h3 id="the-bellman-ford-algorithm">3. The Bellman-Ford Algorithm</h3>
 <p>Edge weights can be negative and the Bellman-Ford algorithm returns a Boolean value indicating whether or not there is a negative-weight cycle that is reachable from the source.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BELLMAN-FORD(G,w,s)</span><br><span class="line">1	INITIALIZE-SINGLE-SOURCE(G,s)</span><br><span class="line">2	<span class="keyword">for</span> i = 1 to |G.V|-1</span><br><span class="line">3		<span class="keyword">for</span> each edge (u,v) <span class="keyword">in</span> G.E</span><br><span class="line">4			RELAX(u,v,w)</span><br><span class="line">5	<span class="keyword">for</span> each edge (u,v) <span class="keyword">in</span> G.E</span><br><span class="line">6		<span class="keyword">if</span> v.d &gt; u.d + w(u,v)</span><br><span class="line">7			<span class="built_in">return</span> FALSE</span><br><span class="line">8	<span class="built_in">return</span> TRUE</span><br></pre></td></tr></table></figure>
-<p><img src="/images/BellmanFord.png" /></p>
+<p><img src="/images/BellmanFord.png" style="zoom:67%;" /></p>
 <ul>
 <li><strong>Remark</strong>
 <ul>
@@ -178,7 +178,7 @@
 <p>Shortest paths are well defined in a <strong>dag</strong>. There could be <strong>negative edges but no negative-weight cycles</strong>.</p>
 <p>By relaxing edges in <strong>topologically sorted order</strong>, we can compute shortest path from a single source in <span class="math inline">\(\Theta(V+E)\)</span> time.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DAG-SHORTEST-PATHS(G,w,s)</span><br><span class="line">1	topologically sort the vertices of G // O(V+E) time</span><br><span class="line">2	INITIALIZE-SINGLE-SOURCE(G,s) // O(V) time</span><br><span class="line">3	<span class="keyword">for</span> each vertex u, taken <span class="keyword">in</span> topologically sorted order</span><br><span class="line">4		<span class="keyword">for</span> each vertex v <span class="keyword">in</span> G.adj[u]</span><br><span class="line">5			RELAX(u,v,w)</span><br></pre></td></tr></table></figure>
-<p><img src="/images/ShortestPathDag.png" /></p>
+<p><img src="/images/ShortestPathDag.png" style="zoom:80%;" /></p>
 <ul>
 <li><strong>Remark</strong>
 <ul>
@@ -227,7 +227,7 @@ x_j-x_i\leq b_k, \text{ where }1\leq i,j\leq n,i\neq j,\text{ and }1\leq k \leq 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/07/11/Single-source-shortest-path/" data-id="ckcistp0r000hq63xgiuu5m5j" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/07/11/Single-source-shortest-path/" data-id="ckcisw8fs000drv3xduga6gz7" class="article-share-link">Share</a>
         
       </div>
     </footer>

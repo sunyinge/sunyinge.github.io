@@ -101,7 +101,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
         <h3 id="matrix-multiplication-idea">1. Matrix Multiplication Idea</h3>
 <p>Negative edges my be present but we assume there are <strong>no negative-weight cycles</strong>.</p>
 <ul>
@@ -124,76 +123,11 @@ l_{ij}^{(m)}&amp;=&amp;&amp;\text{min}(l_{ij}^{(m-1)}, \underset{1\leq k \leq n,
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">EXTEND-SHORTEST-PATHS(L,W)</span><br><span class="line">1	n = L.rows</span><br><span class="line">2	<span class="built_in">let</span> L<span class="string">' = (l'</span>_ij) be a new n*n matrix</span><br><span class="line">3	<span class="keyword">for</span> i = 1 to n</span><br><span class="line">4		<span class="keyword">for</span> j = 1 to n</span><br><span class="line">5			l<span class="string">'_ij = inf</span></span><br><span class="line"><span class="string">6			for k = 1 to n</span></span><br><span class="line"><span class="string">7				l'</span>_ij = min(l<span class="string">'_ij,l_ik+w_kj)</span></span><br><span class="line"><span class="string">8	return L'</span></span><br></pre></td></tr></table></figure>
 <p>And the following procedure computes <span class="math inline">\(L^{n-1}\)</span>.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SLOW-ALL-PAIRS-SHORTEST-PATHS(W)</span><br><span class="line">1	n = W.rows</span><br><span class="line">2	L^(1) = W</span><br><span class="line">3	<span class="keyword">for</span> m = 2 to n-1</span><br><span class="line">4		<span class="built_in">let</span> L^(m) be a new n*n matrix</span><br><span class="line">5		L^(m) = EXTEND-SHORTEST-PATHS(L^(m-1),W)</span><br><span class="line">6	<span class="built_in">return</span> L^(n-1)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>Remark</p>
-<ul>
-<li><p>EXTEND-SHORTEST-PATHS runs in <span class="math inline">\(\Theta(V^3)\)</span> so total <strong>running time</strong> for calculating all-pairs shortest paths is <span class="math inline">\(\Theta(V^4)\)</span>.</p></li>
-<li><p>Since the EXTEND-SHORTEST-PATHS(L,W) procedure is similar as SQUARE-MATRIX-MULTIPLY(A,B), i.e., <span class="math inline">\(L^{(1)} = L^{(0)} \otimes W = W,\\ L^{(2)} = L^{(1)} \otimes W = W^{2\otimes},\\ L^{(3)} = L^{(2)} \otimes W = W^{3\otimes},\\ \cdots,\\ L^{(n-1)} = L^{(n-2)} \otimes W = W^{n-1\otimes}\)</span></p>
-<p>,the procedure defined by the EXTEND-SHORTEST-PATHS is also <strong>associative</strong>. So <span class="math inline">\(L^{(1)} = W, L^{(2)} = W^{2\otimes} = W\otimes W,\\ L^{(4)} = W^{4\otimes}=W^{2\otimes}\otimes W^{2\otimes},\\ L^{(8)} = W^{8\otimes}=W^{4\otimes}\otimes W^{4\otimes},\\ \cdots,\\ L^{(2^{\lceil lg(n-1)\rceil})} = W^{2^{\lceil lg(n-1)\rceil}\otimes} = W^{2^{\lceil lg(n-1)\rceil -1}\otimes}\otimes W^{2^{\lceil lg(n-1)\rceil -1}\otimes}\)</span>.</p>
-<p>So there is a faster implementation of finding all-pairs shortest-paths:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FASTER-ALL-PAIRS-SHORTEST-PATHS(W)</span><br><span class="line">1	n = W.rows</span><br><span class="line">2	L^(1) = W</span><br><span class="line">3	m = 1</span><br><span class="line">4	<span class="keyword">while</span> m &lt; n-1</span><br><span class="line">5		<span class="built_in">let</span> L^(2m) be a new n*n matrix</span><br><span class="line">6		L^(2m) = EXTEND-SHORTEST-PATHS(L^(m),L^(m))</span><br><span class="line">7		m = 2m</span><br><span class="line">8	<span class="built_in">return</span> L^(m)</span><br></pre></td></tr></table></figure>
-<p>And it improves the <strong>running time</strong> to <span class="math inline">\(O(V^3lgV)\)</span>.</p></li>
-</ul></li>
-</ul>
-<h3 id="the-floyd-warshall-algorithm">2. The Floyd-Warshall Algorithm</h3>
-<p>Same as in section 1, negative edges my be present but we assume there are <strong>no negative-weight cycles</strong>.</p>
-<p><strong>Intermediate</strong> vertex of a simple path <span class="math inline">\(p\)</span> is any vertex of <span class="math inline">\(p\)</span> other than the head and the end of <span class="math inline">\(p\)</span>.</p>
-<ul>
-<li><p><strong>Idea</strong>: (<span class="math inline">\(V=\{1,2,\ldots,n\}\)</span>) let <span class="math inline">\(p\)</span> be a minimum-weight path from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span> whose intermediate vertices are all drawn from <span class="math inline">\(\{1,2,\ldots,k\}\)</span>. Consider the relationship between <span class="math inline">\(p\)</span> and shortest paths from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span> with all intermediate vertices in the set <span class="math inline">\(\{1,2,\ldots,k-1\}\)</span>. If k is not an intermediate vertex of path <span class="math inline">\(p\)</span>, then all intermediate vertices of path <span class="math inline">\(p\)</span> are in the set <span class="math inline">\(\{1,2,\ldots,k-1\}\)</span>. If k is an intermediate vertex of path <span class="math inline">\(p\)</span>, then we decompose <span class="math inline">\(p\)</span> into <span class="math inline">\(i\overset{p_1}{\leadsto}k\overset{p_2}{\leadsto}j\)</span>, where <span class="math inline">\(p_1\)</span> is a shortest path from <span class="math inline">\(i\)</span> to <span class="math inline">\(k\)</span> with all intermediate vertices in the set <span class="math inline">\(\{1,2,\ldots,k-1\}\)</span> and <span class="math inline">\(p_2\)</span> is a shortest path from <span class="math inline">\(k\)</span> to <span class="math inline">\(j\)</span> with all intermediate vertices in the set <span class="math inline">\(\{1,2,\ldots,k-1\}\)</span>.</p>
-<p><img src="/images/IntermediateVertex.png" /></p></li>
-</ul>
-<p>Let <span class="math inline">\(d_{ij}^{(k)}\)</span> be the weight of a shortest path from vertex <span class="math inline">\(i\)</span> to vertex <span class="math inline">\(j\)</span> for which all intermediate vertices are in the set <span class="math inline">\(\{1,2,\ldots,k\}\)</span>. Then, <span class="math display">\[
-d_{ij}^{(k)}=\bigg\{
-\begin{align*}
-&amp;w_{ij} &amp;&amp; \text{if }k=0,\\
-&amp;\text{min}(d_{ij}^{(k-1)},d_{ik}^{(k-1)}+d_{kj}^{(k-1)})&amp;&amp;\text{if }k\geq 1.
-\end{align*}
-\]</span> And <span class="math inline">\(D^{(n)}=(d_{ij}^{(n)})\)</span> gives the final answer: <span class="math inline">\(d_{ij}^{(n)}=\delta(i,j)\)</span> for all <span class="math inline">\(i,j\in V\)</span>.</p>
-<p>And the dynamic programming and recursive solution to the all-pairs shortest-paths problem is</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FLOYD-WARSHALL(W)</span><br><span class="line">1	n = W.rows</span><br><span class="line">2	D^(0) = W</span><br><span class="line">3	<span class="keyword">for</span> k = 1 to n </span><br><span class="line">4		<span class="built_in">let</span> D^(k) = (d_ij^(k)) be a new n*n matrix</span><br><span class="line">5		<span class="keyword">for</span> i = 1 to n</span><br><span class="line">6			<span class="keyword">for</span> j = 1 to n</span><br><span class="line">7				d_ij^(k) = min(d_ij^(k-1),d_ik^(k-1)+d_kj^(k-1))</span><br><span class="line">8	<span class="built_in">return</span> D^(n)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>Remark</p>
-<ul>
-<li>It's easy to see that the Floyd-Warshall runs in <span class="math inline">\(\Theta(V^3)\)</span> time.</li>
-<li><strong>Transitive closure</strong> of G as the graph <span class="math inline">\(G^*=(V,E^*)\)</span>, where <span class="math inline">\(E^*=\{(i,j):\text{ there is a path form vertex }i\text{ to vertex }j \text{ in }G\}\)</span>. 有和Floyd-Warshall algorithm同样asymptotical computation time但快constant factor的算法算transitive closure.</li>
-</ul></li>
-<li><p>Constructing a shortest path</p>
-<ul>
-<li><p>Construct the predecessor matrxi <span class="math inline">\(\Pi\)</span> from <span class="math inline">\(D^{(n)}\)</span>. Each row of <span class="math inline">\(\Pi\)</span> is the predecessor matrix of a vertex <span class="math inline">\(i\)</span> and the predecessor subgraph induced by the row of <span class="math inline">\(\Pi\)</span> is the shortest-paths tree rooted at vertex <span class="math inline">\(i\)</span>. <span class="math inline">\(d_{ij}^{(n)}=d_{ik}{(n)}+w_{kj}\)</span>的<span class="math inline">\(k\)</span>(且<span class="math inline">\(k\neq j\)</span>)为<span class="math inline">\(j\)</span>的predecessor of path from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span>.</p></li>
-<li><p>Compute a sequence of predeceessor matrices $<sup>{(0)},</sup>{(1)},,^{(n)} $ while the Floyd-Warshall algorithm computes the matrices <span class="math inline">\(D^{(k)}\)</span>. <span class="math display">\[
-\pi_{ij}^{(0)}=\bigg\{
-\begin{align*}
-&amp;NIL&amp;&amp;\text{if }i=j\text{ or }w_{ij}=\infty\\
-&amp;i&amp;&amp;\text{if }i\neq j\text{ and }w_{ij}&lt;\infty
-\end{align*}
-\]</span></p>
-<p><span class="math display">\[
-\pi_{ij}^{(k)}=\bigg\{
-\begin{align*}
-&amp;\pi_{ij}^{(k-1)}&amp;&amp;\text{if }d_{ij}^{(k-1)}\leq d_{ik}^{(k-1)}+d_{kj}^{(k-1)},\\
-&amp;\pi_{kj}^{(k-1)}&amp;&amp;\text{if }d_{ij}^{(k-1)}&gt;d_{ik}^{(k-1)}+d_{kj}^{(k-1)}.
-\end{align*}
-\]</span></p></li>
-</ul></li>
-</ul>
-<h3 id="johnsons-algorithm-for-sparse-graphs">3. Johnson's Algorithm for Sparse Graphs</h3>
-<p>Johnson's Algorithm returns a matrix shortest-path weights for all pairs of vertices or reports that the input contains a negative-weight cycle, using both Bellman-Ford algorithm and Dijkstra's algorithm as subroutines.</p>
-<ul>
-<li><p><strong>Idea</strong>: <strong>reweight </strong>(runs in $ O(VE)$ time). new weight需满足<strong>nonnegative</strong>以至于可以用Dijkstra's algorithm; <span class="math inline">\(p\)</span> is a shortest path from <span class="math inline">\(u\)</span> to <span class="math inline">\(v\)</span> using old weight <strong>if and only if</strong> <span class="math inline">\(p\)</span> is also a shortest path from <span class="math inline">\(u\)</span> to <span class="math inline">\(v\)</span> using new weight.</p>
-<p>Make a new graph <span class="math inline">\(G&#39;=(V&#39;,E&#39;)\)</span>, where <span class="math inline">\(V&#39;=V\cup \{s\}\)</span> for some new vertex <span class="math inline">\(s\notin V\)</span> and <span class="math inline">\(E&#39;=E\cup\{(s,v):v\in V\}\)</span>. And <span class="math inline">\(w(s,v)=0\)</span> for all <span class="math inline">\(v\in V\)</span>. Moreover, <span class="math inline">\(G&#39;\)</span> has no negative-weight cycles if and only if <span class="math inline">\(G\)</span> has no negative-weight cycles. Let <span class="math inline">\(p=&lt;v_0,v_1,\ldots,v_k&gt;\)</span>, define new weight as <span class="math display">\[
-\hat{w}(p)=w(p)+\delta(s,v_0)-\delta(s,v_k)
-\]</span></p></li>
-</ul>
-<p>Then,</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">JOHNSON(G,w)</span><br><span class="line">1	compute G<span class="string">', where G'</span>.V = G.V union &#123;s&#125;</span><br><span class="line">		G<span class="string">'.E = G.E union &#123;(s,v): v in G.V&#125;, and</span></span><br><span class="line"><span class="string">		w(s,v) = 0 for all v in G.V</span></span><br><span class="line"><span class="string">2	if BELLMAN-FORD(G'</span>,w,s) == FALSE</span><br><span class="line">3		<span class="built_in">print</span> <span class="string">"the input graph contains a negative-weight cycle"</span></span><br><span class="line">4	<span class="keyword">else</span> <span class="keyword">for</span> each vertex v <span class="keyword">in</span> G<span class="string">'.V</span></span><br><span class="line"><span class="string">5		for each edge (u,v) in G'</span>.E</span><br><span class="line">6			what(u,v) = w(u,v) + delta(s,u) - delta(s,v) <span class="comment"># delta from Bellman-Ford</span></span><br><span class="line">7		<span class="built_in">let</span> D = (d_uv) be a new n*n matrix</span><br><span class="line">8		<span class="keyword">for</span> each vertex u <span class="keyword">in</span> G.V</span><br><span class="line">9			run DIJKSTRA(G,what,u) to compute deltahat(u,v) <span class="keyword">for</span> all v <span class="keyword">in</span> G.V</span><br><span class="line">10			<span class="keyword">for</span> each vertex v <span class="keyword">in</span> G.V</span><br><span class="line">11				d_uv = deltahat(u,v) + delta(s,v) - delta(s,u)</span><br><span class="line">12		<span class="built_in">return</span> D</span><br></pre></td></tr></table></figure>
-<p><img src="/images/Johnson.png" /></p>
-<ul>
-<li>Remark
-<ul>
-<li>Computation time: <span class="math inline">\(O(V^2lgV+VE)\)</span> if min-priority queue in Dijkstra's algorithm impletemented by Fibonacci heap and <span class="math inline">\(O(VElgV)\)</span> if by binary-heap.</li>
-</ul></li>
-</ul>
-
+        
+          <p class="article-more-link">
+            <a href="/2020/07/12/All-pairs-shortest-paths/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -201,7 +135,7 @@ d_{ij}^{(k)}=\bigg\{
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/07/12/All-pairs-shortest-paths/" data-id="ckck2dmd1000lgr3xb6324xou" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/07/12/All-pairs-shortest-paths/" data-id="ckck2ey5y0000io3x13es2ux6" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -277,7 +211,7 @@ d_{ij}^{(k)}=\bigg\{
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/07/11/Single-source-shortest-path/" data-id="ckck2dmck0005gr3x2lrtc7gc" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/07/11/Single-source-shortest-path/" data-id="ckck2ey72000iio3xhe7hgc2t" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -342,7 +276,7 @@ d_{ij}^{(k)}=\bigg\{
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/29/Dynamic-programming/" data-id="ckck2dmc70000gr3x0kmjbqbe" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/29/Dynamic-programming/" data-id="ckck2ey640001io3xe31g54f0" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -415,7 +349,7 @@ d_{ij}^{(k)}=\bigg\{
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/24/Python/" data-id="ckck2dmcw000ggr3x9nc9elc7" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/24/Python/" data-id="ckck2ey6z000dio3x8mfobi7l" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -480,7 +414,7 @@ p(\mathbf{x},\mathbf{y})=p(\mathbf{x}|\mathbf{y})p(\mathbf{y})=\prod_{t=1}^Tp(x_
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" data-id="ckck2dmci0003gr3xgw9obfbk" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" data-id="ckck2ey6x000cio3x2aho7xpn" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -533,7 +467,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckck2dmcd0001gr3x50o95eme" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckck2ey6d0003io3x5usl3izx" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -635,7 +569,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckck2dmct000egr3xghzgddab" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckck2ey74000kio3x0a7b087m" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -708,7 +642,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckck2dmcn0008gr3x4lc679yu" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckck2ey6o0005io3x98zx4k16" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -791,7 +725,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckck2dmcx000igr3x9tnc63zi" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckck2ey6m0004io3xewtv9j49" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -859,7 +793,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckck2dmcj0004gr3x37qscwyn" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckck2ey6u0008io3x0a868ejs" class="article-share-link">Share</a>
         
       </div>
     </footer>

@@ -5,13 +5,18 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   
-  <title>Tag: Python | Study notes</title>
+  <title>Transfer learning | Study notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Study notes">
-<meta property="og:url" content="http://sunyinge.github.io/tags/Python/index.html">
+  <meta name="description" content="Layer Transfer  Fine-tune the model (all model layers are updated) Keep the copied layers from large models unchanged Remark: speech copy the last few layers while image copy the first few layers  Co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transfer learning">
+<meta property="og:url" content="http://sunyinge.github.io/2020/07/13/Transfer-learning/index.html">
 <meta property="og:site_name" content="Study notes">
+<meta property="og:description" content="Layer Transfer  Fine-tune the model (all model layers are updated) Keep the copied layers from large models unchanged Remark: speech copy the last few layers while image copy the first few layers  Co">
+<meta property="article:published_time" content="2020-07-14T04:56:27.000Z">
+<meta property="article:modified_time" content="2020-07-14T05:14:17.590Z">
 <meta property="article:author" content="Yinge Sun">
+<meta property="article:tag" content="DL">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Study notes" type="application/atom+xml">
@@ -75,40 +80,76 @@
 </header>
 
     <div class="outer">
-      <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <h3 href="/2020/06/24/Python/" class="archive-article-date">
-  <time datetime="2020-06-25T03:24:45.000Z" itemprop="datePublished">Jun 24</time>
+      <section id="main"><article id="post-Transfer-learning" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <h3 href="/2020/07/13/Transfer-learning/" class="article-date">
+  <time datetime="2020-07-14T04:56:27.000Z" itemprop="datePublished">2020-07-13</time>
 </h3>
-      
+    
+  </div>
+  <div class="article-inner">
+  <div class="curve-down">
+  <div class="fill-content">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/24/Python/">Python</a>
+    <h1 class="article-title" itemprop="name">
+      Transfer learning
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <ul>
+<li>Layer Transfer
+<ul>
+<li>Fine-tune the model (all model layers are updated)</li>
+<li>Keep the copied layers from large models unchanged</li>
+<li>Remark: speech copy the last few layers while image copy the first few layers</li>
+</ul></li>
+<li>Conservative Training
+<ul>
+<li>Old model: trained on source data</li>
+<li>New model: trained on new/targeted data</li>
+<li>Add constraints so that the outputs on same input data from the old model and the new model are similar; or L2 norm of parameter differences of the old model and the new model is small.</li>
+</ul></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class="article-footer-content">
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
+
+        <a data-url="http://sunyinge.github.io/2020/07/13/Transfer-learning/" data-id="ckclhe9x8000b673xb7m0awcu" class="article-share-link">Share</a>
+        
+      </div>
+    </footer>
   </div>
+  </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/12/All-pairs-shortest-paths/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">All-pairs shortest paths</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
-  
+
+
 </section>
       
       <aside id="sidebar">

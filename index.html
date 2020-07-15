@@ -101,7 +101,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
         <h3 id="maximum-flow">1. Maximum Flow</h3>
 <ul>
 <li><strong>Flow network</strong>: directed graph <span class="math inline">\(G=(V,E)\)</span> where edges have nonnegative <strong>capacity</strong> <span class="math inline">\(c(u,v)\)</span> and there is no edge in the reverse direction</li>
@@ -154,49 +153,12 @@ f_p(u,v)=\bigg\{
 <p>Then <span class="math inline">\(f_p\)</span> is a flow on <span class="math inline">\(G\)</span> with value <span class="math inline">\(|f_p|=c_f(p)&gt;0\)</span></p></li>
 <li><p>Corollary: <span class="math inline">\(f\uparrow f_p\)</span> is flow in G with value <span class="math inline">\(|f\uparrow f_p|=|f|+|f_p|\)</span></p></li>
 </ul></li>
-<li><p><strong>Cuts of flow networks</strong></p>
-<ul>
-<li>A <strong>cut</strong> <span class="math inline">\((S,T)\)</span> where <span class="math inline">\(S\cap T=\empty, S\cup T=V\)</span> and <span class="math inline">\(s\in S\)</span>, <span class="math inline">\(t\in T\)</span></li>
-<li><strong>Net flow</strong>: <span class="math inline">\(f(S,T)=\sum_{u\in S}\sum_{v\in T}f(u,v)-\sum_{u\in S}\sum_{v\in T}f(v,u)\)</span></li>
-<li>The <strong>capacity</strong> of the cut: <span class="math inline">\(c(S,T)=\sum_{u\in S}\sum_{v\in T}c(u,v)\)</span>
-<ul>
-<li>A minimum cut of a network is a cut whose capacity is minimum over all cuts of the network</li>
-</ul></li>
-<li>Lemma: The net flow across any cut <span class="math inline">\((S,T)\)</span> is <span class="math inline">\(f(S,T)=|f|\)</span>, where <span class="math inline">\(f\)</span> is a flow in <span class="math inline">\(G\)</span></li>
-<li>Corollary: The value of any flow <span class="math inline">\(f\)</span> in <span class="math inline">\(G\)</span> is bounded by the capacity of any cut of <span class="math inline">\(G\)</span>, <span class="math inline">\(|f|\leq c(S,T)\)</span></li>
-<li><strong>Max-flow min-cut theorem</strong>: the following conditions are equivalent
-<ul>
-<li><span class="math inline">\(f\)</span> is a maximum flow in G</li>
-<li>The residual network <span class="math inline">\(G_f\)</span> contains no augmenting paths</li>
-<li><span class="math inline">\(|f|=c(S,T)\)</span> for some cut <span class="math inline">\((S,T)\)</span> of <span class="math inline">\(G\)</span></li>
-</ul></li>
-</ul></li>
-<li><p><strong>Ford-Fulkerson algorithm</strong></p>
-<ul>
-<li><p>Basic: running time <span class="math inline">\(O(E|f^*|)\)</span> where <span class="math inline">\(f^*\)</span> is the maximum flow in <span class="math inline">\(G=(V,E)\)</span></p>
-<ul>
-<li><div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="ex">FORD-FULKERSON</span>(G,s,t)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="ex">1</span> for each edge (u,v) <span class="kw">in</span> <span class="ex">G.E</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="ex">2</span>     (u,v)<span class="ex">.f</span> = 0</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="ex">3</span> while there exists a path from s to t in the residual network G_f</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="ex">4</span>     c_f(p) = <span class="ex">min</span>{c_f(u,v)<span class="bu">:</span>(u,v) <span class="ex">is</span> in p}</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="ex">5</span>     for each edge (u,v) <span class="kw">in</span> <span class="ex">p</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="ex">6</span>         if (u,v) <span class="kw">in</span> <span class="ex">E</span>:</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="ex">7</span>             (u,v)<span class="ex">.f</span> = (u,v)<span class="ex">.f</span> + c_f(p)</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="ex">8</span>         else (v,u)<span class="ex">.f</span> = (v,u)<span class="ex">.f</span> - c_f(p)</a></code></pre></div></li>
-<li>Not suitable for large <span class="math inline">\(|f^*|\)</span></li>
-</ul></li>
-<li><p><strong>Edmonds-Karp</strong> algorithm: running time <span class="math inline">\(O(VE^2)\)</span></p>
-<ul>
-<li>Find the shortest path from <span class="math inline">\(s\)</span> to <span class="math inline">\(t\)</span> in <span class="math inline">\(G_f\)</span> as the augmenting path
-<ul>
-<li>The shortest-path length in <span class="math inline">\(G_f\)</span> increases monotonically with each flow augmentation</li>
-</ul></li>
-<li>The total number of flow augmentations performed is <span class="math inline">\(O(VE)\)</span></li>
-</ul></li>
-</ul></li>
 </ul>
-
+        
+          <p class="article-more-link">
+            <a href="/2020/07/14/Maximum-flow/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -204,7 +166,7 @@ f_p(u,v)=\bigg\{
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/07/14/Maximum-flow/" data-id="ckcn0j4zm00085j3xc6cffcl9" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/07/14/Maximum-flow/" data-id="ckcn0jnz100097a3x68guckg1" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -253,7 +215,7 @@ f_p(u,v)=\bigg\{
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/07/14/Leetcode-error-prone/" data-id="ckcn0j4zi00045j3x8if29dmd" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/07/14/Leetcode-error-prone/" data-id="ckcn0jnyw00047a3x0albf917" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -313,7 +275,7 @@ f_p(u,v)=\bigg\{
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/07/13/Transfer-learning/" data-id="ckcn0j506000p5j3x2n056v6o" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/07/13/Transfer-learning/" data-id="ckcn0jnzi000r7a3xf8834cxc" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -384,7 +346,7 @@ l_{ij}^{(m)}&amp;=&amp;&amp;\text{min}(l_{ij}^{(m-1)}, \underset{1\leq k \leq n,
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/07/12/All-pairs-shortest-paths/" data-id="ckcn0j4yu00005j3xdbk7bn65" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/07/12/All-pairs-shortest-paths/" data-id="ckcn0jnyk00007a3x1uvmd3sx" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -460,7 +422,7 @@ l_{ij}^{(m)}&amp;=&amp;&amp;\text{min}(l_{ij}^{(m-1)}, \underset{1\leq k \leq n,
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/07/11/Single-source-shortest-path/" data-id="ckcn0j504000n5j3xcokqcigu" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/07/11/Single-source-shortest-path/" data-id="ckcn0jnzb000m7a3x0a039j9e" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -525,7 +487,7 @@ l_{ij}^{(m)}&amp;=&amp;&amp;\text{min}(l_{ij}^{(m-1)}, \underset{1\leq k \leq n,
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/29/Dynamic-programming/" data-id="ckcn0j4zb00015j3x2egge1i6" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/29/Dynamic-programming/" data-id="ckcn0jnyq00017a3xge9ehz66" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -598,7 +560,7 @@ l_{ij}^{(m)}&amp;=&amp;&amp;\text{min}(l_{ij}^{(m-1)}, \underset{1\leq k \leq n,
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/24/Python/" data-id="ckcn0j500000i5j3x1nb5ao92" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/24/Python/" data-id="ckcn0jnza000l7a3x51nr7546" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -663,7 +625,7 @@ p(\mathbf{x},\mathbf{y})=p(\mathbf{x}|\mathbf{y})p(\mathbf{y})=\prod_{t=1}^Tp(x_
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" data-id="ckcn0j4zz000g5j3x30u3fw7d" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" data-id="ckcn0jnz7000g7a3xfud75xpj" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -716,7 +678,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckcn0j4zh00035j3xhgev1c4q" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckcn0jnyu00037a3x7y1retag" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -818,7 +780,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckcn0j507000r5j3xgimw6ka3" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckcn0jnzd000p7a3x0wjx0gz8" class="article-share-link">Share</a>
         
       </div>
     </footer>

@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  
+  <title>Graph algorithms | Study notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Two common representations of graphs: adjacency lists  (sparse graphs) and adjacency matrices (dense graphs) Adjacency lists节省memory但是弊端是判断一个edge \((u,v)\) is present or not只能通过search \(v\) in the adj">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Graph algorithms">
+<meta property="og:url" content="http://sunyinge.github.io/2020/07/16/Graph-algorithms/index.html">
+<meta property="og:site_name" content="Study notes">
+<meta property="og:description" content="Two common representations of graphs: adjacency lists  (sparse graphs) and adjacency matrices (dense graphs) Adjacency lists节省memory但是弊端是判断一个edge \((u,v)\) is present or not只能通过search \(v\) in the adj">
+<meta property="og:image" content="http://sunyinge.github.io/images/BFS.png">
+<meta property="og:image" content="http://sunyinge.github.io/images/DFS.png">
+<meta property="og:image" content="http://sunyinge.github.io/images/TopoSort.png">
+<meta property="og:image" content="http://sunyinge.github.io/images/SCC.png">
+<meta property="article:published_time" content="2020-07-17T04:15:38.000Z">
+<meta property="article:modified_time" content="2020-07-17T05:55:55.338Z">
+<meta property="article:author" content="Yinge Sun">
+<meta property="article:tag" content="Algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunyinge.github.io/images/BFS.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Study notes" type="application/atom+xml">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+  
+
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <nav id="upper-nav" class="inner">
+      <a id="main-nav-toggle" class="nav-icon"></a>
+      <div class="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        
+          <a id="nav-github" class="nav-icon" href="https://github.com/sunyinge" target="_blank" rel="noopener"></a>
+        
+      </div>
+    </nav>
+    <div id="header-title">
+      
+        <h1 id="blog-title-wrap">
+          <a href="/" id="blog-title">Study notes</a>
+        </h1>
+      
+    </div>
+    <div id="contenedor">
+      <ul class="cube">
+        <li class="cara">Hello!</li>
+        <li class="cara"></li>
+        <li class="cara"></li>
+        <li class="cara"></li>
+        <li class="cara"></li>
+        <li class="cara"></li>
+      </ul>
+    </div>
+    <nav id="main-nav">
+      
+        <a class="main-nav-link" href="/">Home</a>
+      
+        <a class="main-nav-link" href="/archives">Archives</a>
+      
+      <a class="main-nav-link st-search-show-outputs">Search</a>
+    </nav>
+  </div>
+</header>
+
+    <div class="outer">
+      <section id="main"><article id="post-Graph-algorithms" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <h3 href="/2020/07/16/Graph-algorithms/" class="article-date">
+  <time datetime="2020-07-17T04:15:38.000Z" itemprop="datePublished">2020-07-16</time>
+</h3>
+    
+  </div>
+  <div class="article-inner">
+  <div class="curve-down">
+  <div class="fill-content">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Graph algorithms
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <p>Two common representations of graphs: <strong>adjacency lists </strong> (sparse graphs) and <strong>adjacency matrices</strong> (dense graphs)</p>
+<p>Adjacency lists节省memory但是弊端是判断一个edge <span class="math inline">\((u,v)\)</span> is present or not只能通过search <span class="math inline">\(v\)</span> in the adjacency list <span class="math inline">\(Adj[u]\)</span>，adjacnecy matrices相反</p>
+<h3 id="breadth-first-search-bfs">1. Breadth-First Search (BFS)</h3>
+<p>BFS systematically explores the edges of <span class="math inline">\(G\)</span> to discover every vertex that is reachable from <span class="math inline">\(s\)</span>. It computes the distance (<strong>smallest number of edges</strong>) from <span class="math inline">\(s\)</span> to each reachable vertex.</p>
+<p>Breadth-first search is so named because it expands the frontier between discovered and undiscovered vertices uniformly across the breadth of the frontier. That is, the algorithm discovers all <strong>vertices at distance <span class="math inline">\(k\)</span></strong> from <span class="math inline">\(s\)</span> <strong>before</strong> discovering any <strong>vertices at distance <span class="math inline">\(k+1\)</span></strong>.</p>
+<p>BFS colors each vertex <strong>white</strong> (undiscovered), <strong>gray </strong>(discovered but children have not been discovered) or <strong>black</strong> (children have been discovered).</p>
+<p><span class="math inline">\(u\)</span> is the <strong>predecessor</strong> or <strong>parent</strong> of <span class="math inline">\(v\)</span> in the breadth-fisrt tree if <span class="math inline">\((u,v)\in E\)</span>.</p>
+<p>Below shows the BFS algorithm which uses a first-in, first-out queue <span class="math inline">\(Q\)</span> to manage the set of gray vertices.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">BFS(G,s)</span><br><span class="line">1	<span class="keyword">for</span> each vertex u <span class="keyword">in</span> G.V-&#123;s&#125;</span><br><span class="line">2		u.color = WHITE</span><br><span class="line">3		u.d = inf</span><br><span class="line">4		u.pi = NIL</span><br><span class="line">5	s.color = GRAY</span><br><span class="line">6	s.d = 0</span><br><span class="line">7	s.pi = NIL</span><br><span class="line">8	Q = empty <span class="built_in">set</span></span><br><span class="line">9	ENQUEUE(Q,s)</span><br><span class="line">10	<span class="keyword">while</span> Q is not empty</span><br><span class="line">11		u = DEQUEUE(Q)</span><br><span class="line">12		<span class="keyword">for</span> each v <span class="keyword">in</span> G.Adj[u]</span><br><span class="line">13			<span class="keyword">if</span> v.color == WHITE</span><br><span class="line">14				v.color = GRAY</span><br><span class="line">15				v.d = u.d + 1</span><br><span class="line">16				v.pi = u</span><br><span class="line">17				ENQUEUE(Q,v)</span><br><span class="line">18		u.color = BLACK</span><br></pre></td></tr></table></figure>
+<p><img src="/images/BFS.png" /></p>
+<ul>
+<li>Running time <span class="math inline">\(O(V+E)\)</span>, which means BFS runs in time linear in the size of the adjacency-list representation of <span class="math inline">\(G\)</span></li>
+<li><strong>Shortest-path distance</strong> <span class="math inline">\(\delta(s,v)\)</span>: the minimum number of edges in any path from <span class="math inline">\(s\)</span> to <span class="math inline">\(v\)</span>; if there is no path from <span class="math inline">\(s\)</span> to <span class="math inline">\(v\)</span>, then <span class="math inline">\(\delta(s,v)=\infty\)</span>.</li>
+<li>Lemma: for any edge <span class="math inline">\((u,v)\in E\)</span>, <span class="math inline">\(\delta(s,v)\leq\delta(s,u)+1\)</span></li>
+<li>Lemma: the queue <span class="math inline">\(Q\)</span> contains vertices <span class="math inline">\(v_1,\ldots,v_r\)</span> where <span class="math inline">\(v_1\)</span> is the head of <span class="math inline">\(Q\)</span> and <span class="math inline">\(v_r\)</span> is the tail. Then <span class="math inline">\(v_r.d\leq v_1.d+1\)</span> and <span class="math inline">\(v_i.d\leq v_{i+1}.d\)</span> for <span class="math inline">\(i=1,2,\ldots,r-1\)</span>.</li>
+<li><strong>Breadth-first trees</strong>: the tree corresponds to the <span class="math inline">\(\pi\)</span> attributes. <strong>Predecessor subgraph</strong> of <span class="math inline">\(G\)</span> is defined as <span class="math inline">\(G_\pi=(V_\pi,E_\pi)\)</span> where <span class="math inline">\(V_\pi=\{v\in V:v.\pi\neq NIL\}\cup \{s\}\)</span> and <span class="math inline">\(E_\pi=\{(v.\pi,v):v\in V_\pi-\{s\}\}\)</span>. <span class="math inline">\(G_\pi\)</span> is a breadth-first tree if <span class="math inline">\(V_\pi\)</span> consists of the vertices reachable from <span class="math inline">\(s\)</span> and for all <span class="math inline">\(v\in V_\pi\)</span>, the subgraph <span class="math inline">\(G_\pi\)</span> contains a unique simple path from <span class="math inline">\(s\)</span> to <span class="math inline">\(v\)</span> that is also a shortest path from <span class="math inline">\(s\)</span> to <span class="math inline">\(v\)</span> in <span class="math inline">\(G\)</span>.</li>
+</ul>
+<h3 id="depth-first-search">2. Depth-First Search</h3>
+<p><strong>Predecessor subgraph</strong> of a DFS is slightly different from that of a BFS. <span class="math inline">\(G_\pi=(V,E_\pi)\)</span>, where <span class="math inline">\(E_\pi=\{(v.\pi,v):v\in V \text{ and } v.\pi\neq NIL\}\)</span>. <span class="math inline">\(G_\pi\)</span> of a DFS forms a <strong>depth-first forest</strong> comprising several <strong>depth-first trees</strong>.</p>
+<p>The procedure DFS below records when it discovers vertex <span class="math inline">\(u\)</span> in the attribute <strong><span class="math inline">\(u.d\)</span></strong> and when if finishes vertex <span class="math inline">\(u\)</span> in the attribute <strong><span class="math inline">\(u.f\)</span></strong>. For every vertex <span class="math inline">\(u\)</span>, <span class="math inline">\(u.d&lt;u.f\)</span> and <strong><span class="math inline">\(u\)</span> is WHILE before time <span class="math inline">\(u.d\)</span>, GRAY between time <span class="math inline">\(u.d\)</span> and time <span class="math inline">\(u.f\)</span>, and BLACK thereafter</strong>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">DFS(G)</span><br><span class="line">1	<span class="keyword">for</span> each vertex u <span class="keyword">in</span> G.V</span><br><span class="line">2		u.color = WHITE</span><br><span class="line">3		u.pi = NIL</span><br><span class="line">4	time = 0</span><br><span class="line">5	<span class="keyword">for</span> each vertex u <span class="keyword">in</span> G.V</span><br><span class="line">6		<span class="keyword">if</span> u.color == WHITE</span><br><span class="line">7			DFS-VISIT(G,u)</span><br><span class="line"></span><br><span class="line">DFS-VISIT(G,u)</span><br><span class="line">1	time = time + 1	// white vertex u has just been discovered</span><br><span class="line">2	u.d = time</span><br><span class="line">3	u.color = GRAY	// explore edge (u,v)</span><br><span class="line">4	<span class="keyword">for</span> each v <span class="keyword">in</span> G.Adj[u]</span><br><span class="line">5		<span class="keyword">if</span> v.color == WHITE</span><br><span class="line">6			v.pi = u</span><br><span class="line">7			DFS-VISIT(G,v)</span><br><span class="line">8	u.color = BLACK	//blacken u; it is finished</span><br><span class="line">9 time = time + 1</span><br><span class="line">10 u.f = time</span><br></pre></td></tr></table></figure>
+<p><img src="/images/DFS.png" /></p>
+<ul>
+<li><strong>Parenthesis theorem</strong>: In any depth-first search of a graph <span class="math inline">\(G=(V,E)\)</span>, for any two vertices <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>, eaxactly one of the following three conditions holds:
+<ul>
+<li><span class="math inline">\([u.d,u.f]\)</span> and <span class="math inline">\([v.d,v.f]\)</span> are entirely disjoint, and neither <span class="math inline">\(u\)</span> nor <span class="math inline">\(v\)</span> is a descendant of the other in the DFS</li>
+<li><span class="math inline">\([u.d,u.f]\)</span> is contained within <span class="math inline">\([v.d,v.f]\)</span>, and <span class="math inline">\(u\)</span> is a descendant of <span class="math inline">\(v\)</span> in DFS</li>
+<li><span class="math inline">\([v.d,v.f]\)</span> is contianed within <span class="math inline">\([u.d,u.f]\)</span>, and <span class="math inline">\(v\)</span> is a descendant of <span class="math inline">\(u\)</span> in DFS</li>
+</ul></li>
+<li><strong>Nesting of descendants's intervals</strong>: <span class="math inline">\(v\)</span> is a proper descendant of <span class="math inline">\(u\)</span> in DFS for a graph <span class="math inline">\(G\)</span> <strong>if and only if</strong> <span class="math inline">\(u.d&lt;v.d&lt;v.f&lt;u.f\)</span>.</li>
+<li><strong>White-path theorem</strong>: In DFS, <span class="math inline">\(v\)</span> is a descendant of <span class="math inline">\(u\)</span> <strong>if and only if</strong> at the time <span class="math inline">\(u.d\)</span> that the search discovers <span class="math inline">\(u\)</span>, there is path from <span class="math inline">\(u\)</span> to <span class="math inline">\(v\)</span> consisting entirely of white vertices.</li>
+</ul>
+<p>Classification of edges: <strong>four</strong> edge types in the depth-first forest <span class="math inline">\(G_\pi\)</span> produced by a DFS on <span class="math inline">\(G\)</span></p>
+<ul>
+<li><strong>Tree edges</strong>: edges in <span class="math inline">\(G_\pi\)</span></li>
+<li><strong>Back edges</strong>: those edges <span class="math inline">\((u,v)\)</span> connecting a vertex <span class="math inline">\(u\)</span> to an ancestor <span class="math inline">\(v\)</span> in a depth-first tree.</li>
+<li><strong>Forward edges</strong>: those <strong>nontree</strong> edges <span class="math inline">\((u,v)\)</span> connecting a vertex <span class="math inline">\(u\)</span> to a descendant <span class="math inline">\(v\)</span> in a depth-first tree.</li>
+<li><strong>Cross edges</strong>: all other edges (e.g., 连接无ancestor关系的vertices或者不同depth-first trees中的)</li>
+</ul>
+<p>When we first explore an edge <span class="math inline">\((u,v)\)</span>, <strong>the color of vertex <span class="math inline">\(v\)</span> determines the type of the edge</strong>: WHITE indicates a tree edge, GRAY indicates a back edge and BLACK indicates a forward or cross edge.</p>
+<p>In DFS of an <strong>undirected</strong> graph <span class="math inline">\(G\)</span>, every edge of <span class="math inline">\(G\)</span> is either a tree edge or a black edge.</p>
+<h3 id="applications-of-dfs">3. Applications of DFS</h3>
+<h4 id="topological-sort">1. Topological sort</h4>
+<p><strong>Topological sort</strong> of a <strong>dag</strong> <span class="math inline">\(G=(V,E)\)</span> is a linear ordering of all its vertices such that if <span class="math inline">\(G\)</span> contains an edge <span class="math inline">\((u,v)\)</span>, then <span class="math inline">\(u\)</span> appears before <span class="math inline">\(v\)</span> in the ordering.</p>
+<p>Many applications use DAG to indicate precedences among events, like the ordering of wearing clothes.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TOPOLOGICAL-SORT(G)</span><br><span class="line">1	call DFS(G) to compute finishing <span class="built_in">times</span> v.f <span class="keyword">for</span> each vertex v</span><br><span class="line">2	as each vertex is finished, insert it onto the front of a linked list</span><br><span class="line">3	<span class="built_in">return</span> the linked list of vertices</span><br></pre></td></tr></table></figure>
+<p><img src="/images/TopoSort.png" /></p>
+<ul>
+<li><span class="math inline">\(O(V+E)\)</span></li>
+<li>Lemma: a directed graph <span class="math inline">\(G\)</span> is acyclic <strong>if and only if</strong> a depth-first search of <span class="math inline">\(G\)</span> yields no back edges</li>
+</ul>
+<h4 id="strongly-connected-components">2. Strongly connected components</h4>
+<p>Decomposition of a graph.</p>
+<p>A <strong>strongly connected component</strong> of a directed graph <span class="math inline">\(G=(V,E)\)</span> is a maximal set of vertices <span class="math inline">\(C\subseteq V\)</span> such that for every pair of vertices <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> in <span class="math inline">\(C\)</span>, we have both <span class="math inline">\(u\leadsto v\)</span> and <span class="math inline">\(v\leadsto u\)</span>; that is , vertices <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are reachable from each other.</p>
+<p><strong>Transpose</strong> of <span class="math inline">\(G\)</span> is defined as <span class="math inline">\(G^T=(V,E^T)\)</span>, where <span class="math inline">\(E^T=\{(u,v):(v,u)\in E\}\)</span>. Given an adjacency-list representation of <span class="math inline">\(G\)</span>, the time to create <span class="math inline">\(G^T\)</span> is <span class="math inline">\(O(V+E)\)</span>. And <span class="math inline">\(G\)</span> and <span class="math inline">\(G^T\)</span> have <strong>exactly the same</strong> strongly connected components.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">STRONGLY-CONNECTED-COMPONENTS(G)</span><br><span class="line">1	call DFS(G) to compoute finishing times u.f for each vertex u</span><br><span class="line">2	compute G^T</span><br><span class="line">3	call DFS(G^T), but in the main loop of DFS, consider the vertices in order of decreasing u.f (as computed in line 1)</span><br><span class="line">4	output the vertices of each tree in the depth-first forest formed in line 3 as a separate strongly connected components</span><br></pre></td></tr></table></figure>
+<p><img src="/images/SCC.png" /></p>
+<ul>
+<li>If <span class="math inline">\(U\subseteq V\)</span>, define <span class="math inline">\(f(U)=max_{u\in U}\{u.f\}\)</span> as the latest finishing time of any vertex in <span class="math inline">\(U\)</span>.</li>
+<li>Lemma: let <span class="math inline">\(C\)</span> and <span class="math inline">\(C&#39;\)</span> be distinct strongly connected components in directed graph <span class="math inline">\(G=(V,E)\)</span>. Suppose that there is an edge <span class="math inline">\((u,v)\in E\)</span>, where <span class="math inline">\(u\in C\)</span> and <span class="math inline">\(v\in C&#39;\)</span>. Then <span class="math inline">\(f(C)&gt;f(C&#39;)\)</span></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class="article-footer-content">
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
+
+        <a data-url="http://sunyinge.github.io/2020/07/16/Graph-algorithms/" data-id="ckcpt722n0004g53x0wdo029g" class="article-share-link">Share</a>
+        
+      </div>
+    </footer>
+  </div>
+  </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/14/Maximum-flow/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Maximum flow</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/16/Graph-algorithms/">Graph algorithms</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/Maximum-flow/">Maximum flow</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/Leetcode-error-prone/">Leetcode error-prone</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/13/Transfer-learning/">Transfer learning</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/12/All-pairs-shortest-paths/">All-pairs shortest paths</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Yinge Sun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/sun11/hexo-theme-paperbox" target="_blank">Paperbox</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+  <a href="#search" class="mobile-nav-link st-search-show-outputs">Search</a>
+</nav>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+  });
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script>
+
+
+
+<!-- totop start -->
+<div id="totop">
+	<a title="To Top"></a>
+</div>
+<!-- totop end -->
+
+<!-- swiftype search start -->
+
+<!-- swiftype search end -->
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/lrsjng.jquery-qrcode/0.12.0/jquery.qrcode.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

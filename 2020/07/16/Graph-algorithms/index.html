@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://sunyinge.github.io/images/TopoSort.png">
 <meta property="og:image" content="http://sunyinge.github.io/images/SCC.png">
 <meta property="article:published_time" content="2020-07-17T04:15:38.000Z">
-<meta property="article:modified_time" content="2020-07-17T05:55:55.338Z">
+<meta property="article:modified_time" content="2020-07-17T05:57:40.726Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -119,6 +119,7 @@
 <p><span class="math inline">\(u\)</span> is the <strong>predecessor</strong> or <strong>parent</strong> of <span class="math inline">\(v\)</span> in the breadth-fisrt tree if <span class="math inline">\((u,v)\in E\)</span>.</p>
 <p>Below shows the BFS algorithm which uses a first-in, first-out queue <span class="math inline">\(Q\)</span> to manage the set of gray vertices.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">BFS(G,s)</span><br><span class="line">1	<span class="keyword">for</span> each vertex u <span class="keyword">in</span> G.V-&#123;s&#125;</span><br><span class="line">2		u.color = WHITE</span><br><span class="line">3		u.d = inf</span><br><span class="line">4		u.pi = NIL</span><br><span class="line">5	s.color = GRAY</span><br><span class="line">6	s.d = 0</span><br><span class="line">7	s.pi = NIL</span><br><span class="line">8	Q = empty <span class="built_in">set</span></span><br><span class="line">9	ENQUEUE(Q,s)</span><br><span class="line">10	<span class="keyword">while</span> Q is not empty</span><br><span class="line">11		u = DEQUEUE(Q)</span><br><span class="line">12		<span class="keyword">for</span> each v <span class="keyword">in</span> G.Adj[u]</span><br><span class="line">13			<span class="keyword">if</span> v.color == WHITE</span><br><span class="line">14				v.color = GRAY</span><br><span class="line">15				v.d = u.d + 1</span><br><span class="line">16				v.pi = u</span><br><span class="line">17				ENQUEUE(Q,v)</span><br><span class="line">18		u.color = BLACK</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p><img src="/images/BFS.png" /></p>
 <ul>
 <li>Running time <span class="math inline">\(O(V+E)\)</span>, which means BFS runs in time linear in the size of the adjacency-list representation of <span class="math inline">\(G\)</span></li>
@@ -179,7 +180,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/07/16/Graph-algorithms/" data-id="ckcpt722n0004g53x0wdo029g" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/07/16/Graph-algorithms/" data-id="ckcpt99sg0004i13x7y53b820" class="article-share-link">Share</a>
         
       </div>
     </footer>

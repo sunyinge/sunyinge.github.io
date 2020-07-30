@@ -16,7 +16,7 @@
 <meta property="og:image" content="http://sunyinge.github.io/images/IntermediateVertex.png">
 <meta property="og:image" content="http://sunyinge.github.io/images/Johnson.png">
 <meta property="article:published_time" content="2020-07-13T03:11:05.000Z">
-<meta property="article:modified_time" content="2020-07-13T05:28:12.597Z">
+<meta property="article:modified_time" content="2020-07-30T02:09:52.685Z">
 <meta property="article:author" content="Yinge Sun">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -186,7 +186,7 @@ d_{ij}^{(k)}=\bigg\{
 <h3 id="johnsons-algorithm-for-sparse-graphs">3. Johnson's Algorithm for Sparse Graphs</h3>
 <p>Johnson's Algorithm returns a matrix shortest-path weights for all pairs of vertices or reports that the input contains a negative-weight cycle, using both Bellman-Ford algorithm and Dijkstra's algorithm as subroutines.</p>
 <ul>
-<li><p><strong>Idea</strong>: <strong>reweight </strong>(runs in $ O(VE)$ time). new weight需满足<strong>nonnegative</strong>以至于可以用Dijkstra's algorithm; <span class="math inline">\(p\)</span> is a shortest path from <span class="math inline">\(u\)</span> to <span class="math inline">\(v\)</span> using old weight <strong>if and only if</strong> <span class="math inline">\(p\)</span> is also a shortest path from <span class="math inline">\(u\)</span> to <span class="math inline">\(v\)</span> using new weight.</p>
+<li><p><strong>Idea</strong>: <strong>reweight </strong>(runs in <span class="math inline">\(O(VE)\)</span> time). new weight需满足<strong>nonnegative</strong>以至于可以用Dijkstra's algorithm; <span class="math inline">\(p\)</span> is a shortest path from <span class="math inline">\(u\)</span> to <span class="math inline">\(v\)</span> using old weight <strong>if and only if</strong> <span class="math inline">\(p\)</span> is also a shortest path from <span class="math inline">\(u\)</span> to <span class="math inline">\(v\)</span> using new weight.</p>
 <p>Make a new graph <span class="math inline">\(G&#39;=(V&#39;,E&#39;)\)</span>, where <span class="math inline">\(V&#39;=V\cup \{s\}\)</span> for some new vertex <span class="math inline">\(s\notin V\)</span> and <span class="math inline">\(E&#39;=E\cup\{(s,v):v\in V\}\)</span>. And <span class="math inline">\(w(s,v)=0\)</span> for all <span class="math inline">\(v\in V\)</span>. Moreover, <span class="math inline">\(G&#39;\)</span> has no negative-weight cycles if and only if <span class="math inline">\(G\)</span> has no negative-weight cycles. Let <span class="math inline">\(p=&lt;v_0,v_1,\ldots,v_k&gt;\)</span>, define new weight as <span class="math display">\[
 \hat{w}(p)=w(p)+\delta(s,v_0)-\delta(s,v_k)
 \]</span></p></li>
@@ -208,7 +208,7 @@ d_{ij}^{(k)}=\bigg\{
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/07/12/All-pairs-shortest-paths/" data-id="ckd413gjx0000ev3x0nem4t7g" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/07/12/All-pairs-shortest-paths/" data-id="ckd85xifu0000lz3xgd0q5l1d" class="article-share-link">Share</a>
         
       </div>
     </footer>

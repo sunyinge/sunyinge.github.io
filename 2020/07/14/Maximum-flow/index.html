@@ -5,18 +5,17 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   
-  <title>Maximum flow | Study notes</title>
+  <title>Maximum-flow | Study notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Maximum Flow  Flow network: directed graph \(G&#x3D;(V,E)\) where edges have nonnegative capacity \(c(u,v)\) and there is no edge in the reverse direction Source \(s\) and sink \(t\), and each vertex li">
+  <meta name="description" content="title: Maximum flow date: 2020-07-14 22:41:28 tags: [Algorithm] 1. Maximum Flow  Flow network: directed graph \(G&#x3D;(V,E)\) where edges have nonnegative capacity \(c(u,v)\) and there is no edge in the r">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Maximum flow">
+<meta property="og:title" content="Maximum-flow">
 <meta property="og:url" content="http://sunyinge.github.io/2020/07/14/Maximum-flow/index.html">
 <meta property="og:site_name" content="Study notes">
-<meta property="og:description" content="1. Maximum Flow  Flow network: directed graph \(G&#x3D;(V,E)\) where edges have nonnegative capacity \(c(u,v)\) and there is no edge in the reverse direction Source \(s\) and sink \(t\), and each vertex li">
-<meta property="article:published_time" content="2020-07-15T05:41:28.000Z">
-<meta property="article:modified_time" content="2020-07-30T02:14:45.817Z">
+<meta property="og:description" content="title: Maximum flow date: 2020-07-14 22:41:28 tags: [Algorithm] 1. Maximum Flow  Flow network: directed graph \(G&#x3D;(V,E)\) where edges have nonnegative capacity \(c(u,v)\) and there is no edge in the r">
+<meta property="article:published_time" content="2020-07-15T05:41:28.070Z">
+<meta property="article:modified_time" content="2020-07-30T02:19:17.651Z">
 <meta property="article:author" content="Yinge Sun">
-<meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Study notes" type="application/atom+xml">
@@ -83,7 +82,7 @@
       <section id="main"><article id="post-Maximum-flow" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <h3 href="/2020/07/14/Maximum-flow/" class="article-date">
-  <time datetime="2020-07-15T05:41:28.000Z" itemprop="datePublished">2020-07-14</time>
+  <time datetime="2020-07-15T05:41:28.070Z" itemprop="datePublished">2020-07-14</time>
 </h3>
     
   </div>
@@ -96,7 +95,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Maximum flow
+      Maximum-flow
     </h1>
   
 
@@ -105,7 +104,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         
-        <h3 id="maximum-flow">1. Maximum Flow</h3>
+        <p>title: Maximum flow date: 2020-07-14 22:41:28 tags: [Algorithm]</p>
+<h3 id="maximum-flow">1. Maximum Flow</h3>
 <ul>
 <li><strong>Flow network</strong>: directed graph <span class="math inline">\(G=(V,E)\)</span> where edges have nonnegative <strong>capacity</strong> <span class="math inline">\(c(u,v)\)</span> and there is no edge in the reverse direction</li>
 <li><strong>Source</strong> <span class="math inline">\(s\)</span> and <strong>sink </strong><span class="math inline">\(t\)</span>, and each vertex lies on some path from <span class="math inline">\(s\)</span> to <span class="math inline">\(t\)</span>, so <span class="math inline">\(|E|&gt;|V|-1\)</span></li>
@@ -180,16 +180,8 @@ f_p(u,v)=\bigg\{
 <li><p><strong>Ford-Fulkerson algorithm</strong></p>
 <ul>
 <li><p>Basic: running time <span class="math inline">\(O(E|f^*|)\)</span> where <span class="math inline">\(f^*\)</span> is the maximum flow in <span class="math inline">\(G=(V,E)\)</span></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FORD-FULKERSON(G,s,t)</span><br><span class="line">1	<span class="keyword">for</span> each edge (u,v) <span class="keyword">in</span> G.E</span><br><span class="line">2		(u,v).f = 0</span><br><span class="line">3	<span class="keyword">while</span> there exists a path from s to t <span class="keyword">in</span> the residual network G_f</span><br><span class="line">4		c_f(p) = min&#123;c_f(u,v):(u,v) is <span class="keyword">in</span> p&#125;</span><br><span class="line">5		<span class="keyword">for</span> each edge (u,v) <span class="keyword">in</span> p</span><br><span class="line">6			<span class="keyword">if</span> (u,v) <span class="keyword">in</span> E:</span><br><span class="line">7				(u,v).f = (u,v).f + c_f(p)</span><br><span class="line">8			<span class="keyword">else</span> (v,u).f = (v,u).f - c_f(p)</span><br></pre></td></tr></table></figure>
 <ul>
-<li><div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="ex">FORD-FULKERSON</span>(G,s,t)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="ex">1</span> for each edge (u,v) <span class="kw">in</span> <span class="ex">G.E</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="ex">2</span>     (u,v)<span class="ex">.f</span> = 0</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="ex">3</span> while there exists a path from s to t in the residual network G_f</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="ex">4</span>     c_f(p) = <span class="ex">min</span>{c_f(u,v)<span class="bu">:</span>(u,v) <span class="ex">is</span> in p}</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="ex">5</span>     for each edge (u,v) <span class="kw">in</span> <span class="ex">p</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="ex">6</span>         if (u,v) <span class="kw">in</span> <span class="ex">E</span>:</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="ex">7</span>             (u,v)<span class="ex">.f</span> = (u,v)<span class="ex">.f</span> + c_f(p)</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="ex">8</span>         else (v,u)<span class="ex">.f</span> = (v,u)<span class="ex">.f</span> - c_f(p)</a></code></pre></div></li>
 <li>Not suitable for large <span class="math inline">\(|f^*|\)</span></li>
 </ul></li>
 <li><p><strong>Edmonds-Karp</strong> algorithm: running time <span class="math inline">\(O(VE^2)\)</span></p>
@@ -208,9 +200,7 @@ f_p(u,v)=\bigg\{
     <footer class="article-footer">
       <div class="article-footer-content">
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
-
-        <a data-url="http://sunyinge.github.io/2020/07/14/Maximum-flow/" data-id="ckd860nlf000dnu3xcppd8x9u" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/07/14/Maximum-flow/" data-id="ckd866hni000dpu3x0l3d9nxd" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -257,7 +247,7 @@ f_p(u,v)=\bigg\{
           </li>
         
           <li>
-            <a href="/2020/07/14/Maximum-flow/">Maximum flow</a>
+            <a href="/2020/07/14/Maximum-flow/">Maximum-flow</a>
           </li>
         
           <li>
@@ -281,7 +271,7 @@ f_p(u,v)=\bigg\{
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 

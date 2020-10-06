@@ -77,6 +77,294 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-Single-source-shortest-path" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <h3 href="/2020/07/11/Single-source-shortest-path/" class="article-date">
+  <time datetime="2020-07-12T05:27:21.000Z" itemprop="datePublished">2020-07-11</time>
+</h3>
+    
+  </div>
+  <div class="article-inner">
+  <div class="curve-down">
+  <div class="fill-content">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/11/Single-source-shortest-path/">Single-source shortest path</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="shortest-path-problem">1. <strong>Shortest-Path Problem</strong></h3>
+<p>A weighted, directed graph <span class="math inline">\(G=(V,E)\)</span> with weight function <span class="math inline">\(w: E\rightarrow\mathbb{R}\)</span>.</p>
+<p>The weight <span class="math inline">\(w(p)\)</span> of path <span class="math inline">\(p=&lt;v_0,v_1,\ldots,v_k&gt;\)</span> is <span class="math inline">\(w(p)=\sum_{i=1}^kw(v_{i-1},v_i)\)</span> and the <strong>shortest-paht weight</strong> <span class="math inline">\(\delta(u,v)\)</span>from <span class="math inline">\(u\)</span> to <span class="math inline">\(v\)</span> is <span class="math display">\[
+\delta(u,v)=\bigg\{
+\begin{align*}
+&amp;\text{min}\{w(p):u\overset{p}{\leadsto}v\} &amp;&amp; \text{if there is a path from $u$ to $v$,}\\
+&amp;\infty &amp;&amp; \text{otherwise.}
+\end{align*}
+\]</span> A <strong>shortest path</strong> from vertex <span class="math inline">\(u\)</span> to vertex <span class="math inline">\(v\)</span> is then defined as any path <span class="math inline">\(p\)</span> with weight <span class="math inline">\(w(p)=\delta(u,v)\)</span>.</p>
+<p><strong>Single-source shortest-paths problem</strong>: given a graph <span class="math inline">\(G=(V,E)\)</span>, we want to find a shortest path from a given <strong>source</strong> vertex <span class="math inline">\(s\in V\)</span> to each vertex <span class="math inline">\(v\in V\)</span>.</p>
+<ul>
+<li>Lemma: <strong>subpaths of shortest paths are shortest paths</strong></li>
+</ul>
+<p>A <strong>shortest-paths tree</strong> rooted at <span class="math inline">\(s\)</span> is a directed subgraph <span class="math inline">\(G&#39;=(V&#39;,E&#39;)\)</span>, where <span class="math inline">\(V&#39;\subseteq V\)</span> and <span class="math inline">\(E&#39;\subseteq E\)</span>, such that</p>
+<ol type="1">
+<li><span class="math inline">\(V&#39;\)</span> is the set of vertices reachable from <span class="math inline">\(s\)</span> in G</li>
+<li><span class="math inline">\(G&#39;\)</span> forms a rooted tree with <span class="math inline">\(s\)</span>, and</li>
+<li>for all <span class="math inline">\(v\in V&#39;\)</span>, the unique simple path from <span class="math inline">\(s\)</span> to <span class="math inline">\(v\)</span> in <span class="math inline">\(G&#39;\)</span> in a shortest path from <span class="math inline">\(s\)</span> to <span class="math inline">\(v\)</span> in <span class="math inline">\(G\)</span>.</li>
+</ol>
+<ul>
+<li><strong>Remark</strong>
+<ul>
+<li>If the graph contains a negative-weight cycle reachable from the source <span class="math inline">\(s\)</span>, shortest-path weights are not well defined.</li>
+<li>WLOG, we assume no cycles in shortest paths, i.e., shortest paths are simple paths.</li>
+<li>Shortest paths are not necessarily unique and neither are shortest-paths tree.</li>
+</ul></li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2020/07/11/Single-source-shortest-path/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class="article-footer-content">
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
+
+        <a data-url="http://sunyinge.github.io/2020/07/11/Single-source-shortest-path/" data-id="ckfy7zwru0010eg3xarca2ie6" class="article-share-link">Share</a>
+        
+      </div>
+    </footer>
+  </div>
+  </div>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Dynamic-programming" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <h3 href="/2020/06/29/Dynamic-programming/" class="article-date">
+  <time datetime="2020-06-30T05:15:15.000Z" itemprop="datePublished">2020-06-29</time>
+</h3>
+    
+  </div>
+  <div class="article-inner">
+  <div class="curve-down">
+  <div class="fill-content">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/29/Dynamic-programming/">Dynamic programming</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="elements-of-dynamic-programming">1. Elements of Dynamic Programming</h3>
+<p>When does the dynamic programming method apply?</p>
+<ul>
+<li>Two key ingredients that an optimization problems must have in order for dynamic programming to apply: <strong>optimal substructure</strong> and <strong>overlapping subproblems</strong>.</li>
+</ul>
+<h4 id="optimal-substructure">1. Optimal Substructure</h4>
+<p>A problem exhibits <strong>optimal substruture</strong> if an optimal solution to the problem contains within it optimal solutions to subproblems. (Optimal solutions to a problem incorporate optimal solutions to related subproblems, which we may solve <strong>independently</strong>)</p>
+<p>Optimal substructure varies across problem domains in two ways:</p>
+<ol type="1">
+<li><p><strong>how many subproblmes</strong> an optimal solution to the original problem uses</p></li>
+<li><p><strong>how many choices</strong> we have in determining which subproblems to use in an optimal solution</p></li>
+</ol>
+<p>Actually, the <strong>running time</strong> of a dynamic programming algorithm depends on the product of the two factors above: the number of subproblems overall and how many choives we look at for each subproblem.</p>
+<h4 id="overlapping-subproblems">2. Overlapping Subproblems</h4>
+<p>We say that the optimazation problem has <strong>overlapping subproblems</strong> when a recursive algorithm <strong>revisits the same problem repeatedly</strong>.</p>
+<p>In contrast, a problem for which a <strong>divide-and-conquer</strong> approach is suitable usually generated brand-new problems at each step of the recursion.</p>
+        
+          <p class="article-more-link">
+            <a href="/2020/06/29/Dynamic-programming/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class="article-footer-content">
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
+
+        <a data-url="http://sunyinge.github.io/2020/06/29/Dynamic-programming/" data-id="ckfy7zwqs0003eg3xej8jeh7q" class="article-share-link">Share</a>
+        
+      </div>
+    </footer>
+  </div>
+  </div>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Python" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <h3 href="/2020/06/24/Python/" class="article-date">
+  <time datetime="2020-06-25T03:24:45.000Z" itemprop="datePublished">2020-06-24</time>
+</h3>
+    
+  </div>
+  <div class="article-inner">
+  <div class="curve-down">
+  <div class="fill-content">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/24/Python/">Python</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <h3 id="nested-functions-in-object">1. Nested Functions in Object</h3>
+<ul>
+<li><p>Function with self can be referenced before its assignment. E.g.,</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Object</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">function0</span><span class="params">(self,args)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> self.function1(args)</span><br><span class="line">    		</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">function1</span><span class="params">(self,args_1)</span>:</span></span><br><span class="line">		<span class="comment">###</span></span><br><span class="line">		self.function1(args_1)</span><br><span class="line">		<span class="keyword">return</span> <span class="comment">###</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Function without self cannot be referenced before its assignment. E.g.,</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Object</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">function0</span><span class="params">(self,args)</span>:</span></span><br><span class="line">		<span class="function"><span class="keyword">def</span> <span class="title">function1</span><span class="params">(args_1)</span>:</span></span><br><span class="line">			<span class="comment">###</span></span><br><span class="line">			function1(args_1)</span><br><span class="line">			<span class="keyword">return</span> <span class="comment">###</span></span><br><span class="line">                      </span><br><span class="line">		<span class="keyword">return</span> function1(args)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="my-cheat-sheet">2. My Cheat Sheet</h3>
+<ul>
+<li><p><strong>Power</strong>: **</p></li>
+<li><p><strong>Matrix multiplication</strong> in np: matmul, @, dot (2d matrix only)</p></li>
+<li><p><strong>Element-wise multiplication</strong> in np: multiply</p></li>
+<li><p>reversed(list[0:length]) returns a list_reverseiterator object but is equivalent to list[length-1<strong>::</strong>-1], reversed(list[1:length]) returns a list_reverseiterator object but is equivalent to list[length-1:<strong>0</strong>:-1]. list.reverse(), then list = org_list[::-1] = org_list[length-1::-1]</p></li>
+<li><p>The <code>strip()</code> method removes any leading (spaces at the beginning) and trailing (spaces at the end) characters (space is the default leading character to remove). The default character to be removed is whitespace.</p></li>
+<li><p>The <code>ord()</code> function returns an integer representing the Unicode character. The <code>chr()</code> method returns a string representing a character whose Unicode code point is an integer.</p></li>
+<li><p><code>break</code> statement <strong>only</strong> terminates the loop in which it appears.</p></li>
+<li><p><code>map(func, iter)</code> returns a map object (an iterator) of the results after applying the given functions to each item of a given iterable, which can be passed to functions like <code>list()</code> (to create a list), <code>set()</code> to create a set. For example,</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nums1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">nums2 = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">result = map(<span class="keyword">lambda</span> x, y: x+y, nums1, nums2)</span><br><span class="line">print(result)</span><br><span class="line"><span class="comment">### Output: </span></span><br><span class="line">[<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>]</span><br></pre></td></tr></table></figure></li>
+<li><p>Nested list comprehension: they would nest in the same way for loops and if statements nest (对于循环和if语句嵌套，它们将以相同的方式嵌套). For example,</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">non_flat = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>], [<span class="number">7</span>,<span class="number">8</span>]]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### Wrong</span></span><br><span class="line">[y <span class="keyword">for</span> y <span class="keyword">in</span> x <span class="keyword">for</span> x <span class="keyword">in</span> non_flat]</span><br><span class="line"><span class="comment">### Output:</span></span><br><span class="line">NameError: name <span class="string">'x'</span> <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### Correct</span></span><br><span class="line">[y <span class="keyword">for</span> x <span class="keyword">in</span> non_flat <span class="keyword">for</span> y <span class="keyword">in</span> x]</span><br><span class="line"><span class="comment">### Output:</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### Just like this:</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> non_flat:</span><br><span class="line">	<span class="keyword">for</span> y <span class="keyword">in</span> x:</span><br><span class="line">		y</span><br></pre></td></tr></table></figure></li>
+<li><p>List comprehension with if/else: <code>[x for x in x_list if x]</code> or <code>[x if x else 0 for x in x_list]</code> （注意顺序不同）</p></li>
+<li><p>Sort a string will become a list of characters. To get the sorted string of the original string, use <code>&quot;&quot;.join(sorted(str))</code>.</p></li>
+<li><p><code>dict.values()</code> will return a sequence of dictionary values, equivalent to <code>[dict[x] for x in dict]</code> or <code>[x for x in dict.values()]</code>.</p></li>
+<li><p><code>l=[[&quot;.&quot;]*4]*3</code>. If change one value of <code>l</code>, e.g., <code>l[1][2] = 2</code>, then all values of <code>l[i][2]</code> will be 2 (for all i=0,1,2).</p></li>
+<li><p><code>sorted(l)</code>按l中list的第一个element排序然后第二个...if list l的element也是list的话。如果每个element是长度为2的list，它等同于sorted(l, lambda x:x[0])</p></li>
+<li><p><code>filter(lambda)</code>返回lambda为True的iterable的elements。 E.g., <code>a=[1,12,3], results=filter(lambda x:x%2,a)=[1,3]</code> and <code>a=[1,0,True,False,'a','0'], results=filter(None,a)=[1,True,'a','0']</code> (If no filter functions, then identity function will be used).</p></li>
+<li><p>Binary search (二分法) 通用模板：while start+1 &lt; end; start = mid; end = mid. 适用于任何any/首位first/末尾last search.</p></li>
+<li><p><code>while</code> takes much longer than <code>for</code> because there is an extra step for judging condition statement.</p></li>
+<li><p>bitwise operation: <code>i &lt;&lt; 1 = i*2</code> and <code>i &lt;&lt; k = i * 2^k</code>. <code>i &lt;&lt;= 1</code> <span class="math inline">\(\Leftrightarrow\)</span> <code>i *= 2</code>.</p></li>
+<li><p><code>[[] for _ in range(5)]</code> generates <code>[[], [], [], [], []]</code> while <code>[[]*5]</code> generates <code>[[]]s</code>.</p></li>
+<li><p><code>DFS(var_list+something)</code> is equivalent to <code>var_list += something; DFS(var_list); var_list -= something</code>.</p></li>
+<li><p><code>from collections import deque</code>, <code>deque</code> is fast to append or pop from either end.</p></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class="article-footer-content">
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+        <a data-url="http://sunyinge.github.io/2020/06/24/Python/" data-id="ckfy7zwrp000veg3x4njk9cfh" class="article-share-link">Share</a>
+        
+      </div>
+    </footer>
+  </div>
+  </div>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Probabilistic-graphic-models-for-sequence-tagging" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <h3 href="/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" class="article-date">
+  <time datetime="2020-06-24T04:12:45.000Z" itemprop="datePublished">2020-06-23</time>
+</h3>
+    
+  </div>
+  <div class="article-inner">
+  <div class="curve-down">
+  <div class="fill-content">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/">Probabilistic graphic models for sequence tagging</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Sequence tagging, such as <strong>part of speech (POS) tagging</strong> and <strong>named entity recognition (NER)</strong>.</p>
+<p>Let <span class="math inline">\(\mathbf{x}=x_1,x_2,\ldots,x_T\)</span> be a sequence of words and <span class="math inline">\(\mathbf{y}=y_1,y_2,\ldots,y_T\)</span> be a sequence of their tags.</p>
+<h3 id="generative-models">1. Generative Models</h3>
+<p>A Generative Model ‌learns the <strong>joint probability distribution p(x,y).</strong> It predicts the conditional probability with the help of Bayes Theorem.</p>
+<h4 id="hidden-markov-models-hmm">1. Hidden Markov Models (HMM)</h4>
+<h5 id="the-model">1. The model</h5>
+<p><span class="math display">\[
+\mathbf{y}=\underset{y}{\text{argmax}}\  p(\mathbf{y}|\mathbf{x})=\underset{y}{\text{argmax}}\ p(\mathbf{x},\mathbf{y})
+\]</span></p>
+<ul>
+<li><p>Markov assumption: <span class="math inline">\(p(\mathbf{y})=\prod_{t=1}^Tp(y_t|y_{t-1})\)</span></p></li>
+<li><p>Independence assumption: <span class="math inline">\(p(\mathbf{x}|\mathbf{y})=\prod_{t=1}^Tp(x_t|y_{t})\)</span></p></li>
+</ul>
+<p>Then we have, <span class="math display">\[
+p(\mathbf{x},\mathbf{y})=p(\mathbf{x}|\mathbf{y})p(\mathbf{y})=\prod_{t=1}^Tp(x_t|y_{t})p(y_t|y_{t-1}).
+\]</span> A HMM is specified by</p>
+        
+          <p class="article-more-link">
+            <a href="/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class="article-footer-content">
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
+
+        <a data-url="http://sunyinge.github.io/2020/06/23/Probabilistic-graphic-models-for-sequence-tagging/" data-id="ckfy7zwrm000reg3xempmfqle" class="article-share-link">Share</a>
+        
+      </div>
+    </footer>
+  </div>
+  </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-End-symbol-in-n-gram-models" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <h3 href="/2020/06/09/End-symbol-in-n-gram-models/" class="article-date">
@@ -117,7 +405,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckfy7s48m0003b83xc7gs59jv" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/09/End-symbol-in-n-gram-models/" data-id="ckfy7zwqu0004eg3x0h262jbx" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -219,7 +507,7 @@ P(\mathbf{w})=\prod_{i=1}^{k+1}P(w_i|w_{i-1})
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckfy7s49s000wb83xguwk41tx" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Text-classification/" data-id="ckfy7zwrw0012eg3xfzu47mim" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -292,7 +580,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckfy7s48z000ab83x2fcb4p2o" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/Matrix-derivatives/" data-id="ckfy7zwrf000ieg3xf64yfq14" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -375,7 +663,7 @@ J^h=J^f\cdot J^g.
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckfy7s49a000eb83xdwspbt1m" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/08/MLP/" data-id="ckfy7zwrh000leg3xdc8gdfrv" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -443,7 +731,7 @@ F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot 
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckfy7s49g000hb83x05g8bq94" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckfy7zwrl000peg3x3q5rakec" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -523,61 +811,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckfy7s49h000jb83xda5v7yol" class="article-share-link">Share</a>
-        
-      </div>
-    </footer>
-  </div>
-  </div>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Set-up" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <h3 href="/2020/06/07/Set-up/" class="article-date">
-  <time datetime="2020-06-07T18:38:09.000Z" itemprop="datePublished">2020-06-07</time>
-</h3>
-    
-  </div>
-  <div class="article-inner">
-  <div class="curve-down">
-  <div class="fill-content">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/07/Set-up/">Set up</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-        <ol type="1">
-<li><p>Create a repo named <strong>username.github.io</strong>, where username is your username on GitHub. If you have already uploaded to other repo, rename the repo instead.</p></li>
-<li><p>Follow this <a href="https://gist.github.com/btfak/18938572f5df000ebe06fbd1872e4e39" target="_blank" rel="noopener">page</a> to install Hexo and deploy your new blog.</p></li>
-<li><p>In order to show mathematical formulas on blog pages, you can choose <a href="https://www.mathjax.org/" target="_blank" rel="noopener">MathJax</a> to render them and use <a href="https://github.com/wzpan/hexo-renderer-pandoc" target="_blank" rel="noopener">hexo-renderer-pandoc</a> as Hexo's Markdown renderer. To install <code>hexo-renderer-pandoc</code>, follow the instructions <a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/MATH.md" target="_blank" rel="noopener">here</a> if you are using the theme <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">next</a> and see the <a href="%5Bhttps://capchenxi.github.io/2019/12/26/%E5%B9%B2%E8%B4%A7-hexo%E4%BD%BF%E7%94%A8%E5%87%BA%E7%8E%B0%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/%5D(https://capchenxi.github.io/2019/12/26/干货-hexo使用出现的小问题/)">post</a> for potential problems you might encouter. If you are using <a href="https://github.com/sun11/hexo-theme-paperbox" target="_blank" rel="noopener">paperbox</a> as your hexo theme, run the following scripts in your terminal under the path <code>~/***/username.github.io</code>.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked</span><br><span class="line">npm install hexo-renderer-pandoc</span><br></pre></td></tr></table></figure></li>
-<li><p>If you need to post an image, create an <code>images</code> foler in <code>source</code> (<code>_posts</code> does not work for me) folder and follow instructions here <a href="https://www.npmjs.com/package/hexo-asset-link" target="_blank" rel="noopener">hexo-asset-link</a> and <a href="https://liolok.github.io/How-to-Add-Image-to-Hexo-Blog-Post/" target="_blank" rel="noopener">Root-relative link</a>.</p>
-<p>You're all set.</p></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <div class="article-footer-content">
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Installation/" rel="tag">Installation</a></li></ul>
-
-        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckfy7s49o000pb83xhjtc1kny" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckfy7zwro000teg3x6yxhgw7r" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -592,7 +826,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 </section>
@@ -606,23 +840,23 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
       <ul>
         
           <li>
-            <a href="/2020/10/06/ML/">ML</a>
+            <a href="/2020/10/06/DLHLP/">DLHLP_LiHongYi</a>
           </li>
         
           <li>
-            <a href="/2020/07/16/Graph-algorithms/">Graph algorithms</a>
+            <a href="/2020/10/06/ML4/">ML_LiHongYi</a>
           </li>
         
           <li>
-            <a href="/2020/07/14/Maximum-flow/">Maximum flow</a>
+            <a href="/2020/10/06/ML1/">ML_LiHongYi</a>
           </li>
         
           <li>
-            <a href="/2020/07/14/Leetcode-error-prone/">Leetcode error-prone</a>
+            <a href="/2020/10/06/ML2/">ML_LiHongYi</a>
           </li>
         
           <li>
-            <a href="/2020/07/13/Transfer-learning/">Transfer learning</a>
+            <a href="/2020/10/06/ML3/">ML_LiHongYi</a>
           </li>
         
       </ul>
@@ -634,7 +868,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/N/" rel="tag">N</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -643,7 +877,7 @@ w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">10</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">10</span></li></ul>
     </div>
   </div>
 

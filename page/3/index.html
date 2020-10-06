@@ -77,6 +77,154 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-Measure-of-accuracy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <h3 href="/2020/06/07/Measure-of-accuracy/" class="article-date">
+  <time datetime="2020-06-08T06:04:06.000Z" itemprop="datePublished">2020-06-07</time>
+</h3>
+    
+  </div>
+  <div class="article-inner">
+  <div class="curve-down">
+  <div class="fill-content">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/07/Measure-of-accuracy/">Measure of accuracy</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="f1-score">1. F1 Score</h3>
+<h4 id="binary-classification">1. Binary Classification</h4>
+<p>F1 score is the harmonic mean of precision and recall: <span class="math display">\[
+F_1 = \frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\cdot\frac{precision\cdot recall}{precesion+recall}
+\]</span></p>
+<ul>
+<li><strong>Precision</strong> = <span class="math inline">\(\frac{true \ positives}{positives}\)</span>, a high precision indicates a high chance that positives are true (凡检测出来的都是对的).
+<ul>
+<li>How many selected items are true?</li>
+</ul></li>
+<li><strong>Recall</strong> = <span class="math inline">\(\frac{true \ positives}{true}\)</span>, a high recall indicates a high chance that true ones are selected (凡是真的都能检测出来).
+<ul>
+<li>How many true items are selected?</li>
+<li><strong>True postive rate</strong>, <strong>sensitivity</strong>, <strong>power</strong>.</li>
+</ul></li>
+</ul>
+<h4 id="multiclass-classification">2. Multiclass Classification</h4>
+<p>Based on the confusion matrix (left), we can calculate the precision and recall for each class (right).</p>
+<p><img src="/images/mcF1.png" /></p>
+        
+          <p class="article-more-link">
+            <a href="/2020/06/07/Measure-of-accuracy/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class="article-footer-content">
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
+
+        <a data-url="http://sunyinge.github.io/2020/06/07/Measure-of-accuracy/" data-id="ckfy89nxq000xph3x8b1k1r3h" class="article-share-link">Share</a>
+        
+      </div>
+    </footer>
+  </div>
+  </div>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Optimization" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <h3 href="/2020/06/07/Optimization/" class="article-date">
+  <time datetime="2020-06-08T05:24:21.000Z" itemprop="datePublished">2020-06-07</time>
+</h3>
+    
+  </div>
+  <div class="article-inner">
+  <div class="curve-down">
+  <div class="fill-content">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/07/Optimization/">Optimization</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="stochastic-gradient-descent-sgd">1. Stochastic Gradient Descent (SGD)</h3>
+<ul>
+<li>GD is infeasible for <strong>large datasets</strong> so we need SGD.</li>
+</ul>
+<p><span class="math inline">\(i\)</span> is a random index between 1 and n: <span class="math display">\[
+w^t=w^{t-1}-\eta_tg_{t-1},
+\]</span> where <span class="math inline">\(w^t\)</span> is the weight at iteration t, <span class="math inline">\(\eta\)</span> is the learning rate at iteration t and <span class="math inline">\(g_t=\nabla L(w^t; x_i, y_i)\)</span> is the gradient of <span class="math inline">\(i\)</span>th example's loss function with respect to <span class="math inline">\(w^t\)</span>. The <span class="math inline">\(w^t\)</span>, <span class="math inline">\(g_t\)</span> could be a scalar, vector or matrix with the same size.</p>
+<h3 id="mini-batch-gradient-descent">2. Mini-batch Gradient Descent</h3>
+<p><span class="math inline">\(i_1,\ldots,i_m\)</span> are random indices between 1 and n: <span class="math display">\[
+w^t=w^{t-1}-\eta_t\sum_{j=1}^mg^{i_j}_{t-1},
+\]</span> where <span class="math inline">\(g^{i_j}_t=\sum_{j=1}^m\nabla L(w^t; x_{i_j}, y_{i_j})\)</span> is the gradient of <span class="math inline">\(i_1\)</span>th to <span class="math inline">\(i_m\)</span>th example's loss function with respect to <span class="math inline">\(w^t\)</span>.</p>
+<ul>
+<li>Mini-batch GD is <strong>less noisy</strong> than SGD.</li>
+</ul>
+<h3 id="momentum">3. Momentum</h3>
+<ul>
+<li><p>Oscillation is not good for optimization, as shown in the graph on the left.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="/images/SDG.png" alt="" style="zoom:50%;" /></th>
+<th style="text-align: center;"><img src="/images/Momentum.png" alt="" style="zoom:52%;" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>SGD Oscillation</em></td>
+<td style="text-align: center;"><strong><em>Momentum</em></strong></td>
+</tr>
+</tbody>
+</table>
+        
+          <p class="article-more-link">
+            <a href="/2020/06/07/Optimization/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class="article-footer-content">
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/" rel="tag">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a></li></ul>
+
+        <a data-url="http://sunyinge.github.io/2020/06/07/Optimization/" data-id="ckfy89nxt000zph3xeij8739a" class="article-share-link">Share</a>
+        
+      </div>
+    </footer>
+  </div>
+  </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Set-up" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <h3 href="/2020/06/07/Set-up/" class="article-date">
@@ -118,7 +266,7 @@
         
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Installation/" rel="tag">Installation</a></li></ul>
 
-        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckfy86rtm0010ld3xded30um0" class="article-share-link">Share</a>
+        <a data-url="http://sunyinge.github.io/2020/06/07/Set-up/" data-id="ckfy89nxz0016ph3x84n0cv0m" class="article-share-link">Share</a>
         
       </div>
     </footer>
@@ -147,7 +295,15 @@
       <ul>
         
           <li>
-            <a href="/2020/10/06/DLHLP/">DLHLP_LiHongYi</a>
+            <a href="/2020/10/06/DLHLP3/">DLHLP_LiHongYi_QA&amp;Dialogue</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/DLHLP2/">DLHLP_LiHongYi_BertFamily</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/DLHLP/">DLHLP_LiHongYi_Introduction</a>
           </li>
         
           <li>
@@ -156,14 +312,6 @@
         
           <li>
             <a href="/2020/10/06/ML3/">ML_LiHongYi_T</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/06/ML2/">ML_LiHongYi_seq2</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/06/ML1/">ML_LiHongYi_</a>
           </li>
         
       </ul>
@@ -175,7 +323,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/" rel="tag">DL</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Installation/" rel="tag">Installation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optimization/" rel="tag">Optimization</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -184,7 +332,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">10</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">10</span></li></ul>
     </div>
   </div>
 
